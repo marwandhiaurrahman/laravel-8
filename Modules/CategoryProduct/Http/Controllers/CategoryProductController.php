@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Product\Http\Controllers;
+namespace Modules\CategoryProduct\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class ProductController extends Controller
+class CategoryProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product::index');
+        return view('categoryproduct::index');
     }
 
     /**
@@ -23,8 +23,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $kategoris = Kate
-        return view('product::create');
+        return view('categoryproduct::create');
     }
 
     /**
@@ -35,7 +34,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request->all());
     }
 
     /**
@@ -45,7 +43,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return view('product::show');
+        return view('categoryproduct::show');
     }
 
     /**
@@ -55,7 +53,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('product::edit');
+        return view('categoryproduct::edit');
     }
 
     /**

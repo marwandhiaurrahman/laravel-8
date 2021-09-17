@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::resource('product', 'ProductController');
+Route::prefix('categoryproduct')->group(function() {
+    Route::get('/', 'CategoryProductController@index');
 });
