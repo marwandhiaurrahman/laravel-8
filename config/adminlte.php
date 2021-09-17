@@ -251,7 +251,7 @@ return [
             'text' => 'Data Produk',
             'url'  => 'admin/product',
             'icon' => 'fas fa-fw fa-box',
-            'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create','regex:@^admin/product/[0-9]/warna+$@','regex:@^admin/product/[0-9]/ukuran+$@','regex:@^admin/product/[0-9]/gambar+$@']
+            'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create', 'regex:@^admin/product/[0-9]/warna+$@', 'regex:@^admin/product/[0-9]/ukuran+$@', 'regex:@^admin/product/[0-9]/gambar+$@']
 
         ],
         ['header' => 'account_settings'],
@@ -406,12 +406,25 @@ return [
             ],
         ],
         'Sweetalert2' => [
+            // 'active' => true,
+            // 'files' => [
+            //     [
+            //         'type' => 'js',
+            //         'asset' => false,
+            //         'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+            //     ],
+            // ],
             'active' => false,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => 'vendor/sweetalert2/sweetalert2.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'vendor/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css',
                 ],
             ],
         ],

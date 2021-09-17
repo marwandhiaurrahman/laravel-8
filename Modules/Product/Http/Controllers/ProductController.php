@@ -5,6 +5,9 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Product;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProductController extends Controller
 {
@@ -14,7 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product::index');
+        $products = Product::latest()->get();
+        return view('product::index',compact(['products']))->with('i',0);
     }
 
     /**
@@ -35,7 +39,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'stock' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        Product::updateOrCreate($request->only([
+            'name',
+            'description',
+            'stock',
+            'price',
+            'status',
+        ]));
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -74,8 +93,10 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->route('product.index');
     }
 }

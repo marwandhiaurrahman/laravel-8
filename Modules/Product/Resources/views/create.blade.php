@@ -14,6 +14,16 @@
                     <h3 class="card-title">Input Data Produk</h3>
                 </div>
                 <!-- /.card-header -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!-- form start -->
                 {!! Form::open(['route' => 'product.store', 'method' => 'POST', 'files' => false]) !!}
                 <div class="card-body">
@@ -23,12 +33,12 @@
                     </div>
                     <div class="form-group">
                         <label for="inputDescription">Deskripsi Produk</label>
-                        {!! Form::textarea('decription', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
+                        {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>
-                        {{-- {!! Form::select('kategori_id', $kategoris->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Kategori', 'required', 'id' => 'inputKategori']) !!} --}}
-                    </div>
+                        {!! Form::select('kategori_id', $kategoris->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Kategori', 'required', 'id' => 'inputKategori']) !!}
+                    </div> --}}
                     <div class="form-group">
                         <label for="inputHarga">Harga Produk</label>
                         {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required']) !!}
@@ -37,12 +47,13 @@
                         <label for="inputStok">Stok Produk</label>
                         {!! Form::number('stock', null, ['class' => 'form-control', 'id' => 'inputStok', 'placeholder' => 'Stok Produk', 'required']) !!}
                     </div>
+
+                    {{-- <input type="checkbox" name="acceptRules" class="inline checkbox" id="checkbox1" value="false"> --}}
+                    <p id="checkbox-value"> </p>
                     <div class="form-group">
-                        <label for="inputStatus">Status Publish</label><br>
-                        {!! Form::checkbox('publish', true, ['class' => 'form-check-input', 'id' => 'inputPublish']) !!}
-                        <input name=namssse id=id type=checkbox checked=checked>
-                        <input name="status" type="checkbox" id="inputStatus" data-size="small" checked="true"
-                            data-toggle="toggle">
+                        <label for="checkbox1">Status Publish</label><br>
+                        <input name="status" type="checkbox" id="checkbox1" value="false" checked hidden>
+                        <input name="status" type="checkbox" id="checkbox1" value="true" data-size="small" data-toggle="toggle">
                     </div>
                 </div>
                 <!-- /.card-body -->
