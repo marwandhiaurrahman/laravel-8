@@ -14,6 +14,9 @@
                     <h3 class="card-title">Input Data Produk</h3>
                 </div>
                 <!-- /.card-header -->
+
+                <!-- form start -->
+                {!! Form::open(['route' => 'product.store', 'method' => 'POST', 'files' => false]) !!}
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,8 +27,6 @@
                         </ul>
                     </div>
                 @endif
-                <!-- form start -->
-                {!! Form::open(['route' => 'product.store', 'method' => 'POST', 'files' => false]) !!}
                 <div class="card-body">
                     <div class="form-group">
                         <label for="inputName">Nama Produk</label>
@@ -53,7 +54,8 @@
                     <div class="form-group">
                         <label for="checkbox1">Status Publish</label><br>
                         <input name="status" type="checkbox" id="checkbox1" value="false" checked hidden>
-                        <input name="status" type="checkbox" id="checkbox1" value="true" data-size="small" data-toggle="toggle">
+                        <input name="status" type="checkbox" id="checkbox1" value="true" data-size="small"
+                            data-toggle="toggle">
                     </div>
                 </div>
                 <!-- /.card-body -->

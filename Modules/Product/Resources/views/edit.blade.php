@@ -11,62 +11,66 @@
         <div class="col-sm-12">
             <div class="card card-secondary">
                 <div class="card-header">
-                    <h3 class="card-title">Input data produk</h3>
+                    <h3 class="card-title">Input Data Produk</h3>
                 </div>
-                {!! Form::model($produk, ['method' => 'PATCH', 'route' => ['produk.update', $produk], 'files' => false]) !!}
+                {!! Form::model($product, ['method' => 'PATCH', 'route' => ['product.update', $product], 'files' => false]) !!}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-body">
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputNama">Nama Produk</label>
-                        <div class="col-sm-10 col-md-6 col-lg-6">
-                            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama', 'id' => 'inputNama', 'required', 'autofocus']) !!}
-                        </div>
+                    <div class="form-group">
+                        <label for="inputName">Nama Produk</label>
+                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'inputName', 'placeholder' => 'Nama Produk', 'autofocus', 'required']) !!}
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputRingkasan">Ringkasan</label>
-                        <div class="col-sm-10 col-md-6 col-lg-6">
-                            {!! Form::textarea('ringkasan', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputRingkasan', 'placeholder' => 'Masukan Ringkasan', 'required']) !!}
-                        </div>
+                    <div class="form-group">
+                        <label for="inputDescription">Deskripsi Produk</label>
+                        {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputKategori">Kategori Produk</label>
-                        <div class="col-sm-10 col-md-6 col-lg-6">
-                            {!! Form::select('kategori_id', $kategoris->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Produk', 'required', 'id' => 'inputKategori']) !!}
-                        </div>
+                    {{-- <div class="form-group">
+                    <label for="inputKategori">Kategori Produk</label>
+                    {!! Form::select('kategori_id', $kategoris->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Kategori', 'required', 'id' => 'inputKategori']) !!}
+                </div> --}}
+                    <div class="form-group">
+                        <label for="inputHarga">Harga Produk</label>
+                        {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required']) !!}
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputHarga">Harga</label>
-                        <div class="col-sm-10 col-md-6 col-lg-4">
-                            {!! Form::number('harga', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Harga', 'id' => 'inputHarga', 'required']) !!}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputStok">Stok</label>
-                        <div class="col-sm-10 col-md-6 col-lg-4">
-                            {!! Form::number('stok', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Stok', 'id' => 'inputStok', 'required']) !!}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputDiskon">Diskon</label>
-                        <div class="col-sm-10 col-md-6 col-lg-4">
-                            {!! Form::number('diskon', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Diskon', 'id' => 'inputDiskon']) !!}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-label" for="inputPublish">Publish</label>
-                        <div class="col-sm-10">
-                            {!! Form::checkbox('publish', true, ['class' => 'form-check-input', 'id' => 'inputPublish']) !!}
-                        </div>
+                    <div class="form-group">
+                        <label for="inputStok">Stok Produk</label>
+                        {!! Form::number('stock', null, ['class' => 'form-control', 'id' => 'inputStok', 'placeholder' => 'Stok Produk', 'required']) !!}
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-10 col-md-6 col-lg-4 offset-sm-2">
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                            <a href="{{ url()->previous() }}" class="btn btn-danger" required>Kembali</a>
-                        </div>
+                    {{-- <input type="checkbox" name="acceptRules" class="inline checkbox" id="checkbox1" value="false"> --}}
+                    <p id="checkbox-value"> </p>
+                    <div class="form-group">
+                        <label for="checkbox1">Status Publish</label><br>
+                        <input name="status" type="checkbox" id="checkbox1" value="false" checked hidden>
+                        <input name="status" type="checkbox" id="checkbox1" value="true" {{$product->status == 'true'? 'checked':''}} data-size="small"
+                            data-toggle="toggle">
                     </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-danger" required>Kembali</a>
                 </div>
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+@endsection
+
+@section('js')
+    {{-- Toggle Button --}}
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 @endsection

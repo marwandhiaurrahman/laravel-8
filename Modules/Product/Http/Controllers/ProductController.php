@@ -42,8 +42,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'stock' => 'required|numeric|min:0',
-            'price' => 'required|numeric|min:0',
+            'stock' => 'required|min:0',
+            'price' => 'required|min:0',
         ]);
 
         Product::updateOrCreate($request->only([
@@ -72,9 +72,9 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        return view('product::edit');
+        return view('product::edit',compact(['product']));
     }
 
     /**
@@ -83,9 +83,20 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'stock' => 'required|min:0',
+            'price' => 'required|min:0',
+        ]);
+
+        $product->update($request->all());
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->route('product.index');
+
     }
 
     /**
