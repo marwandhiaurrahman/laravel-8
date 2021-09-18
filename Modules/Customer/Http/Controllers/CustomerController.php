@@ -5,6 +5,8 @@ namespace Modules\Customer\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Customer\Entities\Customer;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
 {
@@ -14,7 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer::index');
+        $customers = Customer::latest()->get();
+        return view('customer::index', compact(['customers']))->with(['i' => 0]);
     }
 
     /**
@@ -33,7 +36,22 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+        ]);
+
+        try {
+            Customer::updateOrCreate($request->only(['name', 'address', 'email', 'phone']));
+            Alert::success('Success Info', 'Success Message');
+            return redirect()->route('customer.index');
+        } catch (\Throwable $th) {
+            Alert::error('Error Info', 'Terjadi Masalah Input');
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -72,8 +90,10 @@ class CustomerController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('customer.index');
     }
 }
