@@ -5,7 +5,9 @@ namespace Modules\Order\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Customer\Entities\Customer;
 use Modules\Order\Entities\Order;
+use Modules\Order\Entities\OrderDetail;
 use Modules\Product\Entities\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -21,7 +23,7 @@ class OrderController extends Controller
         $orders = Order::latest()->get();
         $products = Product::latest()->get();
         $carts = \Cart::getContent();
-        return view('order::index',compact(['orders','products','carts']))->with(['i'=>0,'j'=>0]);
+        return view('order::index', compact(['orders', 'products', 'carts']))->with(['i' => 0, 'j' => 0]);
     }
 
     /**
@@ -31,7 +33,7 @@ class OrderController extends Controller
     public function create()
     {
         $carts = \Cart::getContent();
-        return view('order::create',compact(['carts']))->with(['i'=>0,'j'=>0]);
+        return view('order::create', compact(['carts']))->with(['i' => 0, 'j' => 0]);
     }
 
     /**
@@ -41,7 +43,38 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+        ]);
+
+        $customer = Customer::updateOrCreate($request->only(['name', 'address', 'email', 'phone']));
+
+        $order = Order::create([
+            'invoice' => uniqid(),
+            'total_price' => \Cart::getTotal(),
+            'status' => '1',
+            'customer_id' => $customer->id,
+        ]);
+
+        $carts = \Cart::getContent();
+
+        foreach ($carts as $item) {
+
+            $orderDetail = OrderDetail::create([
+                'product_id' => $item->id,
+                'order_id' => $order->id,
+                'quantity' => $item->quantity,
+                'price' => $item->price * $item->quantity,
+            ]);
+        }
+
+        \Cart::clear();
+
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('order.index');
     }
 
     /**
@@ -49,9 +82,11 @@ class OrderController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        return view('order::show');
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+        // dd($orderDetails);
+        return view('order::show', compact(['order','orderDetails']))->with(['i'=>0]);
     }
 
     /**
@@ -80,8 +115,10 @@ class OrderController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('order.index');
     }
 }

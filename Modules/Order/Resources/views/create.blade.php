@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputTelepon">No Telepon</label>
-                        {!! Form::text('phone_number', null, ['class' => 'form-control', 'placeholder' => 'Masukkan No Telepon', 'id' => 'inputTelepon', 'required']) !!}
+                        {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Masukkan No Telepon', 'id' => 'inputTelepon', 'required']) !!}
                     </div>
                     <div class="form-group">
                         <label for="inputEmail">Email</label>

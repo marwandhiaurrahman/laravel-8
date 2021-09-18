@@ -255,6 +255,13 @@ return [
 
         ],
         [
+            'text' => 'Data Pelanggan',
+            'url'  => 'admin/customer',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['admin/customer', 'regex:@^admin/customer/[0-9]+$@', 'regex:@^admin/customer/[0-9]/edit+$@', 'admin/customer/create',]
+
+        ],
+        [
             'text' => 'Data Pemesanan',
             'url'  => 'admin/order',
             'icon' => 'fas fa-fw fa-shopping-cart',
@@ -271,6 +278,11 @@ return [
             'text'        => 'User',
             'url'         => 'admin/user',
             'icon'        => 'fas fa-users',
+        ],
+        [
+            'text'        => 'Pengaturan',
+            'url'         => 'admin/setting',
+            'icon'        => 'fas fa-cog',
         ],
         // [
         //     'text' => 'change_password',

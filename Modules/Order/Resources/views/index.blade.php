@@ -31,12 +31,13 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example2" class="table table-bordered table-striped">
+                    <table id="" class="display table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Tanggal</th>
                                 <th>Invoice</th>
-                                <th>Price</th>
+                                <th>Harga</th>
                                 <th>Nama</th>
                                 <th>Identitas</th>
                                 <th>Status</th>
@@ -44,6 +45,43 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($orders as $item)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->invoice }}</td>
+                                    <td>{{ money($item->total_price, 'IDR') }}</td>
+                                    <td>{{ $item->customer->name }}</td>
+                                    <td>{{ $item->customer->address }} {{ $item->customer->email }}
+                                        {{ $item->customer->phone }}</td>
+                                    <td>
+                                        @if ($item->status == '1')
+                                            <span class="badge badge-warning">Menunggu Pembayaran</span>
+                                        @else
+                                            <span class="badge badge-warning">Pemesanan Selesai</span>
+                                        @endif
+                                    </td>
+                                    <td>
+
+                                        <form action="{{ route('order.destroy', $item) }}" method="POST">
+                                            <a href="{{ route('order.show', $item) }}" class="btn btn-xs btn-primary"
+                                                data-toggle="tooltip" title="Lihat Detail Pemesanan">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a class="btn btn-xs btn-warning" href="{{ route('order.edit', $item) }}"
+                                                data-toggle="tooltip" title="Edit Produk {{ $item->name }}"><i
+                                                    class=" fas fa-edit"></i></a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip"
+                                                title="Hapus Pemesanan">
+                                                <i class="fas fa-trash-alt"
+                                                    onclick="return confirm('Are you sure you want to delete this item ?');"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -128,7 +166,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="" class="display table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -272,21 +310,26 @@
     <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 
     <script>
+        $(document).ready(function() {
+            $('table.display').DataTable({
+                "responsive": true,
+                // "lengthChange": true,
+                "autoWidth": false,
+                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            });
+        });
+
+
+        // $("#example2").DataTable({
+        //     "responsive": true,
+        //     // "lengthChange": true,
+        //     "autoWidth": false,
+        //     // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    </script>
+
+    <script>
         $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                // "lengthChange": true,
-                "autoWidth": false,
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-            $("#example2").DataTable({
-                "responsive": true,
-                // "lengthChange": true,
-                "autoWidth": false,
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
             $('#checkbox-value').text($('#checkbox1').val());
 
             $("#checkbox1").on('change', function() {
@@ -295,10 +338,8 @@
                 } else {
                     $(this).attr('value', 'false');
                 }
-
                 $('#checkbox-value').text($('#checkbox1').val());
             });
-
         });
     </script>
 

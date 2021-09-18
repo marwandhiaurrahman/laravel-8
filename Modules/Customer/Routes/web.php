@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('customer')->group(function() {
-    Route::get('/', 'CustomerController@index');
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::resource('customer', 'CustomerController');
 });
