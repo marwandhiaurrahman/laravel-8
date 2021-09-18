@@ -2,5 +2,6 @@
     "Product": true,
     "User": true,
     "CategoryProduct": true,
-    "Order": true
+    "Order": true,
+    "Customer": true
 }

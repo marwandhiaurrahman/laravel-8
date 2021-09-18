@@ -1,16 +1,12 @@
 <?php
 
-namespace Modules\Order\Http\Controllers;
+namespace Modules\Customer\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Order\Entities\Order;
-use Modules\Product\Entities\Product;
-use RealRashid\SweetAlert\Facades\Alert;
 
-
-class OrderController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->get();
-        $products = Product::latest()->get();
-        $carts = \Cart::getContent();
-        return view('order::index',compact(['orders','products','carts']))->with(['i'=>0,'j'=>0]);
+        return view('customer::index');
     }
 
     /**
@@ -30,8 +23,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $carts = \Cart::getContent();
-        return view('order::create',compact(['carts']))->with(['i'=>0,'j'=>0]);
+        return view('customer::create');
     }
 
     /**
@@ -51,7 +43,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('order::show');
+        return view('customer::show');
     }
 
     /**
@@ -61,7 +53,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order::edit');
+        return view('customer::edit');
     }
 
     /**
