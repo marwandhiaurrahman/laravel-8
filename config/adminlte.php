@@ -251,19 +251,19 @@ return [
             'text' => 'Data Produk',
             'url'  => 'admin/product',
             'icon' => 'fas fa-fw fa-box',
-            'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create', 'regex:@^admin/product/[0-9]/warna+$@', 'regex:@^admin/product/[0-9]/ukuran+$@', 'regex:@^admin/product/[0-9]/gambar+$@']
+            'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create', 'regex:@^admin/product/[0-9]/warna+$@', 'regex:@^admin/product/[0-9]/ukuran+$@', 'regex:@^admin/product/[0-9]/image+$@']
 
         ],
         ['header' => 'account_settings'],
         [
-            'text'        => 'User',
-            'url'         => 'admin/user',
-            'icon'        => 'fas fa-users',
-        ],
-        [
             'text' => 'profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text'        => 'User',
+            'url'         => 'admin/user',
+            'icon'        => 'fas fa-users',
         ],
         // [
         //     'text' => 'change_password',

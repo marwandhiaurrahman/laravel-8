@@ -23,20 +23,20 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('gambar.store', $produk->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('image.store', $product) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     {{-- {{ Form::open(array('route' => 'gambar.store', 'enctype' => 'multipart/form-data')) }} --}}
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="inputID">ID Produk</label>
                             <div class="input-group col-sm-10 col-md-6 col-lg-4">
-                                {!! Form::text('produk_id', $produk->id, ['class' => 'form-control', 'readonly']) !!}
+                                {{-- {!! Form::text('produk_id', $product, ['class' => 'form-control', 'readonly']) !!} --}}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="inputID">Nama Produk</label>
                             <div class="input-group col-sm-10 col-md-6 col-lg-4">
-                                {!! Form::text('name', $produk->name, ['class' => 'form-control', 'readonly']) !!}
+                                {{-- {!! Form::text('name', $product->name, ['class' => 'form-control', 'readonly']) !!} --}}
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="inputNama">Nama Photo</label>
                             <div class="col-sm-10 col-md-6 col-lg-4">
-                                {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'inputNama', 'placeholder' => 'Masukkan Nama Photo']) !!}
+                                {{-- {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'inputNama', 'placeholder' => 'Masukkan Nama Photo']) !!} --}}
                                 {{-- <input type="text" name="name" /> --}}
                             </div>
                         </div>
@@ -91,16 +91,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($gambars as $gambarProduk)
+                            {{-- @foreach ($gambars as $gambarProduk)
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/produk-image/' . $gambarProduk->gambar) }}"
+                                        <img src="{{ asset('storage/product-image/' . $gambarProduk->gambar) }}"
                                             alt="{{ $gambarProduk->gambar }}" class="img-thumbnail" width="100">
                                         {{ $gambarProduk->name }}
                                     </td>
                                     <td>
-                                        <form action="{{ route('gambar.destroy', [$produk, $gambarProduk->id]) }}"
+                                        <form action="{{ route('gambar.destroy', [$product, $gambarproduct]) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -113,7 +113,7 @@
                                     </td>
                                 </tr>
 
-                            @endforeach
+                            {{-- @endforeach --}}
                         </tbody>
                     </table>
                 </div>

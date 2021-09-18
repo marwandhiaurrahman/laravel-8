@@ -13,4 +13,10 @@
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('product', 'ProductController');
+
+    Route::prefix('product/{product}')->group(function () {
+        Route::resource('image', 'ImageProductController');
+        Route::resource('size', 'SizeProductController');
+        Route::resource('color', 'ColorProductController');
+    });
 });
