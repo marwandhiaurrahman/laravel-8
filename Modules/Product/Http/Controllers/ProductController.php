@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        return view('product::index',compact(['products']))->with('i',0);
+        return view('product::index', compact(['products']))->with('i', 0);
     }
 
     /**
@@ -46,15 +46,20 @@ class ProductController extends Controller
             'price' => 'required|min:0',
         ]);
 
-        Product::updateOrCreate($request->only([
-            'name',
-            'description',
-            'stock',
-            'price',
-            'status',
-        ]));
-        Alert::success('Success Title', 'Success Message');
-        return redirect()->route('product.index');
+        try {
+            Product::updateOrCreate($request->only([
+                'name',
+                'description',
+                'stock',
+                'price',
+                'status',
+            ]));
+            Alert::success('Success Info', 'Success Message');
+            return redirect()->route('product.index');
+        } catch (\Throwable $th) {
+            Alert::error('Error Info', 'Terjadi Masalah Input');
+            return redirect()->route('product.index');
+        }
     }
 
     /**
@@ -74,7 +79,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product::edit',compact(['product']));
+        return view('product::edit', compact(['product']));
     }
 
     /**
@@ -85,7 +90,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -93,12 +97,16 @@ class ProductController extends Controller
             'price' => 'required|min:0',
         ]);
 
-        $product->update($request->all());
-        Alert::success('Success Title', 'Success Message');
-        return redirect()->route('product.index');
-
+        try {
+            $product->update($request->all());
+            Alert::success('Success Info', 'Success Message');
+            return redirect()->route('product.index');
+        } catch (\Throwable $th) {
+            Alert::error('Error Info', 'Terjadi Masalah Input');
+            return redirect()->route('product.index');
+        }
     }
-
+    
     /**
      * Remove the specified resource from storage.
      * @param int $id
@@ -107,7 +115,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        Alert::success('Success Title', 'Success Message');
+        Alert::success('Success Info', 'Success Message');
         return redirect()->route('product.index');
     }
 }
