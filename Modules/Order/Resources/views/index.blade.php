@@ -8,19 +8,126 @@
 
 @section('content')
     <div class="row">
-        <div class="col-8">
-            <div class="card collapsed-card">
+        <div class="col-12">
+            <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tabel Data Produk </h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                class="fas fa-plus"></i>
-                        </button>
+                    <h3 class="card-title">Tabel Data Pemesanan</h3>
+                    <div class="card-tools ">
+                        <ul class="pagination pagination-sm float-right">
+                            <li class="mr-1">
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                                    data-target="#cartModal">
+                                    Keranjang ( {{ Cart::getTotalQuantity() }} )
+                                </button>
+                            </li>
+                            <li class="mr-1">
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                                    data-target="#productModal">
+                                    + Tambah Pemesanan
+                                </button>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Invoice</th>
+                                <th>Price</th>
+                                <th>Nama</th>
+                                <th>Identitas</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title" id="createModalLabel">Keranjang Pemesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Kuantitas</th>
+                                <th>Harga</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($carts as $item)
+                                <tr class="data-row">
+                                    <td>{{ ++$j }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>
+                                        <form action="{{ route('cart.update', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="number" name="quantity" min="0" value="{{ $item->quantity }}"
+                                                class="form-control form-control-sm col-3" onchange="this.form.submit()" />
+                                        </form>
+                                        @ {{ money($item->price, 'IDR') }}
+                                    </td>
+                                    <td> {{ money($item->getPriceSum(), 'IDR') }}</td>
+                                    <td>
+                                        <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip"
+                                                title="Hapus dari Keranjang"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <th colspan="2" class="text-center">Total</th>
+                            <th> {{ Cart::getTotalQuantity() }} pcs</th>
+                            <th>{{ money(Cart::getTotal(), 'IDR') }}</th>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ route('order.create') }}" class="btn btn-success">Buat Pesanan</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title" id="createModalLabel">Pilih Produk</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -47,148 +154,24 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-xs btn-primary" data-toggle="tooltip" title="Tambah Ke Keranjang">
-                                            <i class="fas fa-cart-plus"></i>
-                                        </a>
+                                        <form action="{{ route('cart.store') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $item->id }}" name="product_id">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button type="submit" class="btn btn-xs btn-primary" data-toggle="tooltip"
+                                                title="Tambah Ke Keranjang"><i class="fas fa-cart-plus"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card collapsed-card">
-                <div class="card-header">
-                    <h3 class="card-title">Tabel Keranjang</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body" style="display: none;">
-                    The body of the card
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Tabel Data Pemesanan</h3>
-                    <div class="card-tools ">
-                        <ul class="pagination pagination-sm float-right">
-                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
-                                data-target="#createModal">
-                                + Tambah Pemesanan
-                            </button>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Invoice</th>
-                                <th>Price</th>
-                                <th>Nama</th>
-                                <th>Identitas</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col -->
-    </div>
-
-    <!-- Create Modal -->
-    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title" id="createModalLabel">Tambah Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                {!! Form::open(['route' => 'product.store', 'method' => 'POST', 'files' => false]) !!}
-                <div class="modal-body">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="form-group">
-                        <label for="inputName">Nama Pemesanan</label>
-                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'inputName', 'placeholder' => 'Nama Pemesanan', 'autofocus', 'required']) !!}
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Deskripsi Pemesanan</label>
-                        {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Pemesanan', 'required']) !!}
-                    </div>
-                    <div class="form-group">
-                        <label for="inputHarga">Harga Pemesanan</label>
-                        {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Pemesanan', 'required']) !!}
-                    </div>
-                    <div class="form-group">
-                        <label for="inputStok">Stok Pemesanan</label>
-                        {!! Form::number('stock', null, ['class' => 'form-control', 'id' => 'inputStok', 'placeholder' => 'Stok Pemesanan', 'required']) !!}
-                    </div>
-                    <div class="form-group">
-                        <label for="checkbox1">Status Publish</label><br>
-                        <input name="status" type="checkbox" id="checkbox1" value="false" checked hidden>
-                        <input name="status" type="checkbox" id="checkbox1" value="true" data-size="small"
-                            data-toggle="toggle">
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Tabel Data Produk</h3>
-                            <div class="card-tools ">
-                                <ul class="pagination pagination-sm float-right">
-                                    {{-- <a class="btn btn-sm btn-success mr-2" href="{{ route('product.create') }}">+ Tambah Produk</a> --}}
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
-                                        data-target="#createModal">
-                                        + Tambah Produk
-                                    </button>
-                                    {{-- <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
-                                        data-target="#deleteModal">
-                                        + Delete Produk
-                                    </button> --}}
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                    </div>
-                    <!-- /.card -->
-                </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Submit</button>
-                    <a href="{{ url()->previous() }}" class="btn btn-danger" required>Kembali</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-                {!! Form::close() !!}
             </div>
         </div>
     </div>
@@ -275,11 +258,8 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/responsive/css/responsive.bootstrap4.min.css') }}">
-
     {{-- Toggle --}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-
-    {{-- <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css"> --}}
 @endsection
 
 @section('js')
@@ -363,4 +343,13 @@
             })
         })
     </script>
+
+    @if (Session::has('success'))
+        <script type="text/javascript">
+            $(window).on('load', function() {
+                $('#cartModal').modal('show');
+            });
+        </script>
+    @endif
+
 @stop

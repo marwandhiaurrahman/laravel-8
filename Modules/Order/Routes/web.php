@@ -11,8 +11,9 @@
 |
 */
 
-// use Modules\Order\Http\Controllers\OrderController;
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('order', 'OrderController');
+    Route::resource('cart', 'CartController');
+
 });

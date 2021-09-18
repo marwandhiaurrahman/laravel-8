@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Order\Entities\Order;
 use Modules\Product\Entities\Product;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class OrderController extends Controller
 {
@@ -18,8 +20,8 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->get();
         $products = Product::latest()->get();
-
-        return view('order::index',compact(['orders','products']))->with('i',0);
+        $carts = \Cart::getContent();
+        return view('order::index',compact(['orders','products','carts']))->with(['i'=>0,'j'=>0]);
     }
 
     /**

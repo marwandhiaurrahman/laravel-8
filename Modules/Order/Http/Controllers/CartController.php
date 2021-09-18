@@ -5,6 +5,9 @@ namespace Modules\Order\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Product;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class CartController extends Controller
 {
@@ -33,11 +36,16 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+
+        $product = Product::find($request->product_id);
+
+        // dd($product);
+
         \Cart::add([
-            'id' => $request->produk_id,
-            'name' => $request->name,
-            'price' => $request->harga,
-            'quantity' => $request->kuantitas,
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $request->quantity,
         ]);
         Alert::success('Success Info', 'Success Message');
         return redirect()->route('order.index');
@@ -71,7 +79,19 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \Cart::update(
+            $id,
+            [
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $request->quantity
+                ],
+            ]
+        );
+
+        session()->flash('success',"hjjh");
+
+        return redirect()->route('order.index');
     }
 
     /**
@@ -81,6 +101,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Cart::remove($id);
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('order.index');
     }
 }
