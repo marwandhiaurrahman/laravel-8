@@ -254,6 +254,13 @@ return [
             'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create', 'regex:@^admin/product/[0-9]/warna+$@', 'regex:@^admin/product/[0-9]/ukuran+$@', 'regex:@^admin/product/[0-9]/image+$@']
 
         ],
+        [
+            'text' => 'Data Pemesanan',
+            'url'  => 'admin/order',
+            'icon' => 'fas fa-fw fa-shopping-cart',
+            'active' => ['admin/order', 'regex:@^admin/order/[0-9]+$@', 'regex:@^admin/order/[0-9]/edit+$@', 'admin/order/create', 'regex:@^admin/order/[0-9]/warna+$@', 'regex:@^admin/order/[0-9]/ukuran+$@', 'regex:@^admin/order/[0-9]/image+$@']
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
