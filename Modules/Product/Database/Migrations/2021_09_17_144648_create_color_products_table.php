@@ -17,7 +17,7 @@ class CreateColorProductsTable extends Migration
             $table->id();
             $table->foreignId('product_id')->unsigned()->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
-            $table->string('label');
+            $table->string('code');
             $table->timestamps();
         });
     }

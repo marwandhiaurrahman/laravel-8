@@ -5,7 +5,9 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\ColorProduct;
 use Modules\Product\Entities\Product;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ColorProductController extends Controller
 {
@@ -15,8 +17,8 @@ class ColorProductController extends Controller
      */
     public function index(Product $product)
     {
-        dd($product);
-        return view('product::image',compact(['product']));
+        $colors = ColorProduct::where('product_id', $product->id)->get();
+        return view('product::color', compact(['product','colors']))->with(['i' => 0]);
     }
 
     /**
@@ -33,9 +35,21 @@ class ColorProductController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'code' => 'required',
+            'product_id' => 'required',
+        ]);
+
+        ColorProduct::updateOrCreate($request->only([
+            'name',
+            'code',
+            'product_id',
+        ]));
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('color.index', compact(['product']));
     }
 
     /**
@@ -74,8 +88,10 @@ class ColorProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Product $product, ColorProduct $color)
     {
-        //
+        $color->delete();
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('color.index', compact(['product']));
     }
 }

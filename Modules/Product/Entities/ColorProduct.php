@@ -9,10 +9,18 @@ class ColorProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $fillable = [
+        'name',
+        'code',
+        'product_id',
+    ];
+
     protected static function newFactory()
     {
         return \Modules\Product\Database\factories\ColorProductFactory::new();
+    }
+    public function procuct()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

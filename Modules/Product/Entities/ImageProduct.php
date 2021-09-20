@@ -19,6 +19,10 @@ class ImageProduct extends Model
     {
         return \Modules\Product\Database\factories\ImageProductFactory::new();
     }
+    public function procuct()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
 
 }
