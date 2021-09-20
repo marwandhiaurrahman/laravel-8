@@ -9,10 +9,19 @@ class ImageProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $fillable = [
+        'image',
+        'name',
+        'product_id'
+    ];
+
     protected static function newFactory()
     {
         return \Modules\Product\Database\factories\ImageProductFactory::new();
+    }
+
+    public function procuct()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
