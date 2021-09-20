@@ -35,6 +35,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Kategori</th>
                                 <th>Stok</th>
                                 <th>Harga</th>
                                 <th>Status</th>
@@ -45,42 +46,48 @@
                         <tbody>
                             @foreach ($products as $item)
                                 <tr class="data-row">
-                                    <td class="align-middle iteration">3</td>
-                                    {{-- <td class="align-middle iteration">{{ ++$i }}</td> --}}
-                                    <td class="align-middle name">{{ $item->name }}</td>
-                                    <td class="align-middle word-break description">{{ $item->stock }}</td>
+                                    <td class="">{{ ++$i }}</td>
+                                    <td class="">{{ $item->name }}</td>
+                                        <td>
+                                                             @foreach ($item->category as
+                                        $cate)
+                                        {{ $cate->name }}
+                            @endforeach
+                            </td>
+                            <td class="">{{ $item->stock }}</td>
                                     <td>{{ money($item->price, 'IDR') }}</td>
                                     <td>
                                         {{-- {{ $item->status }} --}}
                                         @if ($item->status == 'true')
-                                            <span class="badge badge-success">Active</span>
-                                        @else
-                                            <span class="badge badge-danger">Off</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('image.index', $item) }}" class="btn btn-xs btn-primary"
-                                            data-toggle="tooltip" title="Edit Gambar"><i class="fas fa-images"></i></a>
-                                        <a href="{{ route('size.index', $item) }}" class="btn btn-xs btn-primary" data-toggle="tooltip"
-                                            title="Edit Ukuran"><i class="fas fa-pencil-ruler"></i></a>
-                                        <a href="{{ route('color.index', $item) }}" class="btn btn-xs btn-primary" data-toggle="tooltip"
-                                            title="Edit Warna"><i class="fas fa-palette"></i></a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('product.destroy', $item) }}" method="POST">
-                                            <a class="btn btn-xs btn-warning" href="{{ route('product.edit', $item) }}"
-                                                data-toggle="tooltip" title="Edit Produk {{ $item->name }}"><i
-                                                    class=" fas fa-edit"></i></a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip"
-                                                title="Hapus Produk {{ $item->name }}">
-                                                <i class="fas fa-trash-alt"
-                                                    onclick="return confirm('Are you sure you want to delete this item ?');"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                            <span class="
+                                badge badge-success">Active</span>
+                            @else
+                                <span class="badge badge-danger">Off</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('image.index', $item) }}" class="btn btn-xs btn-primary"
+                                    data-toggle="tooltip" title="Edit Gambar"><i class="fas fa-images"></i></a>
+                                <a href="{{ route('size.index', $item) }}" class="btn btn-xs btn-primary"
+                                    data-toggle="tooltip" title="Edit Ukuran"><i class="fas fa-pencil-ruler"></i></a>
+                                <a href="{{ route('color.index', $item) }}" class="btn btn-xs btn-primary"
+                                    data-toggle="tooltip" title="Edit Warna"><i class="fas fa-palette"></i></a>
+                            </td>
+                            <td>
+                                <form action="{{ route('product.destroy', $item) }}" method="POST">
+                                    <a class="btn btn-xs btn-warning" href="{{ route('product.edit', $item) }}"
+                                        data-toggle="tooltip" title="Edit Produk {{ $item->name }}"><i
+                                            class=" fas fa-edit"></i></a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip"
+                                        title="Hapus Produk {{ $item->name }}">
+                                        <i class="fas fa-trash-alt"
+                                            onclick="return confirm('Are you sure you want to delete this item ?');"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -124,9 +131,14 @@
                         {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
                     </div>
                     <div class="form-group">
+                        <label for="inputKategori">Kategori Produk</label>
+                        {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Pilih Kategori Produk', 'required']) !!}
+                    </div>
+                    <div class="form-group">
                         <label for="inputHarga">Harga Produk</label>
                         {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required']) !!}
                     </div>
+
                     <div class="form-group">
                         <label for="inputStok">Stok Produk</label>
                         {!! Form::number('stock', null, ['class' => 'form-control', 'id' => 'inputStok', 'placeholder' => 'Stok Produk', 'required']) !!}

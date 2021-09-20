@@ -21,4 +21,9 @@ class Product extends Model
     {
         return \Modules\Product\Database\factories\ProductFactory::new();
     }
+
+    public function category()
+    {
+        return $this->belongsToMany(CategoryProduct::class, 'product_category', 'product_id', 'category_id');
+    }
 }

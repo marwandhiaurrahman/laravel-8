@@ -17,4 +17,9 @@ class CategoryProduct extends Model
     {
         return \Modules\Product\Database\factories\CategoryProductFactory::new();
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_category', 'product_id', 'category_id');
+    }
 }

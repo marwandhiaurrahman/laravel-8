@@ -5,6 +5,7 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\CategoryProduct;
 use Modules\Product\Entities\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,7 +19,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        return view('product::index', compact(['products']))->with('i', 0);
+        $categoris = CategoryProduct::latest()->get();
+        return view('product::index', compact(['products', 'categoris']))->with('i', 0);
     }
 
     /**
@@ -44,22 +46,20 @@ class ProductController extends Controller
             'description' => 'required',
             'stock' => 'required|min:0',
             'price' => 'required|min:0',
+            'category' => 'required',
         ]);
 
-        try {
-            Product::updateOrCreate($request->only([
-                'name',
-                'description',
-                'stock',
-                'price',
-                'status',
-            ]));
-            Alert::success('Success Info', 'Success Message');
-            return redirect()->route('product.index');
-        } catch (\Throwable $th) {
-            Alert::error('Error Info', 'Terjadi Masalah Input');
-            return redirect()->route('product.index');
-        }
+        $product =  Product::updateOrCreate($request->only([
+            'name',
+            'description',
+            'stock',
+            'price',
+            'status',
+        ]));
+        $product->category()->attach($request->category);
+
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -79,7 +79,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product::edit', compact(['product']));
+        $categoris = CategoryProduct::latest()->get();
+        $category = $product->category()->first();
+        return view('product::edit', compact(['product', 'categoris', 'category']));
     }
 
     /**
@@ -95,16 +97,14 @@ class ProductController extends Controller
             'description' => 'required',
             'stock' => 'required|min:0',
             'price' => 'required|min:0',
+            'category' => 'required',
         ]);
 
-        try {
-            $product->update($request->all());
-            Alert::success('Success Info', 'Success Message');
-            return redirect()->route('product.index');
-        } catch (\Throwable $th) {
-            Alert::error('Error Info', 'Terjadi Masalah Input');
-            return redirect()->route('product.index');
-        }
+        $product->update($request->all());
+        $product->category()->sync($request->category);
+
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('product.index');
     }
 
     /**
