@@ -5,7 +5,10 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\ImageProduct;
 use Modules\Product\Entities\Product;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ImageProductController extends Controller
 {
@@ -16,7 +19,9 @@ class ImageProductController extends Controller
     public function index(Product $product)
     {
         // dd($product);
-        return view('product::image',compact(['product']));
+
+        $images = ImageProduct::where('product_id', $product->id)->get();
+        return view('product::image', compact(['product', 'images']))->with(['i' => 0]);
     }
 
     /**
@@ -33,9 +38,32 @@ class ImageProductController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
+            'product_id' => 'required',
+        ]);
+
+        $input =  $request->all();
+
+        if (!empty($request->image)) {
+            $imageName = $request->image->getClientOriginalName();
+            $request->image->move(public_path('storage/product-image'), $imageName);
+        }
+        $input['image'] = $imageName;
+
+
+        ImageProduct::updateOrCreate([
+            'image' => $input['image'],
+            'name' => $input['name'],
+            'product_id' => $input['product_id'],
+        ]);
+
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('image.index', compact(['product']));
     }
 
     /**
@@ -74,8 +102,10 @@ class ImageProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Product $product, ImageProduct $image)
     {
-        //
+        $image->delete();
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('image.index', compact(['product']));
     }
 }

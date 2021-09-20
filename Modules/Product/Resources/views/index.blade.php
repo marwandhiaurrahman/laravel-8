@@ -61,9 +61,9 @@
                                     <td>
                                         <a href="{{ route('image.index', $item) }}" class="btn btn-xs btn-primary"
                                             data-toggle="tooltip" title="Edit Gambar"><i class="fas fa-images"></i></a>
-                                        <a href="#" class="btn btn-xs btn-primary" data-toggle="tooltip"
+                                        <a href="{{ route('size.index', $item) }}" class="btn btn-xs btn-primary" data-toggle="tooltip"
                                             title="Edit Ukuran"><i class="fas fa-pencil-ruler"></i></a>
-                                        <a href="#" class="btn btn-xs btn-primary" data-toggle="tooltip"
+                                        <a href="{{ route('color.index', $item) }}" class="btn btn-xs btn-primary" data-toggle="tooltip"
                                             title="Edit Warna"><i class="fas fa-palette"></i></a>
                                     </td>
                                     <td>
