@@ -16,7 +16,7 @@ return [
 
     'title' => 'RZF Komputer',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' | Admin RZF Komputer ',
 
     /*
     |--------------------------------------------------------------------------
