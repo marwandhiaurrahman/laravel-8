@@ -11,8 +11,11 @@
 |
 */
 
+// use Modules\Product\Http\Controllers\CategoryProductController;
+
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('product', 'ProductController');
+    Route::resource('product-category', 'CategoryProductController')->middleware('auth');
 
     Route::prefix('product/{product}')->group(function () {
         Route::resource('image', 'ImageProductController');
@@ -20,3 +23,4 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::resource('color', 'ColorProductController');
     });
 });
+

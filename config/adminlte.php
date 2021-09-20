@@ -255,6 +255,13 @@ return [
 
         ],
         [
+            'text' => 'Kategori Produk',
+            'url'  => 'admin/product-category',
+            'icon' => 'fas fa-fw fa-th-list',
+            'active' => ['admin/product-category', 'regex:@^admin/product-category/[0-9]+$@', 'regex:@^admin/product-category/[0-9]/edit+$@', 'admin/product-category/create',]
+
+        ],
+        [
             'text' => 'Data Pelanggan',
             'url'  => 'admin/customer',
             'icon' => 'fas fa-fw fa-users',
