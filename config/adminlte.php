@@ -251,7 +251,7 @@ return [
             'text' => 'Data Produk',
             'url'  => 'admin/product',
             'icon' => 'fas fa-fw fa-box',
-            'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create', 'regex:@^admin/product/[0-9]/warna+$@', 'regex:@^admin/product/[0-9]/ukuran+$@', 'regex:@^admin/product/[0-9]/image+$@']
+            'active' => ['admin/product', 'regex:@^admin/product/[0-9]+$@', 'regex:@^admin/product/[0-9]/edit+$@', 'admin/product/create', 'regex:@^admin/product/[0-9]/color+$@', 'regex:@^admin/product/[0-9]/size+$@', 'regex:@^admin/product/[0-9]/image+$@']
 
         ],
         [

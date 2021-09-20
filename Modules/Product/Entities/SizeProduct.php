@@ -9,10 +9,19 @@ class SizeProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $fillable = [
+        'name',
+        'label',
+        'product_id',
+    ];
+
     protected static function newFactory()
     {
         return \Modules\Product\Database\factories\SizeProductFactory::new();
+    }
+
+    public function procuct()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
