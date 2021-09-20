@@ -6,11 +6,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\CategoryProduct;
-use Modules\Product\Entities\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
-class ProductController extends Controller
+class CategoryProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->get();
         $categoris = CategoryProduct::latest()->get();
-        return view('product::index', compact(['products', 'categoris']))->with('i', 0);
+        return view('product::category.index', compact(['categoris']))->with(['i' => 0]);
     }
 
     /**
@@ -29,7 +26,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $kategoris = Kate
         return view('product::create');
     }
 
@@ -40,26 +36,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'stock' => 'required|min:0',
-            'price' => 'required|min:0',
-            'category' => 'required',
         ]);
 
-        $product =  Product::updateOrCreate($request->only([
-            'name',
-            'description',
-            'stock',
-            'price',
-            'status',
-        ]));
-        $product->category()->attach($request->category);
-
+        CategoryProduct::updateOrCreate($request->only(['name',]));
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('product.index');
+        return redirect()->route('product-category.index');
     }
 
     /**
@@ -77,11 +60,9 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(Product $product)
+    public function edit(CategoryProduct $product_category)
     {
-        $categoris = CategoryProduct::latest()->get();
-        $category = $product->category()->first();
-        return view('product::edit', compact(['product', 'categoris', 'category']));
+        return view('product::category.edit', compact(['product_category']));
     }
 
     /**
@@ -90,21 +71,15 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, CategoryProduct $product_category)
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'stock' => 'required|min:0',
-            'price' => 'required|min:0',
-            'category' => 'required',
         ]);
 
-        $product->update($request->all());
-        $product->category()->sync($request->category);
-
+        $product_category->update($request->all());
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('product.index');
+        return redirect()->route('product-category.index');
     }
 
     /**
@@ -112,10 +87,10 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy(Product $product)
+    public function destroy(CategoryProduct $product_category)
     {
-        $product->delete();
+        $product_category->delete();
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('product.index');
+        return redirect()->route('product-category.index');
     }
 }

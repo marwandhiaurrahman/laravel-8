@@ -22,7 +22,7 @@ class ProductDatabaseSeeder extends Seeder
             'name' => 'Laptop Asus Vivobook 14',
             'description' => 'Laptop Asus Vivobook 14',
             'stock' => '10',
-            'price' => '50000000',
+            'price' => '5000000',
             'status' => 'true',
         ]);
         Product::create([

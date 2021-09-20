@@ -33,10 +33,10 @@
                         <label for="inputDescription">Deskripsi Produk</label>
                         {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
                     </div>
-                    {{-- <div class="form-group">
-                    <label for="inputKategori">Kategori Produk</label>
-                    {!! Form::select('kategori_id', $kategoris->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Kategori', 'required', 'id' => 'inputKategori']) !!}
-                </div> --}}
+                    <div class="form-group">
+                        <label for="inputKategori">Kategori Produk</label>
+                        {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Nama Produk', 'required']) !!}
+                    </div>
                     <div class="form-group">
                         <label for="inputHarga">Harga Produk</label>
                         {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required']) !!}
@@ -51,8 +51,8 @@
                     <div class="form-group">
                         <label for="checkbox1">Status Publish</label><br>
                         <input name="status" type="checkbox" id="checkbox1" value="false" checked hidden>
-                        <input name="status" type="checkbox" id="checkbox1" value="true" {{$product->status == 'true'? 'checked':''}} data-size="small"
-                            data-toggle="toggle">
+                        <input name="status" type="checkbox" id="checkbox1" value="true"
+                            {{ $product->status == 'true' ? 'checked' : '' }} data-size="small" data-toggle="toggle">
                     </div>
                 </div>
                 <!-- /.card-body -->
