@@ -5,6 +5,10 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Product;
+use Modules\Product\Entities\SizeProduct;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class SizeProductController extends Controller
 {
@@ -12,9 +16,10 @@ class SizeProductController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Product $product)
     {
-        return view('product::index');
+        $sizes = SizeProduct::where('product_id', $product->id)->get();
+        return view('product::size', compact(['product', 'sizes']))->with(['i' => 0]);
     }
 
     /**
@@ -31,9 +36,17 @@ class SizeProductController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        $request->validate([]);
+
+        SizeProduct::updateOrCreate($request->only([
+            'name',
+            'label',
+            'product_id',
+        ]));
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('size.index', compact(['product']));
     }
 
     /**
@@ -72,8 +85,10 @@ class SizeProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Product $product, SizeProduct $size)
     {
-        //
+        $size->delete();
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('size.index', compact(['product']));
     }
 }

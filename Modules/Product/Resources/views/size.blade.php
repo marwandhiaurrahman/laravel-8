@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Gambar Produk')
+@section('title', 'Data Ukuran Produk')
 
 @section('content_header')
-    <h1>Data Gambar Produk</h1>
+    <h1>Data Ukuran Produk</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <div class="card card-secondary">
                 <div class="card-header">
-                    <h3 class="card-title">Input Gambar Produk</h3>
+                    <h3 class="card-title">Input Ukuran Produk</h3>
                 </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -23,7 +23,7 @@
                         </ul>
                     </div>
                 @endif
-                {{ Form::open(['route' => ['image.store', $product], 'enctype' => 'multipart/form-data', 'files' => true]) }}
+                {{ Form::open(['route' => ['size.store', $product]]) }}
                 <div class="card-body">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="inputID">ID Produk</label>
@@ -38,26 +38,21 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2" for="inputPhoto">Photo</label>
-                        <div class="input-group col-sm-10 col-md-6 col-lg-4">
-                            <div class="custom-file">
-                                {{-- <input type="file" name="image" class="form-control" placeholder="image"> --}}
-                                {{-- <input type="file" class="custom-file-input" id="exampleInputFile"> --}}
-                                {!! Form::file('image', ['class' >= 'custom-file-input', 'id' => 'exampleInputFile']) !!}
-                                {{-- <label class="custom-file-label" for="exampleInputFile"></label> --}}
-                            </div>
+                        <label class="col-sm-2 col-form-label" for="inputSize">Ukuran Produk</label>
+                        <div class="col-sm-10 col-md-6 col-lg-4">
+                            {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'inputSize', 'placeholder' => 'Masukkan Ukuran Produk']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputNama">Nama Photo</label>
+                        <label class="col-sm-2 col-form-label" for="inputLabel">Label Ukuran</label>
                         <div class="col-sm-10 col-md-6 col-lg-4">
-                            {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'inputNama', 'placeholder' => 'Masukkan Nama Photo']) !!}
+                            {!! Form::text('label', null, ['class' => 'form-control', 'id' => 'inputLabel', 'placeholder' => 'Masukkan Label Ukuran']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10 col-md-6 col-lg-4 offset-sm-2">
                             <button type="submit" class="btn btn-success">Simpan</button>
-                            <a href="{{ route('product.index') }}" class="btn btn-danger" required>Kembali</a>
+                            <a href="{{ route('product.index') }}" class="btn btn-danger">Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -68,28 +63,24 @@
         <div class="col-sm-12">
             <div class="card card-secondary">
                 <div class="card-header">
-                    <h3 class="card-title">Detail Gambar</h3>
+                    <h3 class="card-title">Detail Ukuran</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped" id="DataTable">
                         <thead>
                             <tr>
                                 <th width="60">No.</th>
-                                <th>Nama Photo</th>
+                                <th>Nama Ukuran</th>
                                 <th width="90">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($images as $item)
+                            @foreach ($sizes as $item)
                                 <tr>
                                     <td>{{ ++$i }}</td>
+                                    <td>{{ $item->name }} ( {{ $item->label }} )</td>
                                     <td>
-                                        <img src="{{ asset('storage/product-image/' . $item->image) }}"
-                                            alt="{{ $item->image }}" class="img-thumbnail" width="100">
-                                        {{ $item->name }}
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('image.destroy', [$product, $item]) }}" method="POST">
+                                        <form action="{{ route('size.destroy', [$product, $item]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" data-toggle="tooltip" title="Hapus"

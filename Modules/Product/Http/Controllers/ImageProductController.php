@@ -18,8 +18,6 @@ class ImageProductController extends Controller
      */
     public function index(Product $product)
     {
-        // dd($product);
-
         $images = ImageProduct::where('product_id', $product->id)->get();
         return view('product::image', compact(['product', 'images']))->with(['i' => 0]);
     }
@@ -41,11 +39,7 @@ class ImageProductController extends Controller
     public function store(Request $request, Product $product)
     {
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required',
-            'product_id' => 'required',
-        ]);
+
 
         $input =  $request->all();
 
