@@ -3,5 +3,6 @@
     "User": true,
     "CategoryProduct": true,
     "Order": true,
-    "Customer": true
+    "Customer": true,
+    "Pesanan": true
 }

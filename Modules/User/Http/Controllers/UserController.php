@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,6 +16,12 @@ class UserController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('user::profile', compact(['user']));
+    }
+
     public function index()
     {
         $users = User::latest()->get();
@@ -40,7 +47,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'username' => 'required|unique:users,username|alpha_dash',
-            'email' => 'required|email|unique:users,username,'.$user->id,
+            'email' => 'required|email|unique:users,username,' . $user->id,
             'phone' => 'required|numeric',
 
         ]);
@@ -89,8 +96,8 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required|alpha_dash|unique:users,username,'.$user->id,
-            'email' => 'required|email|unique:users,username,'.$user->id,
+            'username' => 'required|alpha_dash|unique:users,username,' . $user->id,
+            'email' => 'required|email|unique:users,username,' . $user->id,
             'phone' => 'required|numeric',
         ]);
 
