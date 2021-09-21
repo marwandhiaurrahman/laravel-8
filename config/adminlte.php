@@ -246,6 +246,11 @@ return [
             'url'         => 'admin/',
             'icon'        => 'fas fa-fw fa-home',
         ],
+        [
+            'text'        => 'Dashboard',
+            'url'         => 'admin/',
+            'icon'        => 'fas fa-fw fa-home',
+        ],
         ['header' => 'MENU UTAMA'],
         [
             'text' => 'Data Produk',
