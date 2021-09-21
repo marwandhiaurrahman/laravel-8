@@ -5,6 +5,8 @@ namespace Modules\Rzfkomputer\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\CategoryProduct;
+use Modules\Product\Entities\Product;
 
 class RzfkomputerController extends Controller
 {
@@ -14,7 +16,23 @@ class RzfkomputerController extends Controller
      */
     public function index()
     {
-        return view('rzfkomputer::index');
+        $categoris = CategoryProduct::get();
+        // $product = Product::find(1)->first();
+        return view('rzfkomputer::user.home', compact(['categoris']))->with(['i' => 0]);
+    }
+
+    public function product_list()
+    {
+        $categoris = CategoryProduct::get();
+        $products = Product::latest()->get();
+        return view('rzfkomputer::user.produk', compact(['categoris', 'products']));
+    }
+
+    public function product_detail()
+    {
+        $categoris = CategoryProduct::get();
+        $products = Product::latest()->get();
+        return view('rzfkomputer::user.produk', compact(['categoris', 'products']));
     }
 
     /**
