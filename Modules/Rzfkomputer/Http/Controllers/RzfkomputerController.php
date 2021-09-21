@@ -17,8 +17,8 @@ class RzfkomputerController extends Controller
     public function index()
     {
         $categoris = CategoryProduct::get();
-        // $product = Product::find(1)->first();
-        return view('rzfkomputer::user.home', compact(['categoris']))->with(['i' => 0]);
+        $products = Product::latest()->get();
+        return view('rzfkomputer::user.home', compact(['categoris', 'products']))->with(['i' => 0]);
     }
 
     public function product_list()
@@ -28,11 +28,12 @@ class RzfkomputerController extends Controller
         return view('rzfkomputer::user.produk', compact(['categoris', 'products']));
     }
 
-    public function product_detail()
+    public function product_detail(Product $product)
     {
         $categoris = CategoryProduct::get();
-        $products = Product::latest()->get();
-        return view('rzfkomputer::user.produk', compact(['categoris', 'products']));
+        // $products = Product::latest()->get();
+        // dd($product);
+        return view('rzfkomputer::user.produk-detail', compact(['categoris', 'product']));
     }
 
     /**

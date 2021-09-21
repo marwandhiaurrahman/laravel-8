@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('rzfkomputer::layouts.master')
 
 @section('main')
     <!-- main-->
@@ -34,7 +34,7 @@
                             <!-- card-product-item-->
                             <div class="card-product__card">
                                 <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="produkdetail"></a>
+                                    <a class="card-product__card__link" href="{{ route('produk-detail', $item) }}"></a>
                                     <div class="card-product__card__img">
                                         @if (!empty($item->images->first()->image))
                                             <img class="card-product__card__img__el"
@@ -42,14 +42,14 @@
                                                 alt="Barcode Scanner" />
                                         @else
                                             {{-- <img class="card-product__card__img__el"
-                                                        src="assets/img/dummy/printer-thermal.jpeg"
-                                                        alt="Printer Thermal Epson 1234" /> --}}
+                                                                                        src="assets/img/dummy/printer-thermal.jpeg"
+                                                                                        alt="Printer Thermal Epson 1234" /> --}}
                                         @endif
 
                                     </div>
                                     <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Barcode Scanner</h3>
-                                        <p class="card-product__card__price-product">Rp143.000</p>
+                                        <h3 class="card-product__card__title">{{ $item->name }}</h3>
+                                        <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}</p>
                                     </div>
                                 </div>
                             </div>

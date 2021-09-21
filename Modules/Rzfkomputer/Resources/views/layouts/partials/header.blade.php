@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header__content">
         <a class="header__logo" href="/">
-          <img class="header__logo__el" src="assets/img/logo/rzf-komputer.svg" alt="RZF Komputer" />
+          <img class="header__logo__el" src="{{asset('assets/img/logo/rzf-komputer.svg')}}" alt="RZF Komputer" />
         </a>
         <button class="burger-menu js-nav" type="button">
           <span class="burger-menu__bar"></span>

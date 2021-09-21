@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('rzfkomputer::layouts.master')
 
 @section('main')
     <!-- main-->
@@ -135,7 +135,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="assets/img/dummy/features-4.svg"
+                                <img class="features__card__img-el" src="{{ asset('assets/img/dummy/features-4.svg') }}"
                                     alt="Belanja Aman" />
                             </div>
                             <div class="features__card__txt">
@@ -273,135 +273,30 @@
                 </div>
                 <div class="card-product__body">
                     <div class="card-product__list">
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-1.png"
-                                        alt="Sandisk Ultra Seagate Gytex Xyren 16GB" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Sandisk Ultra Seagate Gytex Xyren 16GB</h3>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-2.png"
-                                        alt="Printer Thermal" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Printer Thermal</h3>
-                                    <div class="card-product__card__sale">
-                                        <span class="card-product__card__percentage">20%</span>
-                                        <span class="card-product__card__price-carret">Rp143.000</span>
+                        @foreach ($products as $item)
+                            <!-- card-product-item-->
+                            <div class="card-product__card">
+                                <div class="card-product__card__box">
+                                    <a class="card-product__card__link" href="produkdetail"></a>
+                                    <div class="card-product__card__img">
+                                        @if (!empty($item->images->first()->image))
+                                            <img class="card-product__card__img__el"
+                                                src="{{ asset('storage/product-image/' . $item->images->first()->image) }}"
+                                                alt="Barcode Scanner" />
+                                        @else
+                                            {{-- <img class="card-product__card__img__el"
+                                                                                    src="assets/img/dummy/printer-thermal.jpeg"
+                                                                                    alt="Printer Thermal Epson 1234" /> --}}
+                                        @endif
+
                                     </div>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-3.png"
-                                        alt="TP Link" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">TP Link</h3>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-4.png"
-                                        alt="Logitech Mouse" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Logitech Mouse</h3>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-5.png"
-                                        alt="Barcode Scanner" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Barcode Scanner</h3>
-                                    <div class="card-product__card__sale">
-                                        <span class="card-product__card__percentage">20%</span>
-                                        <span class="card-product__card__price-carret">Rp143.000</span>
+                                    <div class="card-product__card__txt">
+                                        <h3 class="card-product__card__title">{{ $item->name }}</h3>
+                                        <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}</p>
                                     </div>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
                                 </div>
                             </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-6.png"
-                                        alt="Headphone Gamming Blue Black for Business and Gamming" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Headphone Gamming Blue Black for Business and
-                                        Gamming</h3>
-                                    <div class="card-product__card__sale">
-                                        <span class="card-product__card__percentage">20%</span>
-                                        <span class="card-product__card__price-carret">Rp143.000</span>
-                                    </div>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-2.png"
-                                        alt="Printer Thermal" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Printer Thermal</h3>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card-product-item-->
-                        <div class="card-product__card">
-                            <div class="card-product__card__box">
-                                <a class="card-product__card__link" href="detail-produk.html"></a>
-                                <div class="card-product__card__img">
-                                    <img class="card-product__card__img__el" src="assets/img/dummy/best-product-1.png"
-                                        alt="Sandisk Ultra Seagate Gytex Xyren 16GB" />
-                                </div>
-                                <div class="card-product__card__txt">
-                                    <h3 class="card-product__card__title">Sandisk Ultra Seagate Gytex Xyren 16GB</h3>
-                                    <div class="card-product__card__sale">
-                                        <span class="card-product__card__percentage">20%</span>
-                                        <span class="card-product__card__price-carret">Rp143.000</span>
-                                    </div>
-                                    <p class="card-product__card__price-product">Rp120.000</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="card-product__footer">

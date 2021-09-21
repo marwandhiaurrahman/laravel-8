@@ -15,16 +15,16 @@ use Modules\Rzfkomputer\Http\Controllers\RzfkomputerController;
 
 Route::get('/', 'RzfkomputerController@index');
 Route::get('/produk',  'RzfkomputerController@product_list')->name('produk-list');
-Route::get('/produk/{product}', 'RzfkomputerController@product_list')->name('produk-detail');
+Route::get('/produk/{product}', 'RzfkomputerController@product_detail')->name('produk-detail');
 Route::get('/promo', function () {
-    return view('user.promo');
+    return view('rzfkomputer::user.promo');
 })->name('promo');
 Route::get('/keranjang', function () {
-    return view('user.keranjang');
+    return view('rzfkomputer::user.keranjang');
 })->name('keranjang');
 Route::get('/kontak', function () {
-    return view('user.kontak');
+    return view('rzfkomputer::user.kontak');
 })->name('kontak');
 Route::get('/ordersuccess', function () {
-    return view('user.order-success');
+    return view('rzfkomputer::user.order-success');
 })->name('ordersuccess');
