@@ -11,20 +11,11 @@
 |
 */
 
-use Modules\Product\Entities\CategoryProduct;
-use Modules\Product\Entities\Product;
+use Modules\Rzfkomputer\Http\Controllers\RzfkomputerController;
 
-Route::get('/', function () {
-    $categoris = CategoryProduct::get();
-    $product = Product::find(1)->first();
-    return view('rzfkomputer::user.home', compact(['categoris']));
-});
-Route::get('/produk', function () {
-    return view('user.produk');
-})->name('produk');
-Route::get('/produkdetail', function () {
-    return view('user.produk-detail');
-})->name('produkdetail');
+Route::get('/', 'RzfkomputerController@index');
+Route::get('/produk',  'RzfkomputerController@product_list')->name('produk-list');
+Route::get('/produk/{product}', 'RzfkomputerController@product_list')->name('produk-detail');
 Route::get('/promo', function () {
     return view('user.promo');
 })->name('promo');

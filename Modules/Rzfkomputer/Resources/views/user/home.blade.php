@@ -157,131 +157,19 @@
                         <p class="c-p__select__text">Printer</p>
                     </div>
                     <ul class="c-p__tab__control">
-                        <li class="c-p__tab__control__item c-p__tab__control__item--active" data-target="komputer">Komputer
-                        </li>
                         @foreach ($categoris as $item)
-                            <li class="c-p__tab__control__item" data-target="{{ $item->name }}">{{ $item->name }}</li>
+                            <li class="c-p__tab__control__item {{ $item->id == 1 ? 'c-p__tab__control__item--active' : '' }}"
+                                data-target="{{ $item->name }}">{{ $item->name }}</li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="c-p__content">
-                    <div class="c-p__tab__pane c-p__tab__pane--active" data-pane="komputer">
-                        <div class="c-p__wrapper card-product__body">
-                            <!-- card-product-item-->
-                            <div class="card-product__card">
-                                <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="detail-produk.html"></a>
-                                    <div class="card-product__card__img">
-                                        <img class="card-product__card__img__el" src="assets/img/dummy/lenovo-1.png"
-                                            alt="Lenovo PC Core i3 Spek Gamming Ultra Ryzen" />
-                                    </div>
-                                    <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Lenovo PC Core i3 Spek Gamming Ultra Ryzen
-                                        </h3>
-                                        <p class="card-product__card__price-product">Rp120.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- card-product-item-->
-                            <div class="card-product__card">
-                                <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="detail-produk.html"></a>
-                                    <div class="card-product__card__img">
-                                        <img class="card-product__card__img__el" src="assets/img/dummy/lenovo-1.png"
-                                            alt="Lenovo PC Core i3 Spek Gamming Ultra Ryzen" />
-                                    </div>
-                                    <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Lenovo PC Core i3 Spek Gamming Ultra Ryzen
-                                        </h3>
-                                        <p class="card-product__card__price-product">Rp120.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- card-product-item-->
-                            <div class="card-product__card">
-                                <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="detail-produk.html"></a>
-                                    <div class="card-product__card__img">
-                                        <img class="card-product__card__img__el" src="assets/img/dummy/lenovo-1.png"
-                                            alt="Lenovo PC Core i3 Spek Gamming Ultra Ryzen" />
-                                    </div>
-                                    <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Lenovo PC Core i3 Spek Gamming Ultra Ryzen
-                                        </h3>
-                                        <div class="card-product__card__sale">
-                                            <span class="card-product__card__percentage">20%</span>
-                                            <span class="card-product__card__price-carret">Rp143.0000</span>
-                                        </div>
-                                        <p class="card-product__card__price-product">Rp120.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- card-product-item-->
-                            <div class="card-product__card">
-                                <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="detail-produk.html"></a>
-                                    <div class="card-product__card__img">
-                                        <img class="card-product__card__img__el" src="assets/img/dummy/lenovo-1.png"
-                                            alt="Lenovo PC Core i3 Spek Gamming Ultra Ryzen" />
-                                    </div>
-                                    <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Lenovo PC Core i3 Spek Gamming Ultra Ryzen
-                                        </h3>
-                                        <div class="card-product__card__sale">
-                                            <span class="card-product__card__percentage">20%</span>
-                                            <span class="card-product__card__price-carret">Rp143.0000</span>
-                                        </div>
-                                        <p class="card-product__card__price-product">Rp120.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- card-product-item-->
-                            <div class="card-product__card">
-                                <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="detail-produk.html"></a>
-                                    <div class="card-product__card__img">
-                                        <img class="card-product__card__img__el" src="assets/img/dummy/lenovo-1.png"
-                                            alt="Lenovo PC Core i3 Spek Gamming Ultra Ryzen" />
-                                    </div>
-                                    <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Lenovo PC Core i3 Spek Gamming Ultra Ryzen
-                                        </h3>
-                                        <div class="card-product__card__sale">
-                                            <span class="card-product__card__percentage">20%</span>
-                                            <span class="card-product__card__price-carret">Rp143.0000</span>
-                                        </div>
-                                        <p class="card-product__card__price-product">Rp120.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- card-product-item-->
-                            <div class="card-product__card">
-                                <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="detail-produk.html"></a>
-                                    <div class="card-product__card__img">
-                                        <img class="card-product__card__img__el" src="assets/img/dummy/lenovo-1.png"
-                                            alt="Lenovo PC Core i3 Spek Gamming Ultra Ryzen" />
-                                    </div>
-                                    <div class="card-product__card__txt">
-                                        <h3 class="card-product__card__title">Lenovo PC Core i3 Spek Gamming Ultra Ryzen
-                                        </h3>
-                                        <div class="card-product__card__sale">
-                                            <span class="card-product__card__percentage">20%</span>
-                                            <span class="card-product__card__price-carret">Rp143.0000</span>
-                                        </div>
-                                        <p class="card-product__card__price-product">Rp120.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="c-p__btn">
-                            <a class="btn btn--secondary" href="produk.html">Lihat Selengkapnya</a>
-                        </div>
-                    </div>
+
                     @foreach ($categoris as $item)
-                        <div class="c-p__tab__pane" data-pane="{{ $item->name }}">
+                        <div class="c-p__tab__pane {{ $item->id == 1 ? 'c-p__tab__pane--active' : '' }}"
+                            data-pane="{{ $item->name }}">
                             <div class="c-p__wrapper card-product__body">
-                                <!-- card-product-item-->
+                                {{-- <!-- card-product-item-->
                                 <div class="card-product__card">
                                     <div class="card-product__card__box">
                                         <a class="card-product__card__link" href="detail-produk.html"></a>
@@ -295,12 +183,12 @@
                                             <p class="card-product__card__price-product">Rp120.000</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @foreach ($item->products as $product)
                                     <!-- card-product-item-->
                                     <div class="card-product__card">
                                         <div class="card-product__card__box">
-                                            <a class="card-product__card__link" href="{{route('')}}"></a>
+                                            <a class="card-product__card__link" href=""></a>
                                             <div class="card-product__card__img">
                                                 @if (!empty($product->images->first()->image))
                                                     <img class="card-product__card__img__el"
@@ -308,9 +196,9 @@
                                                         alt="Printer Thermal Epson 1234" />
                                                 @else
                                                     kosong
-                                                    <img class="card-product__card__img__el"
+                                                    {{-- <img class="card-product__card__img__el"
                                                         src="assets/img/dummy/printer-thermal.jpeg"
-                                                        alt="Printer Thermal Epson 1234" />
+                                                        alt="Printer Thermal Epson 1234" /> --}}
                                                 @endif
                                             </div>
                                             <div class="card-product__card__txt">
@@ -326,10 +214,9 @@
                                         </div>
                                     </div>
                                 @endforeach
-
                             </div>
                             <div class="c-p__btn">
-                                <a class="btn btn--secondary" href="produk.html">Lihat Selengkapnya</a>
+                                <a class="btn btn--secondary" href="{{ route('produk-list') }}">Lihat Selengkapnya</a>
                             </div>
                         </div>
                     @endforeach
