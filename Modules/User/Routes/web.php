@@ -11,6 +11,7 @@
 |
 */
 
-Route::prefix('user')->group(function() {
-    Route::get('/', 'UserController@index');
+
+Route::prefix('admin')->group(function () {
+    Route::resource('user', 'UserController');
 });

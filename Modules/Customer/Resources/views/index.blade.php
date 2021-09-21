@@ -40,7 +40,7 @@
                             @foreach ($customers as $item)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->address }}</td>
