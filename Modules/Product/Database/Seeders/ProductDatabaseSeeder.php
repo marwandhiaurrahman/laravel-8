@@ -19,25 +19,32 @@ class ProductDatabaseSeeder extends Seeder
 
         // $this->call("OthersTableSeeder");
         Product::create([
-            'name' => 'Laptop Asus Vivobook 14',
-            'description' => 'Laptop Asus Vivobook 14',
+            'name' => 'Komputer Asus Vivobook 14',
+            'description' => 'Komputer Asus Vivobook 14',
             'stock' => '10',
             'price' => '5000000',
             'status' => 'true',
-        ]);
+        ])->category()->attach(1);
+        Product::create([
+            'name' => 'Laptop HP Ryzen 5',
+            'description' => 'Laptop HP Ryzen 5',
+            'stock' => '10',
+            'price' => '5500000',
+            'status' => 'true',
+        ])->category()->attach(2);
         Product::create([
             'name' => 'Mouse Logitecech 12X',
             'description' => 'Mouse Logitecech 12X',
             'stock' => '15',
             'price' => '100000',
             'status' => 'true',
-        ]);
+        ])->category()->attach(4);
         Product::create([
             'name' => 'Printer Epson L213',
             'description' => 'Printer Epson L213',
             'stock' => '10',
             'price' => '3000000',
             'status' => 'true',
-        ]);
+        ])->category()->attach(3);
     }
 }

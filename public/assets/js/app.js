@@ -20,14 +20,30 @@ var App = function () {
 
     _utilities.Scrolllable.enable();
   }; // --- call vendor
+  // --- handleRevealConfig
 
+
+  var handleRevealConfig = function handleRevealConfig() {
+    var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 250;
+    var distance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '24px';
+    var _config = {
+      duration: 850,
+      distance: distance,
+      delay: delay,
+      origin: 'bottom'
+    };
+    return _config;
+  };
 
   var callVendor = function callVendor() {
     // popup image
     var $gallery = new SimpleLightbox('.js-popup-image'); // Scroll Reveal
 
-    ScrollReveal().reveal('.features__card');
-    ScrollReveal().reveal('.persuasive');
+    ScrollReveal().reveal('.features__card', handleRevealConfig(0, '24px'));
+    ScrollReveal().reveal('.persuasive__img', handleRevealConfig(0, '24px'));
+    ScrollReveal().reveal('.persuasive__txt-title', handleRevealConfig(0, '-24px'));
+    ScrollReveal().reveal('.persuasive__txt-desc', handleRevealConfig(0, '-16px'));
+    ScrollReveal().reveal('.persuasive__txt-btn', handleRevealConfig(0, '-12px'));
     window.sr = ScrollReveal({
       duration: 6000
     });
@@ -76,7 +92,9 @@ var App = function () {
 
       _components.Sale.init();
 
-      _components.Cart.init(); // TitlePage.init();
+      _components.Cart.init();
+
+      _components.OrderStatus.init(); // TitlePage.init();
 
     })(jQuery);
   }; // --- load
@@ -103,7 +121,7 @@ var App = function () {
 
 App.init();
 
-},{"./components":18,"./utilities":21}],2:[function(require,module,exports){
+},{"./components":19,"./utilities":22}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -190,11 +208,43 @@ var Cart = function () {
 
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
     return prefix == undefined ? rupiah : rupiah ? 'Rp' + rupiah : '';
-  } // handleClick
+  } // handle click
 
 
   var handleClick = function handleClick() {
-    // handle button min
+    // handle delete product
+    $('.js-delete').on('click', function (e) {
+      e.preventDefault();
+      var swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn--primary mr-12 w-100',
+          cancelButton: 'btn btn--secondary w-100'
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        title: 'Hapus item ini?',
+        text: "Tindakan ini tidak dapat diurungkan!",
+        icon: 'warning',
+        confirmButtonColor: '#388e3c',
+        cancelButtonColor: '#ff0000',
+        confirmButtonText: 'Ya, Hapus',
+        width: 550,
+        padding: '22px'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: 'Terhapus!',
+            text: 'Item Anda sudah terhapus',
+            icon: 'success',
+            width: 420
+          });
+        }
+      });
+    }); // handle button min
+
     $(_buttonMin).on('click', function (e) {
       e.preventDefault();
 
@@ -229,6 +279,7 @@ var Cart = function () {
     $(_quantity).on('keyup', function (e) {
       var _resultCount = _newPrice * $(_quantity).val();
 
+      $(_quantity).val(Math.abs($(_quantity).val()));
       $(_jsCartPrice).text(formatRupiah(_resultCount, ''));
       $(_jsCartTotal).text(formatRupiah(_resultCount, ''));
       _oldPrice = _resultCount;
@@ -347,6 +398,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* ------------------------------------------------------------------------------
 @name: Contact Button
 @description: Contact Button
@@ -367,11 +420,80 @@ var Contact = function () {
         $(this).parents('.js-floating-chat-dd').addClass('floating-chat--showed');
       }
     });
+  }; // Form Validation
+
+
+  var ElementSelector = [{
+    id: 'name',
+    validation: {
+      required: true
+    }
+  }, {
+    id: 'email',
+    validation: {
+      required: true,
+      email: true
+    }
+  }, {
+    id: 'message',
+    validation: {
+      required: true
+    }
+  }, {
+    id: 'phone',
+    validation: {
+      required: true,
+      phone: true
+    }
+  }, {
+    id: 'address',
+    validation: {
+      required: true
+    }
+  }];
+  var ElementEvents = ['input', 'blur']; // handleClick
+
+  var handleClick = function handleClick() {
+    $('button[type="submit"]').on('click', function (e) {
+      $.each(ElementSelector, function (i, v) {
+        $('#' + v.id).blur();
+      });
+      console.log(ElementSelector);
+
+      if ($('.error').length > 0) {
+        e.preventDefault();
+      } else {
+        e.preventDefault();
+
+        if ($(e.currentTarget).hasClass('js-message')) {
+          var _swalWithBootstrapBut;
+
+          $.each(ElementSelector, function (i, v) {
+            $('#' + v.id).val('');
+          });
+          var swalWithBootstrapButton = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn--primary mr-12 w-100'
+            },
+            buttonsStyling: false
+          });
+          swalWithBootstrapButton.fire((_swalWithBootstrapBut = {
+            title: 'Pesan Terkirim!',
+            text: 'Terimakasih Sobat RZF. Semoga hari-hari Anda menyenangkan',
+            icon: 'success',
+            confirmButtonColor: '#388e3c',
+            confirmButtonText: 'Tutup'
+          }, _defineProperty(_swalWithBootstrapBut, "confirmButtonColor", '#388e3c'), _defineProperty(_swalWithBootstrapBut, "width", 500), _defineProperty(_swalWithBootstrapBut, "height", 800), _defineProperty(_swalWithBootstrapBut, "width", 550), _defineProperty(_swalWithBootstrapBut, "padding", '22px'), _swalWithBootstrapBut));
+        }
+      } // console.log(WHITESPACE);
+
+    });
   }; // - init
 
 
   var init = function init() {
     handleDropdown();
+    handleClick();
   };
 
   return {
@@ -519,7 +641,7 @@ var Header = function () {
 var _default = Header;
 exports["default"] = _default;
 
-},{"../utilities":21}],8:[function(require,module,exports){
+},{"../utilities":22}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -605,12 +727,80 @@ var HeaderSearch = function () {
       }, 400);
 
       _utilities.Scrolllable.disable();
+    }); // handle delete product
+
+    $('.js-cart-list-delete').on('click', function (e) {
+      e.preventDefault();
+      var swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn--primary mr-12 w-100',
+          cancelButton: 'btn btn--secondary w-100'
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        title: 'Hapus item ini?',
+        text: "Tindakan ini tidak dapat diurungkan!",
+        icon: 'warning',
+        confirmButtonColor: '#388e3c',
+        cancelButtonColor: '#ff0000',
+        confirmButtonText: 'Ya, Hapus',
+        width: 550,
+        padding: '22px'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: 'Terhapus!',
+            text: 'Item Anda sudah terhapus',
+            icon: 'success',
+            width: 420
+          });
+        }
+      });
+    });
+  },
+      // handle sorting product
+  handleSortingSearch = function handleSortingSearch() {
+    var _inputSearch = $('.js-search-popup-input'),
+        _content = '',
+        _input = $('.js-search-input'); // arrayProduct
+
+
+    var dataProduct = ['Asus', 'Hp', 'Printer Thermal', 'TP-link'];
+    $(dataProduct).each(function (i, v) {
+      _content += "<li class='header__search-section__item'>\n            <a class='header__search-section__link' href='#'>".concat(v, "</a>\n            </li>");
+    });
+
+    _inputSearch.html(_content);
+
+    $(_input).on('keyup', function () {
+      _content = '';
+      $(dataProduct).each(function (i, v) {
+        if (v.toLowerCase().indexOf(_input.val().toLowerCase()) != -1) {
+          _content += "<li class='header__search-section__item'>\n                <a class='header__search-section__link' href='#'>".concat(v, "</a>\n                </li>");
+        }
+      });
+
+      if (_content == '') {
+        if ($('.header__search-section-title').hasClass('show')) {
+          $('.header__search-section-title').removeClass('show');
+          $('.js-notif-show').addClass('show');
+        }
+      } else {
+        $('.header__search-section-title').addClass('show');
+        $('.js-notif-show').removeClass('show');
+      }
+
+      _inputSearch.html(_content);
     });
   }; // init
 
 
   var init = function init() {
     handleClick();
+    handleSortingSearch();
   };
 
   return {
@@ -621,7 +811,7 @@ var HeaderSearch = function () {
 var _default = HeaderSearch;
 exports["default"] = _default;
 
-},{"../utilities":21}],9:[function(require,module,exports){
+},{"../utilities":22}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -636,9 +826,9 @@ exports["default"] = void 0;
 var HeroBanner = function () {
   // handleRunCarousel
   var handleRunCarousel = function handleRunCarousel() {
-    var _selector = $('.js-hero-banner');
+    var _selector = $('.js-banner-promo');
 
-    var _itemLength = $('.js-hero-banner .hero-banner__item').length;
+    var _itemLength = $('.js-banner-promo .banner__card').length;
     var _itemRun = 1; // destroy carousel
 
     if (_selector.hasClass('owl-carousel')) {
@@ -650,21 +840,19 @@ var HeroBanner = function () {
       // --- init carousel
       _selector.addClass('owl-carousel').owlCarousel({
         items: 1,
-        rewind: true,
         autoplay: true,
-        autoHeight: true,
         dots: true,
-        nav: false,
-        loop: true,
-        touchDrag: true,
-        mouseDrag: false,
-        autoplayHoverPause: true,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
+        nav: true,
+        loop: false,
+        navText: ["<i class='rzfkomputer-chevron-left'></i>", "<i class='rzfkomputer-chevron-right'></i>"],
+        mouseDrag: true,
+        touchGrant: true,
+        autoplayHoverPause: false,
+        autoplayTimeout: 6000,
         dotsSpeed: 1000,
         autoplaySpeed: 1000,
         dragEndSpeed: 750,
-        autoplayTimeout: 8000
+        smartSpeed: 750
       });
     } else {
       if (_selector.hasClass('owl-carousel')) {
@@ -673,12 +861,33 @@ var HeroBanner = function () {
 
       _selector.addClass('hero-banner--single');
     }
-  }; // init
+  }; // --- handleRevealConfig
+
+
+  var handleRevealConfig = function handleRevealConfig() {
+    var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 250;
+    var distance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '24px';
+    var _config = {
+      duration: 850,
+      distance: distance,
+      delay: delay,
+      origin: 'bottom'
+    };
+    return _config;
+  }; // --- handleRunScrollReveal
+
+
+  var handleRunScrollReveal = function handleRunScrollReveal() {
+    ScrollReveal().reveal('.banner__promo', handleRevealConfig(0, '24px'));
+    ScrollReveal().reveal('.banner__category', handleRevealConfig());
+  }; // --- init
 
 
   var init = function init() {
     handleRunCarousel();
-  };
+    handleRunScrollReveal();
+  }; // --- return
+
 
   return {
     init: init
@@ -689,6 +898,45 @@ var _default = HeroBanner;
 exports["default"] = _default;
 
 },{}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+/* ------------------------------------------------------------------------------
+@name: OrderStatus
+@description: OrderStatus
+--------------------------------------------------------------------------------- */
+var OrderStatus = function () {
+  // handleClick
+  var handleClick = function handleClick() {
+    $('.js-show-order').on('click', function (e) {
+      var _val = $(e.currentTarget);
+
+      if ($('body').hasClass('show-order')) {
+        $('body').removeClass('show-order').find('.order__box').fadeOut(500);
+      } else {
+        $('body').addClass('show-order').find('.order__box').fadeIn(300);
+      }
+    });
+  }; // init
+
+
+  var init = function init() {
+    handleClick();
+  };
+
+  return {
+    init: init
+  };
+}();
+
+var _default = OrderStatus;
+exports["default"] = _default;
+
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -756,6 +1004,7 @@ var ProductDetail = function () {
     $(_quantity).on('keyup', function (e) {
       var _resultCount = _newPrice * $(_quantity).val();
 
+      $(_quantity).val(Math.abs($(_quantity).val()));
       $(_jsPrice).text(formatRupiah(_resultCount, ''));
       _oldPrice = _resultCount;
       _itemCount = parseInt(e.currentTarget.value);
@@ -776,7 +1025,7 @@ var ProductDetail = function () {
 var _default = ProductDetail;
 exports["default"] = _default;
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -790,7 +1039,7 @@ exports["default"] = void 0;
 --------------------------------------------------------------------------------- */
 var Sale = function () {
   var handleCountDown = function handleCountDown() {
-    var countDownDate = new Date("Sep 15, 2021 10:10:25").getTime(); // update the count down every 1 second
+    var countDownDate = new Date("Oct 16, 2021 10:10:25").getTime(); // update the count down every 1 second
 
     var x = setInterval(function () {
       // get today's date and time
@@ -835,7 +1084,7 @@ var Sale = function () {
 var _default = Sale;
 exports["default"] = _default;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -860,11 +1109,27 @@ var SortingCategory = function () {
         $(this).parents('.js-sorting-dd').addClass('product__sorting--showed');
       }
     });
+  }; // handleSticky 
+
+
+  var handleSticky = function handleSticky() {
+    var _sticky = $('.js-sticky').offset() || null;
+
+    if (_sticky !== null) {
+      $(window).on('scroll', function () {
+        if (window.pageYOffset >= _sticky.top) {
+          $('.js-sticky').addClass('sticky');
+        } else {
+          $('.js-sticky').removeClass('sticky');
+        }
+      });
+    }
   }; // init 
 
 
   var init = function init() {
     handleDropdown();
+    handleSticky();
   };
 
   return {
@@ -875,7 +1140,7 @@ var SortingCategory = function () {
 var _default = SortingCategory;
 exports["default"] = _default;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -915,7 +1180,7 @@ var Tabs = function () {
 var _default = Tabs;
 exports["default"] = _default;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // /* ------------------------------------------------------------------------------
 // @name: Title Page
 // @description: Title Page
@@ -938,7 +1203,7 @@ exports["default"] = _default;
 // export default TitlePage;
 "use strict";
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1030,26 +1295,49 @@ var Validation = function () {
         });
       });
     });
-  }; // handleClick
-
-
-  var handleClick = function handleClick() {
-    $('button[type="submit"]').on('click', function (e) {
-      $.each(ElementSelector, function (i, v) {
-        $('#' + v.id).blur();
-      });
-
-      if ($('.error').length > 0) {
-        e.preventDefault();
-      } // console.log(WHITESPACE);
-
-    });
-  }; // - init
+  }; // // handleClick
+  // const handleClick = () => {
+  //   $('button[type="submit"]').on('click', (e) => {
+  //     $.each(ElementSelector, (i, v) => {
+  //       $('#'+v.id).blur();
+  //     });
+  //     console.log(ElementSelector);
+  //     if ($('.error').length > 0) {
+  //       e.preventDefault();
+  //     } else {
+  //       e.preventDefault();
+  //       if ($(e.currentTarget).hasClass('js-message')) {
+  //         $.each(ElementSelector, (i, v) => {
+  //           $('#'+v.id).val('');
+  //         });
+  //         const swalWithBootstrapButton = Swal.mixin({
+  //           customClass: {
+  //             confirmButton: 'btn btn--primary mr-12 w-100',
+  //           },
+  //           buttonsStyling: false
+  //         })
+  //         swalWithBootstrapButton.fire({
+  //           title: 'Pesan Terkirim!',
+  //           text: 'Terimakasih Sobat RZF. Semoga hari-hari Anda menyenangkan',
+  //           icon: 'success',
+  //           confirmButtonColor: '#388e3c',
+  //           confirmButtonText: 'Tutup',
+  //           confirmButtonColor: '#388e3c',
+  //           width: 500,
+  //           height: 800,
+  //           width: 550,
+  //           padding: '22px',
+  //         })
+  //       }
+  //     }
+  //     // console.log(WHITESPACE);
+  //   });
+  // }
+  // - init
 
 
   var init = function init() {
-    handleInput();
-    handleClick();
+    handleInput(); // handleClick();
   };
 
   return {
@@ -1060,7 +1348,7 @@ var Validation = function () {
 var _default = Validation;
 exports["default"] = _default;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1131,7 +1419,7 @@ var WindowResize = function () {
 var _default = WindowResize;
 exports["default"] = _default;
 
-},{"./WindowScroll":17,"./index":18}],17:[function(require,module,exports){
+},{"./WindowScroll":18,"./index":19}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1148,30 +1436,9 @@ var WindowScroll = function () {
   var _lastScrollTop = 0;
   var _delta = 4;
 
-  var _headerHeight = $('.header').height() / 2; // --- handleHeaderScroll
+  var _headerHeight = $('.header').height() / 2;
 
-
-  var handleHeaderScroll = function handleHeaderScroll() {
-    // --- _scrollTop
-    var _scrollTop = $(window).scrollTop(); // --- Make sure they scroll more than _delta
-
-
-    if (Math.abs(_lastScrollTop - _scrollTop) <= _delta) {
-      return;
-    } // --- Scroll Down
-
-
-    if (_scrollTop > _lastScrollTop && _scrollTop > _headerHeight) {
-      $('body').addClass('window-scrolled');
-    } else {
-      // --- Scroll Up
-      if (_scrollTop + $(window).height() < $(document).height()) {
-        $('body').removeClass('window-scrolled');
-      }
-    }
-
-    _lastScrollTop = _scrollTop;
-  }; // --- handleScroll
+  var _sticky = $('.js-sticky').offset() || null; // --- handleScroll
 
 
   var handleScroll = function handleScroll() {
@@ -1186,6 +1453,44 @@ var WindowScroll = function () {
         }
       }, 200);
     });
+  }; // --- handleHeaderScroll
+
+
+  var handleHeaderScroll = function handleHeaderScroll() {
+    // --- _scrollTop
+    var _scrollTop = $(window).scrollTop(); // --- Make sure they scroll more than _delta
+
+
+    if (Math.abs(_lastScrollTop - _scrollTop) <= _delta) {
+      return;
+    } // --- Scroll Down
+
+
+    if (_scrollTop > _lastScrollTop && _scrollTop > _headerHeight) {
+      $('body').addClass('window-scrolled');
+      $('.js-sticky').css({
+        top: '0'
+      });
+    } else {
+      // --- Scroll Up
+      if (_scrollTop + $(window).height() < $(document).height()) {
+        $('body').removeClass('window-scrolled');
+
+        if (_sticky !== null) {
+          if (window.pageYOffset <= _sticky.top) {
+            $('.js-sticky').css({
+              top: '0'
+            });
+          } else {
+            $('.js-sticky').css({
+              top: '70px'
+            });
+          }
+        }
+      }
+    }
+
+    _lastScrollTop = _scrollTop;
   }; // --- init
 
 
@@ -1204,7 +1509,7 @@ var WindowScroll = function () {
 var _default = WindowScroll;
 exports["default"] = _default;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1306,6 +1611,12 @@ Object.defineProperty(exports, "Cart", {
     return _Cart["default"];
   }
 });
+Object.defineProperty(exports, "OrderStatus", {
+  enumerable: true,
+  get: function get() {
+    return _OrderStatus["default"];
+  }
+});
 
 var _WindowScroll = _interopRequireDefault(require("./WindowScroll"));
 
@@ -1339,9 +1650,11 @@ var _Sale = _interopRequireDefault(require("./Sale"));
 
 var _Cart = _interopRequireDefault(require("./Cart"));
 
+var _OrderStatus = _interopRequireDefault(require("./OrderStatus"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-},{"./CardProduct":2,"./Cart":3,"./Category":4,"./Contact":5,"./Footer":6,"./Header":7,"./HeaderSearch":8,"./HeroBanner":9,"./ProductDetail":10,"./Sale":11,"./SortingCategory":12,"./Tabs":13,"./TitlePage":14,"./Validation":15,"./WindowResize":16,"./WindowScroll":17}],19:[function(require,module,exports){
+},{"./CardProduct":2,"./Cart":3,"./Category":4,"./Contact":5,"./Footer":6,"./Header":7,"./HeaderSearch":8,"./HeroBanner":9,"./OrderStatus":10,"./ProductDetail":11,"./Sale":12,"./SortingCategory":13,"./Tabs":14,"./TitlePage":15,"./Validation":16,"./WindowResize":17,"./WindowScroll":18}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1387,7 +1700,7 @@ var BrowserCheck = function () {
 var _default = BrowserCheck;
 exports["default"] = _default;
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1433,7 +1746,7 @@ var Scrolllable = function () {
 var _default = Scrolllable;
 exports["default"] = _default;
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1466,7 +1779,7 @@ var _Scrolllable = _interopRequireDefault(require("./Scrolllable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-},{"./BrowserCheck":19,"./Scrolllable":20,"./isOS":22}],22:[function(require,module,exports){
+},{"./BrowserCheck":20,"./Scrolllable":21,"./isOS":23}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

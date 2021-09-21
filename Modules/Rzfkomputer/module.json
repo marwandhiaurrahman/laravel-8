@@ -1,0 +1,13 @@
+{
+    "name": "Rzfkomputer",
+    "alias": "rzfkomputer",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Rzfkomputer\\Providers\\RzfkomputerServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

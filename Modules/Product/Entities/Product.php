@@ -26,4 +26,14 @@ class Product extends Model
     {
         return $this->belongsToMany(CategoryProduct::class, 'product_category', 'product_id', 'category_id');
     }
+
+    /**
+     * Get all of the comments for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(ImageProduct::class);
+    }
 }
