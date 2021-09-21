@@ -11,12 +11,7 @@
 |
 */
 
-use Modules\User\Http\Controllers\UserController;
 
 Route::prefix('admin')->group(function () {
     Route::resource('user', 'UserController');
-});
-
-Route::prefix('profile')->group(function () {
-    Route::get('/', [UserController::class,'profile'])->name('profile');
 });
