@@ -60,7 +60,7 @@
                                       </td>
                                   </tr>
                               @endforeach
-                              <tr class="cart-list__row">
+                              {{-- <tr class="cart-list__row">
                                   <td class="cart-list__img-wrapper">
                                       <img class="cart-list__img-el" src="assets/img/dummy/lenovo-1.png" alt="Lenovo" />
                                   </td>
@@ -74,7 +74,7 @@
                                           <i class="rzfkomputer-trashcan"></i>
                                       </button>
                                   </td>
-                              </tr>
+                              </tr> --}}
                           </tbody>
                       </table>
                       <div class="cart-list__total">
@@ -83,7 +83,7 @@
                       </div>
                       <div class="cart-list__button">
                           <div class="cart-list__button--row">
-                              <a class="btn btn--primary btn--views" href="keranjang">Lihat Keranjang</a>
+                              <a class="btn btn--primary btn--views" href="{{route('keranjang')}}">Lihat Keranjang</a>
                           </div>
                       </div>
                   </div>

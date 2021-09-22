@@ -74,7 +74,7 @@
                                     <th>Qty</th>
                                     <th>Product</th>
                                     <th>Harga</th>
-                                    <th>Description</th>
+                                    <th>Quantity</th>
                                     <th>Subtotal</th>
                                 </tr>
                             </thead>
@@ -84,7 +84,7 @@
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $item->product->name }}</td>
                                         <td>{{ money($item->product->price, 'IDR') }}</td>
-                                        <td>-</td>
+                                        <td>{{$item->quantity}}</td>
                                         <td>{{ money($item->price, 'IDR') }}</td>
                                     </tr>
                                 @endforeach

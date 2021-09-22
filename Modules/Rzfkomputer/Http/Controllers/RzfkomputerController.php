@@ -5,8 +5,11 @@ namespace Modules\Rzfkomputer\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Customer\Entities\Customer;
+use Modules\Order\Entities\Order;
 use Modules\Product\Entities\CategoryProduct;
 use Modules\Product\Entities\Product;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RzfkomputerController extends Controller
 {
@@ -20,6 +23,43 @@ class RzfkomputerController extends Controller
         $products = Product::latest()->get();
         return view('rzfkomputer::user.home', compact(['categoris', 'products']))->with(['i' => 0]);
     }
+
+    public function store_order(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+        ]);
+
+        $customer = Customer::updateOrCreate($request->only(['name', 'address', 'email', 'phone']));
+
+        $order = Order::create([
+            'invoice' => uniqid(),
+            'total_price' => \Cart::getTotal(),
+            'status' => '1',
+            'customer_id' => $customer->id,
+        ]);
+
+        $carts = \Cart::getContent();
+
+        foreach ($carts as $item) {
+
+            $orderDetail = OrderDetail::create([
+                'product_id' => $item->id,
+                'order_id' => $order->id,
+                'quantity' => $item->quantity,
+                'price' => $item->price * $item->quantity,
+            ]);
+        }
+
+        \Cart::clear();
+
+        Alert::success('Success Info', 'Success Message');
+        return back()->withInput();
+    }
+
 
     public function product_list()
     {

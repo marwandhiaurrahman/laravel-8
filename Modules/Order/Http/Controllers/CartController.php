@@ -63,7 +63,7 @@ class CartController extends Controller
             'quantity' => $request->quantity,
         ]);
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('produk-detail', $product);
+        return back()->withInput();
     }
 
     /**
@@ -106,7 +106,7 @@ class CartController extends Controller
 
         session()->flash('success', "hjjh");
 
-        return redirect()->route('order.index');
+        return back()->withInput();
     }
 
     /**

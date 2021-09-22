@@ -74,7 +74,7 @@ class OrderController extends Controller
         \Cart::clear();
 
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('order.index');
+        return back()->withInput();
     }
 
     /**
