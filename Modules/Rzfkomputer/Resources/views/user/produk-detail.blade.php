@@ -45,31 +45,38 @@
                         </div>
                         <!--product-detail-form-->
                         <div class="pdetail__form">
-                            <form action="keranjang-belanja.html" method="get" autocomplete="off">
-                                <h3 class="pdetail__form__name">{{ $product->name }}</h3>
-                                <div class="pdetail__form__summary">{{ $product->description }}</div>
-                                <div class="pdetail__form__count-wrapper">
-                                    <h3 class="pdetail__form__price">Harga :</h3>
-                                    <p class="js-price">{{ money($product->price, 'IDR') }}</p>
-                                    <h3 class="pdetail__form__category">Kategori :</h3>
-                                    <p>
-                                        @foreach ($product->category as $category)
-                                            {{ $category->name }}
-                                        @endforeach
-                                    </p>
-                                    <h3 class="pdetail__form__inventory">Stok : </h3>
-                                    <p>{{ $product->stock }}</p>
-                                    <h3 class="pdetail__form__count">Jumlah :</h3><button class="pdetail__form__min btnMin"
-                                        type="button">
-                                        <i class="rzfkomputer-minus"></i></button><input
-                                        class="pdetail__form__quantity js-input-qty" type="number" value="1" min="1"
-                                        name="qty" /><button class="pdetail__form__max btnMax" type="button">
-                                        <i class="rzfkomputer-add"></i></button>
+                            {{-- <form action="keranjang-belanja.html" method="get" autocomplete="off"> --}}
+                            <h3 class="pdetail__form__name">{{ $product->name }}</h3>
+                            <div class="pdetail__form__summary">{{ $product->description }}</div>
+                            <div class="pdetail__form__count-wrapper">
+                                <h3 class="pdetail__form__price">Harga :</h3>
+                                <p class="js-price">{{ money($product->price, 'IDR') }}</p>
+                                <h3 class="pdetail__form__category">Kategori :</h3>
+                                <p>
+                                    @foreach ($product->category as $category)
+                                        {{ $category->name }}
+                                    @endforeach
+                                </p>
+                                <h3 class="pdetail__form__inventory">Stok : </h3>
+                                <p>{{ $product->stock }}</p>
+
+                            </div>
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                <h3 class="pdetail__form__count">Jumlah :</h3><button class="pdetail__form__min btnMin"
+                                type="button">
+                                <i class="rzfkomputer-minus"></i></button><input
+                                class="pdetail__form__quantity js-input-qty" type="number" value="1" min="1"
+                                name="quantity" /><button class="pdetail__form__max btnMax" type="button">
+                                <i class="rzfkomputer-add"></i></button>
+                                <div class="pdetail__form__row">
+                                    {{-- <i class="rzfkomputer-cart"></i> --}}
+                                    <input type="submit" class="btn btn--primary btn--cart" value="Masukkan Keranjang">
                                 </div>
-                                <div class="pdetail__form__row"><a class="btn btn--primary btn--cart"
-                                        href="keranjang-belanja.html">
-                                        <i class="rzfkomputer-cart"></i>Masukkan Keranjang</a></div>
                             </form>
+
+                            {{-- </form> --}}
                         </div>
                     </div>
                 </div>

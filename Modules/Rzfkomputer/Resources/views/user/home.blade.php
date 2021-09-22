@@ -169,33 +169,18 @@
                         <div class="c-p__tab__pane {{ $item->id == 1 ? 'c-p__tab__pane--active' : '' }}"
                             data-pane="{{ $item->name }}">
                             <div class="c-p__wrapper card-product__body">
-                                {{-- <!-- card-product-item-->
-                                <div class="card-product__card">
-                                    <div class="card-product__card__box">
-                                        <a class="card-product__card__link" href="detail-produk.html"></a>
-                                        <div class="card-product__card__img">
-                                            <img class="card-product__card__img__el"
-                                                src="assets/img/dummy/printer-thermal.jpeg"
-                                                alt="Printer Thermal Epson 1234" />
-                                        </div>
-                                        <div class="card-product__card__txt">
-                                            <h3 class="card-product__card__title">Printer Thermal Epson 1234</h3>
-                                            <p class="card-product__card__price-product">Rp120.000</p>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 @foreach ($item->products as $product)
                                     <!-- card-product-item-->
                                     <div class="card-product__card">
                                         <div class="card-product__card__box">
-                                            <a class="card-product__card__link" href=""></a>
+                                            <a class="card-product__card__link"
+                                                href="{{ route('produk-detail', $product) }}"></a>
                                             <div class="card-product__card__img">
                                                 @if (!empty($product->images->first()->image))
                                                     <img class="card-product__card__img__el"
                                                         src="{{ asset('storage/product-image/' . $product->images->first()->image) }}"
-                                                        alt="Printer Thermal Epson 1234" />
+                                                        alt="{{ $product->name }}" />
                                                 @else
-                                                    kosong
                                                     {{-- <img class="card-product__card__img__el"
                                                         src="assets/img/dummy/printer-thermal.jpeg"
                                                         alt="Printer Thermal Epson 1234" /> --}}
@@ -277,12 +262,12 @@
                             <!-- card-product-item-->
                             <div class="card-product__card">
                                 <div class="card-product__card__box">
-                                    <a class="card-product__card__link" href="produkdetail"></a>
+                                    <a class="card-product__card__link" href="{{ route('produk-detail', $item) }}"></a>
                                     <div class="card-product__card__img">
                                         @if (!empty($item->images->first()->image))
                                             <img class="card-product__card__img__el"
                                                 src="{{ asset('storage/product-image/' . $item->images->first()->image) }}"
-                                                alt="Barcode Scanner" />
+                                                alt="{{ $item->name }}r" />
                                         @else
                                             {{-- <img class="card-product__card__img__el"
                                                                                     src="assets/img/dummy/printer-thermal.jpeg"
@@ -292,7 +277,8 @@
                                     </div>
                                     <div class="card-product__card__txt">
                                         <h3 class="card-product__card__title">{{ $item->name }}</h3>
-                                        <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}</p>
+                                        <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
