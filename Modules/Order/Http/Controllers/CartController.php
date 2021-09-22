@@ -48,7 +48,22 @@ class CartController extends Controller
             'quantity' => $request->quantity,
         ]);
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('order.index');
+        return back()->withInput();
+    }
+
+    public function store_user(Request $request)
+    {
+
+        $product = Product::find($request->product_id);
+
+        \Cart::add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $request->quantity,
+        ]);
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('produk-detail', $product);
     }
 
     /**
@@ -89,7 +104,7 @@ class CartController extends Controller
             ]
         );
 
-        session()->flash('success',"hjjh");
+        session()->flash('success', "hjjh");
 
         return redirect()->route('order.index');
     }
@@ -103,6 +118,6 @@ class CartController extends Controller
     {
         \Cart::remove($id);
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('order.index');
+        return back()->withInput();
     }
 }
