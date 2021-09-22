@@ -42,7 +42,7 @@
                               @foreach (Cart::getContent() as $item)
                                   <tr class="cart-list__row">
                                       <td class="cart-list__img-wrapper">
-                                          <img class="cart-list__img-el" src="assets/img/dummy/lenovo-1.png"
+                                          <img class="cart-list__img-el" src="{{asset($item->attributes->image)}}"
                                               alt="Lenovo" />
                                       </td>
                                       <td class="cart-list__product">

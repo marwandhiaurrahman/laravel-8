@@ -46,6 +46,9 @@ class CartController extends Controller
             'name' => $product->name,
             'price' => $product->price,
             'quantity' => $request->quantity,
+            'attributes' => [
+                'image' => (!empty($product->images->first()->image)) ? 'storage/product-image/' . $product->images->first()->image : 'assets/img/dummy/placeholder-product.png',
+            ],
         ]);
         Alert::success('Success Info', 'Success Message');
         return back()->withInput();
@@ -61,11 +64,13 @@ class CartController extends Controller
             'name' => $product->name,
             'price' => $product->price,
             'quantity' => $request->quantity,
+            'attributes' => [
+                'image' => $product->images->first()->image,
+            ],
         ]);
         Alert::success('Success Info', 'Success Message');
         return back()->withInput();
     }
-
     /**
      * Show the specified resource.
      * @param int $id
