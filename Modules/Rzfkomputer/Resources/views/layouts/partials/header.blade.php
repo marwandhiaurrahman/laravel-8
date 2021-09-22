@@ -33,7 +33,7 @@
                   <i class="rzfkomputer-search"></i>
               </button>
               <button class="cart js-cart" type="button">
-                <span class="cart__count">{{ Cart::getTotalQuantity() }}</span><i class="rzfkomputer-cart"></i>
+                  <span class="cart__count">{{ Cart::getTotalQuantity() }}</span><i class="rzfkomputer-cart"></i>
               </button>
               <div class="cart-list js-cart-list">
                   <div class="cart-list__items">
@@ -55,26 +55,15 @@
                                           <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
                                               @csrf
                                               @method('DELETE')
-                                              <input type="submit" value="hapus">
+                                              <button type="submit">
+                                                <i class="rzfkomputer-trashcan"></i>
+                                              </button>
+                                              {{-- <button class="cart-list__delete-btn js-cart-list-delete" type="submit">
+                                              </button> --}}
                                           </form>
                                       </td>
                                   </tr>
                               @endforeach
-                              {{-- <tr class="cart-list__row">
-                                  <td class="cart-list__img-wrapper">
-                                      <img class="cart-list__img-el" src="assets/img/dummy/lenovo-1.png" alt="Lenovo" />
-                                  </td>
-                                  <td class="cart-list__product">
-                                      <h6 class="cart-list__product-name">Lenovo Ultra Made 1500mx Ease Super</h6>
-                                      <p class="cart-list__product-price">Rp 4.500.000</p>
-                                      <p class="cart-list__product-count">Total : 1</p>
-                                  </td>
-                                  <td class="cart-list__delete">
-                                      <button class="cart-list__delete-btn" type="button">
-                                          <i class="rzfkomputer-trashcan"></i>
-                                      </button>
-                                  </td>
-                              </tr> --}}
                           </tbody>
                       </table>
                       <div class="cart-list__total">
@@ -83,7 +72,7 @@
                       </div>
                       <div class="cart-list__button">
                           <div class="cart-list__button--row">
-                              <a class="btn btn--primary btn--views" href="{{route('keranjang')}}">Lihat Keranjang</a>
+                              <a class="btn btn--primary btn--views" href="{{ route('keranjang') }}">Lihat Keranjang</a>
                           </div>
                       </div>
                   </div>
@@ -123,3 +112,4 @@
           <div class="overlay"></div>
       </div>
   </div>
+

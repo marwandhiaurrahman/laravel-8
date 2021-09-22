@@ -39,7 +39,10 @@ class ImageProductController extends Controller
     public function store(Request $request, Product $product)
     {
 
-
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required',
+        ]);
 
         $input =  $request->all();
 

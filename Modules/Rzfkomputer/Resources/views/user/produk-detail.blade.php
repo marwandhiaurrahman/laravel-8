@@ -17,37 +17,32 @@
                                             src="{{ asset('storage/product-image/' . $product->images->first()->image) }}"
                                             alt="Tes" /></a>
                                 @else
+                                    <a class="js-popup-image"
+                                        href="{{ asset('assets/img/dummy/placeholder-product.png') }}"
+                                        alt="Tes"><img class="pdetail__img-el"
+                                            src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
+                                            alt="Tes" /></a>
                                 @endif
                             </div>
                             <div class="pdetail__img-detail">
-                                <div class="pdetail__img-box">
-                                    <div class="pdetail__img-img">
-                                        <a class="js-popup-image" href="assets/img/dummy/best-product-2.png" alt="Tes"><img
-                                                class="pdetail__img-el" src="assets/img/dummy/best-product-2.png"
-                                                alt="Tes" /></a>
+                                @foreach ($product->images as $item)
+                                    <div class="pdetail__img-box">
+                                        <div class="pdetail__img-img">
+                                            <a class="js-popup-image"
+                                                href="{{ asset('storage/product-image/'.$item->image) }}" alt="Tes"><img
+                                                    class="pdetail__img-el"
+                                                    src="{{ asset('storage/product-image/'.$item->image) }}"
+                                                    alt="Tes" /></a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="pdetail__img-box">
-                                    <div class="pdetail__img-img">
-                                        <a class="js-popup-image" href="assets/img/dummy/best-product-3.png" alt="Tes"><img
-                                                class="pdetail__img-el" src="assets/img/dummy/best-product-3.png"
-                                                alt="Tes" /></a>
-                                    </div>
-                                </div>
-                                <div class="pdetail__img-box">
-                                    <div class="pdetail__img-img">
-                                        <a class="js-popup-image" href="assets/img/dummy/best-product-4.png" alt="Tes"><img
-                                                class="pdetail__img-el" src="assets/img/dummy/best-product-4.png"
-                                                alt="Tes" /></a>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <!--product-detail-form-->
                         <div class="pdetail__form">
                             {{-- <form action="keranjang-belanja.html" method="get" autocomplete="off"> --}}
                             <h3 class="pdetail__form__name">{{ $product->name }}</h3>
-                            <div class="pdetail__form__summary">{{ $product->description }}</div>
+                            <div class="pdetail__form__summary">{{ $product->review }}</div>
                             <div class="pdetail__form__count-wrapper">
                                 <h3 class="pdetail__form__price">Harga :</h3>
                                 <p class="js-price">{{ money($product->price, 'IDR') }}</p>
@@ -65,11 +60,11 @@
                                 @csrf
                                 <input type="hidden" value="{{ $product->id }}" name="product_id">
                                 <h3 class="pdetail__form__count">Jumlah :</h3><button class="pdetail__form__min btnMin"
-                                type="button">
-                                <i class="rzfkomputer-minus"></i></button><input
-                                class="pdetail__form__quantity js-input-qty" type="number" value="1" min="1"
-                                name="quantity" /><button class="pdetail__form__max btnMax" type="button">
-                                <i class="rzfkomputer-add"></i></button>
+                                    type="button">
+                                    <i class="rzfkomputer-minus"></i></button><input
+                                    class="pdetail__form__quantity js-input-qty" type="number" value="1" min="1"
+                                    name="quantity" /><button class="pdetail__form__max btnMax" type="button">
+                                    <i class="rzfkomputer-add"></i></button>
                                 <div class="pdetail__form__row">
                                     {{-- <i class="rzfkomputer-cart"></i> --}}
                                     <input type="submit" class="btn btn--primary btn--cart" value="Masukkan Keranjang">
@@ -91,13 +86,8 @@
             <div class="container">
                 <div class="tab-content">
                     <div class="tab-pane active" data-pane="tabs-1">
-                        <h3 class="tab-pane__name">Asus Ryzen 3 AMD Ultra Logic Gamming Super G-1850-MS</h3>
-                        <p class="tab-pane__desc">Dengan bangga ASUS Indonesia kembali mengeluarkan produk terbaru di awal
-                            2020. All-in-One MyPC U23 dengan tampilan disign yang sangat elegan ringan dan ramping, body nya
-                            yang sangat slim hanya dengan ketebalan 0.7 cm. Ditambah lagi dengan layar slim-bezel sebesar
-                            21.5” FHD IPS yang sangat luas membuat aktivitas semakin bersemangat, memanjakan mata anda
-                            dengan kualitas grafik yang bagus. PC ini sangat cocok untuk semua kalangan baik untuk pemula,
-                            pelajar mahasiswa gamer bahkan disign grafis dengan di tunjang dengan spesifikasi hebat sbb:</p>
+                        <h3 class="tab-pane__name">{{ $product->name }}</h3>
+                        <p class="tab-pane__desc">{{ $product->description }}</p>
                     </div>
                     <div class="tab-pane" data-pane="tabs-2">
                         <table class="customers">

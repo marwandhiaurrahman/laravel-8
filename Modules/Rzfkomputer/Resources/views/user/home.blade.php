@@ -164,7 +164,6 @@
                     </ul>
                 </div>
                 <div class="c-p__content">
-
                     @foreach ($categoris as $item)
                         <div class="c-p__tab__pane {{ $item->id == 1 ? 'c-p__tab__pane--active' : '' }}"
                             data-pane="{{ $item->name }}">
@@ -181,17 +180,17 @@
                                                         src="{{ asset('storage/product-image/' . $product->images->first()->image) }}"
                                                         alt="{{ $product->name }}" />
                                                 @else
-                                                    {{-- <img class="card-product__card__img__el"
-                                                        src="assets/img/dummy/printer-thermal.jpeg"
-                                                        alt="Printer Thermal Epson 1234" /> --}}
+                                                    <img class="card-product__card__img__el"
+                                                        src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
+                                                        alt="{{ $product->name }}" />
                                                 @endif
                                             </div>
                                             <div class="card-product__card__txt">
                                                 <h3 class="card-product__card__title">{{ $product->name }}</h3>
                                                 <div class="card-product__card__sale">
-                                                    <span class="card-product__card__percentage">20%</span>
-                                                    <span
-                                                        class="card-product__card__price-carret">{{ money($product->price, 'IDR') }}</span>
+                                                    {{-- <span class="card-product__card__percentage">20%</span> --}}
+                                                    {{-- <span
+                                                        class="card-product__card__price-carret">{{ money($product->price, 'IDR') }}</span> --}}
                                                 </div>
                                                 <p class="card-product__card__price-product">
                                                     {{ money($product->price, 'IDR') }}</p>
@@ -269,9 +268,9 @@
                                                 src="{{ asset('storage/product-image/' . $item->images->first()->image) }}"
                                                 alt="{{ $item->name }}r" />
                                         @else
-                                            {{-- <img class="card-product__card__img__el"
-                                                                                    src="assets/img/dummy/printer-thermal.jpeg"
-                                                                                    alt="Printer Thermal Epson 1234" /> --}}
+                                            <img class="card-product__card__img__el"
+                                                src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
+                                                alt="Printer Thermal Epson 1234" />
                                         @endif
 
                                     </div>

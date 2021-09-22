@@ -226,7 +226,7 @@ var Cart = function () {
         showCancelButton: true,
         cancelButtonText: 'Batal',
         title: 'Hapus item ini?',
-        text: "Tindakan ini tidak dapat diurungkan!",
+        text: "Tindakan ini tidak dapats diurungkan!",
         icon: 'warning',
         confirmButtonColor: '#388e3c',
         cancelButtonColor: '#ff0000',
@@ -286,7 +286,7 @@ var Cart = function () {
       _itemCount = parseInt(e.currentTarget.value);
       $(_quantityCartCount).text(e.currentTarget.value == '' ? 0 : e.currentTarget.value); // console.log(parseInt(e.currentTarget.value));
     });
-  }; // init 
+  }; // init
 
 
   var init = function init() {
@@ -1008,7 +1008,7 @@ var ProductDetail = function () {
       _oldPrice = _resultCount;
       _itemCount = parseInt(e.currentTarget.value);
     });
-  }; // init 
+  }; // init
 
 
   var init = function init() {
@@ -1108,7 +1108,7 @@ var SortingCategory = function () {
         $(this).parents('.js-sorting-dd').addClass('product__sorting--showed');
       }
     });
-  }; // handleSticky 
+  }; // handleSticky
 
 
   var handleSticky = function handleSticky() {
@@ -1123,7 +1123,7 @@ var SortingCategory = function () {
         }
       });
     }
-  }; // init 
+  }; // init
 
 
   var init = function init() {
@@ -1164,7 +1164,7 @@ var Tabs = function () {
         $('[data-pane="' + _target + '"]').addClass('active');
       }
     });
-  }; // init 
+  }; // init
 
 
   var init = function init() {

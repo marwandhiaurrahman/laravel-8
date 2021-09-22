@@ -47,6 +47,8 @@ class ProductController extends Controller
             'stock' => 'required|min:0',
             'price' => 'required|min:0',
             'category' => 'required',
+            'review' => 'required',
+
         ]);
 
         $product =  Product::updateOrCreate($request->only([
@@ -55,6 +57,7 @@ class ProductController extends Controller
             'stock',
             'price',
             'status',
+            'review',
         ]));
         $product->category()->attach($request->category);
 
@@ -98,6 +101,7 @@ class ProductController extends Controller
             'stock' => 'required|min:0',
             'price' => 'required|min:0',
             'category' => 'required',
+            'review' => 'required',
         ]);
 
         $product->update($request->all());
