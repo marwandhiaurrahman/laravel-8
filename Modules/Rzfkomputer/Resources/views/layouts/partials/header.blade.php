@@ -33,7 +33,7 @@
                   <i class="rzfkomputer-search"></i>
               </button>
               <button class="cart js-cart" type="button">
-                  <i class="rzfkomputer-cart">{{ Cart::getTotalQuantity() }}</i>
+                <span class="cart__count">{{ Cart::getTotalQuantity() }}</span><i class="rzfkomputer-cart"></i>
               </button>
               <div class="cart-list js-cart-list">
                   <div class="cart-list__items">

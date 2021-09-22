@@ -14,7 +14,7 @@
 use Modules\Rzfkomputer\Http\Controllers\RzfkomputerController;
 
 
-Route::get('/', 'RzfkomputerController@index');
+Route::get('/', 'RzfkomputerController@index')->name('welcome');
 Route::get('/produk',  'RzfkomputerController@product_list')->name('produk-list');
 Route::get('/produk/{product}', 'RzfkomputerController@product_detail')->name('produk-detail');
 Route::get('/keranjang', function () {
