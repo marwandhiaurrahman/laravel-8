@@ -35,7 +35,7 @@
                                                 </button>
                                                 <div class="cart__media__img-wrapper">
                                                     <img class="cart__media__img-el"
-                                                        src="assets/img/dummy/our-product-1.png" alt="Image" />
+                                                        src="{{asset($item->attributes->image)}}" alt="Image" />
                                                 </div>
                                                 <p class="cart__media__name">{{ $item->name }}</p>
                                             </div>

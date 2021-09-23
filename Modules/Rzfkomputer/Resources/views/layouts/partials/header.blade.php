@@ -14,16 +14,16 @@
               <div class="header__mobile js-mobile-menu">
                   <div class="header__menu">
                       <ul class="header__nav">
-                          <li class="header__nav__item js-nav-items header__nav__item--active">
+                          <li class="header__nav__item js-nav-items {{ Request::routeIs('welcome') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/">Beranda</a>
                           </li>
-                          <li class="header__nav__item js-nav-items">
+                          <li class="header__nav__item js-nav-items  {{ Request::routeIs('produk-list') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/produk">Produk</a>
                           </li>
-                          <li class="header__nav__item js-nav-items">
+                          <li class="header__nav__item js-nav-items {{ Request::routeIs('promo') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/promo">Promo</a>
                           </li>
-                          <li class="header__nav__item js-nav-items">
+                          <li class="header__nav__item js-nav-items {{ Request::routeIs('kontak') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/kontak">Kontak Kami</a>
                           </li>
                       </ul>
