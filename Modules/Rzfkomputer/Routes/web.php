@@ -32,3 +32,6 @@ Route::get('/kontak', function () {
 Route::get('/ordersuccess', function () {
     return view('rzfkomputer::user.order-success');
 })->name('ordersuccess');
+Route::get('/orderstatus', function () {
+    return view('rzfkomputer::user.order-status');
+})->name('orderstatus');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Customer\Entities\Customer;
 use Modules\Order\Entities\Order;
+use Modules\Order\Entities\OrderDetail;
 use Modules\Product\Entities\CategoryProduct;
 use Modules\Product\Entities\Product;
 use RealRashid\SweetAlert\Facades\Alert;
