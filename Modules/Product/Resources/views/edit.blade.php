@@ -34,6 +34,10 @@
                         {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
                     </div>
                     <div class="form-group">
+                        <label for="inpurReview">Review Produk</label>
+                        {!! Form::textarea('review', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inpurReview', 'placeholder' => 'Review Produk', 'required']) !!}
+                    </div>
+                    <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>
                         {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Nama Produk', 'required']) !!}
                     </div>

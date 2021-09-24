@@ -286,54 +286,26 @@ return [
             'url'         => 'admin/user',
             'icon'        => 'fas fa-users',
         ],
-        [
-            'text'        => 'Pengaturan',
-            'url'         => 'admin/setting',
-            'icon'        => 'fas fa-cog',
-        ],
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
+        [
+            'text'    => 'Pengaturan',
+            'icon'    => 'fas fa-cog',
+            'submenu' => [
+                [
+                    'text' => 'Banner',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Contact',
+                    'url'  => '#',
+
+                ],
+            ],
+        ],
         // [
         //     'text'       => 'important',
         //     'icon_color' => 'red',

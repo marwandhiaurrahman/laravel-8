@@ -38,7 +38,11 @@ class SizeProductController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        $request->validate([]);
+        $request->validate([
+            'name' => 'required',
+            'label' => 'required',
+            'product_id' => 'required',
+        ]);
 
         SizeProduct::updateOrCreate($request->only([
             'name',
