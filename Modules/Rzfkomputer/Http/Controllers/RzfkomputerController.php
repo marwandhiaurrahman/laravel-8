@@ -57,8 +57,16 @@ class RzfkomputerController extends Controller
 
         \Cart::clear();
 
+        $id = $order->invoice;
+
         Alert::success('Success Info', 'Success Message');
-        return back()->withInput();
+        return redirect()->route('ordersuccess',compact('id'));
+    }
+
+    public function order_success(Request $request)
+    {
+        $order = Order::where('invoice',$request->id)->first();
+        return view('rzfkomputer::user.order-success',compact('order'));
     }
 
 

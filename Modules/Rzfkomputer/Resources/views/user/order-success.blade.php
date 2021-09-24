@@ -31,16 +31,16 @@
                             <h3 class="order-success__invoice-title">Tujuan</h3>
                             <p>Customer</p>
                             <hr>
-                            <p>Alamat: Jl. Raya Suci Desa Cidulang No. 01 Cikijing Kabupaten Majalengka 45466</p>
-                            <p>No. Telepon: +62 8572 1557 240</p>
-                            <p>Email: budidendi1234@@gmail.com</p>
+                            <p>Alamat: {{ $order->customer->address }}</p>
+                            <p>No. Telepon: {{ $order->customer->phone }}</p>
+                            <p>Email: {{ $order->customer->email }}</p>
                         </div>
                         <div class="order-success__invoice-list">
                             <h3 class="order-success__invoice-title">Detail Pesanan</h3><br>
                             <hr>
-                            <p>Order ID : 00002121</p>
-                            <p>Waktu Pemesanan: 2021-08-28</p>
-                            <p>Jumlah yang harus dibayar: Rp 5.400.000-,</p>
+                            <p>Order ID : {{ $order->invoice }}</p>
+                            <p>Waktu Pemesanan: {{ $order->created_at }}</p>
+                            <p>Jumlah yang harus dibayar: {{ money($order->total_price, 'IDR') }},-</p>
                         </div>
                     </div>
                 </div>

@@ -30,31 +30,45 @@
                                     <td>
                                         <div class="cart__media">
                                             <div class="cart__media__content">
-                                                <button class="cart__media__delete-btn" type="button" title="Delete">
-                                                    <i class="rzfkomputer-trashcan"></i>
-                                                </button>
+
+                                                <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="cart__media__delete-btn" type="submit" title="Delete">
+                                                        <i class="rzfkomputer-trashcan"></i>
+                                                    </button>
+                                                </form>
                                                 <div class="cart__media__img-wrapper">
                                                     <img class="cart__media__img-el"
-                                                        src="{{asset($item->attributes->image)}}" alt="Image" />
+                                                        src="{{ asset($item->attributes->image) }}" alt="Image" />
                                                 </div>
                                                 <p class="cart__media__name">{{ $item->name }}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="cart__media__price js-cart-price">{{ money($item->price, 'IDR') }},-
+                                        <p class="cart__media__price js-cart-price">
+                                            {{ money($item->price * $item->quantity, 'IDR') }},-
                                         </p>
                                     </td>
                                     <td>
                                         <div class="cart__media__product-count">
-                                            <button class="cart__media__btn-chevron-down js-cart-minus" type="button">
+                                            {{-- <button class="cart__media__btn-chevron-down js-cart-minus" type="button">
                                                 <i class="rzfkomputer-minus"></i>
-                                            </button><input class="cart__media__input-qty js-cart-quantity" type="number"
-                                                name="cart" id="quantity" max-length="12" title="quantity"
+                                            </button>
+                                            <input class="cart__media__input-qty js-cart-quantity" type="number" name="cart"
+                                                id="quantity{{ $item->id }}" max-length="12" title="quantity"
                                                 value="{{ $item->quantity }}" min="1" />
                                             <button class="cart__media__btn-chevron-up js-cart-plus" type="button">
                                                 <i class="rzfkomputer-add"></i>
-                                            </button>
+                                            </button> --}}
+                                            <form action="{{ route('cart.update', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="number" name="quantity" min="0" value="{{ $item->quantity }}"
+                                                    class="form-control form-control-sm col-3"
+                                                    onchange="this.form.submit()" />
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,7 +85,6 @@
                 <div class="checkout__wrapper">
                     <div class="checkout__form">
                         {!! Form::open(['route' => 'store_order', 'method' => 'POST']) !!}
-                        {{-- <form action="#" method="POST" autocomplete="off"> --}}
                         <h3 class="checkout__form-title">Form Checkout</h3>
                         <div class="form__control">
                             <label class="form__label" for="name">Nama</label>
@@ -99,7 +112,10 @@
                                 data-target="alertAddress" rows="5" required></textarea>
                             <p class="form__alert" id="alertAddress" data-req="Alamat tidak boleh kosong!"></p>
                         </div>
-
+                        {{-- <button class="btn btn--block btn--primary" id="js-submit" type="submit">
+                            Pesan Sekarang</button> --}}
+                        <input type="submit" class="btn btn--block btn--primary" value="Pesan Sekarang">
+                        {!! Form::close() !!}
                     </div>
                     <div class="checkout__summary">
                         <div class="checkout__box">
@@ -118,7 +134,7 @@
                                             <th class="checkout__table-name">{{ $item->name }}</th>
                                             <td class="checkout__table-count js-cart-count">{{ $item->quantity }}</td>
                                             <td class="checkout__table-price js-cart-price">
-                                                {{ money($item->price, 'IDR') }},-</td>
+                                                {{ money($item->price * $item->quantity, 'IDR') }},-</td>
                                         </tr>
                                     @endforeach
                                     <tr>
@@ -129,13 +145,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <input type="submit" class="btn btn--block btn--primary" value="Pesan Sekarang">
-                            {!! Form::close() !!}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end-checkout-form-->
-    </div>
-@endsection
+        <!--checkout-form-->
+    @endsection

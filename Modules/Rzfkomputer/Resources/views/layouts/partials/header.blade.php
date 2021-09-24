@@ -14,16 +14,20 @@
               <div class="header__mobile js-mobile-menu">
                   <div class="header__menu">
                       <ul class="header__nav">
-                          <li class="header__nav__item js-nav-items {{ Request::routeIs('welcome') ? ' header__nav__item--active' : '' }}">
+                          <li
+                              class="header__nav__item js-nav-items {{ Request::routeIs('welcome') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/">Beranda</a>
                           </li>
-                          <li class="header__nav__item js-nav-items  {{ Request::routeIs('produk-list') ? ' header__nav__item--active' : '' }}">
+                          <li
+                              class="header__nav__item js-nav-items {{ request()->segment(1) == 'produk' ? 'header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/produk">Produk</a>
                           </li>
-                          <li class="header__nav__item js-nav-items {{ Request::routeIs('promo') ? ' header__nav__item--active' : '' }}">
+                          <li
+                              class="header__nav__item js-nav-items {{ Request::routeIs('promo') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/promo">Promo</a>
                           </li>
-                          <li class="header__nav__item js-nav-items {{ Request::routeIs('kontak') ? ' header__nav__item--active' : '' }}">
+                          <li
+                              class="header__nav__item js-nav-items {{ Request::routeIs('kontak') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/kontak">Kontak Kami</a>
                           </li>
                       </ul>
@@ -42,7 +46,7 @@
                               @foreach (Cart::getContent() as $item)
                                   <tr class="cart-list__row">
                                       <td class="cart-list__img-wrapper">
-                                          <img class="cart-list__img-el" src="{{asset($item->attributes->image)}}"
+                                          <img class="cart-list__img-el" src="{{ asset($item->attributes->image) }}"
                                               alt="Lenovo" />
                                       </td>
                                       <td class="cart-list__product">
@@ -56,7 +60,7 @@
                                               @csrf
                                               @method('DELETE')
                                               <button type="submit">
-                                                <i class="rzfkomputer-trashcan"></i>
+                                                  <i class="rzfkomputer-trashcan"></i>
                                               </button>
                                               {{-- <button class="cart-list__delete-btn js-cart-list-delete" type="submit">
                                               </button> --}}
@@ -72,7 +76,8 @@
                       </div>
                       <div class="cart-list__button">
                           <div class="cart-list__button--row">
-                              <a class="btn btn--primary btn--views" href="{{ route('keranjang') }}">Lihat Keranjang</a>
+                              <a class="btn btn--primary btn--views" href="{{ route('keranjang') }}">Lihat
+                                  Keranjang</a>
                           </div>
                       </div>
                   </div>
@@ -91,10 +96,13 @@
                       </button>
                   </form>
                   <div class="header__search-section__result js-search-result">
-                      <div class="header__search-section__result-notif">
-                          <p>Data Not Found</p>
+                      <div class="header__search-section__result-notif js-notif-show">
+                          <div class="header__search-section__result-img-wrapper">
+                              <img src="assets/img/dummy/not-found.svg">
+                              <p>Maaf, produk yang Anda cari tidak tersedia</p>
+                          </div>
                       </div>
-                      <h3>Produk Pilihan</h3>
+                      <h3 class="header__search-section-title show">Produk Pilihan</h3>
                       <ul class="header__search-section__list js-search-popup-input">
                           <li class="header__search-section__item">
                               <a class="header__search-section__link" href="#">Asus Ryzen AMD 3</a>
@@ -112,4 +120,3 @@
           <div class="overlay"></div>
       </div>
   </div>
-

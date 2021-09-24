@@ -29,9 +29,8 @@ Route::get('/promo', function () {
 Route::get('/kontak', function () {
     return view('rzfkomputer::user.kontak');
 })->name('kontak');
-Route::get('/ordersuccess', function () {
-    return view('rzfkomputer::user.order-success');
-})->name('ordersuccess');
+
+Route::get('/ordersuccess','RzfkomputerController@order_success' )->name('ordersuccess');
 Route::get('/orderstatus', function () {
     return view('rzfkomputer::user.order-status');
 })->name('orderstatus');

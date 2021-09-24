@@ -304,6 +304,10 @@ return [
                     'url'  => '#',
 
                 ],
+                [
+                    'text' => 'Promo Time',
+                    'url'  => '#',
+                ],
             ],
         ],
         // [
