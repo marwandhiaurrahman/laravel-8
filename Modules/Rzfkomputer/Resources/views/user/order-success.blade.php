@@ -48,7 +48,7 @@
                     <p>Untuk menyelesaikan proses pemesanan, silakan transfer sesuai jumlah yang tertera di atas</p>
                     <div class="order-success__action-transfer">
                         <div class="order-success__action-img">
-                            <img class="order-success__action-el" src="assets/img/dummy/bri.png" alt="BRI Logo" />
+                            <img class="order-success__action-el" src="{{asset('assets/img/dummy/bri.png')}}" alt="BRI Logo" />
                         </div>
                         <div class="order-success__action-txt">
                             <p>No. Rek: 427301006692531</p>
