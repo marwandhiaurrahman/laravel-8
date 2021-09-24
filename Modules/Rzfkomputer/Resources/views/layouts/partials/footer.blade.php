@@ -63,7 +63,7 @@
         </div>
         <div class="footer__about">
           <a class="footer__logo" href="index.html">
-            <img class="footer__logo__img" src="assets/img/logo/rzf-komputer-white.svg" alt="RZF Komputer" />
+            <img class="footer__logo__img" src="{{asset('assets/img/logo/rzf-komputer-white.svg')}}" alt="RZF Komputer" />
           </a>
           <p class="footer__description">Jalan Raya Darma KM. 11 Gunungluhur Darma Kec. Darma Kab. Kuningan Jawa Barat 45562</p>
         </div>

@@ -15,7 +15,7 @@
                                 <p>On Sale </p>
                             </div>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/laptop-asus-1.jpg" alt="Promo" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/laptop-asus-1.jpg')}}" alt="Promo" />
                             </div>
                         </div>
                         <!--banner-card-->
@@ -25,7 +25,7 @@
                                 <p>On Sale </p>
                             </div>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/laptop-asus-2.jpg" alt="Promo" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/laptop-asus-2.jpg')}}" alt="Promo" />
                             </div>
                         </div>
                         <!--banner-card-->
@@ -35,7 +35,7 @@
                                 <p>On Sale </p>
                             </div>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/laptop-asus-3.jpg" alt="Promo" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/laptop-asus-3.jpg')}}" alt="Promo" />
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/our-product-1.jpg"
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-1.jpg')}}"
                                     alt="Komputer" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
@@ -55,7 +55,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/our-product-2.jpg" alt="Laptop" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-2.jpg')}}" alt="Laptop" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Laptop</p>
@@ -65,7 +65,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/our-product-3.jpg" alt="Printer" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-3.jpg')}}" alt="Printer" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Printer</p>
@@ -75,7 +75,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="assets/img/dummy/our-product-4.jpg"
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-4.jpg')}}"
                                     alt="Aksesoris" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
@@ -96,7 +96,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="assets/img/dummy/features-1.svg"
+                                <img class="features__card__img-el" src="{{asset('assets/img/dummy/features-1.svg')}}"
                                     alt="Free Ongkir" />
                             </div>
                             <div class="features__card__txt">
@@ -109,7 +109,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="assets/img/dummy/features-2.svg"
+                                <img class="features__card__img-el" src="{{asset('assets/img/dummy/features-2.svg')}}"
                                     alt="Garansi Barang" />
                             </div>
                             <div class="features__card__txt">
@@ -122,7 +122,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="assets/img/dummy/features-3.svg"
+                                <img class="features__card__img-el" src="{{asset('assets/img/dummy/features-3.svg')}}"
                                     alt="Support Handal" />
                             </div>
                             <div class="features__card__txt">
@@ -214,7 +214,7 @@
             <!--sale-items-->
             <div class="sale__content">
                 <div class="sale__img">
-                    <img class="sale__img-el" src="assets/img/dummy/sale-1.jpg" alt="Promo" />
+                    <img class="sale__img-el" src="{{asset('assets/img/dummy/sale-1.jpg')}}" alt="Promo" />
                 </div>
             </div>
             <div class="container">
@@ -295,7 +295,7 @@
             <div class="container">
                 <div class="persuasive__wrapper">
                     <div class="persuasive__img">
-                        <img class="persuasive__img-el" src="assets/img/dummy/man.png" />
+                        <img class="persuasive__img-el" src="{{asset('assets/img/dummy/man.png')}}" />
                     </div>
                     <div class="persuasive__txt">
                         <h3 class="persuasive__txt-title">Siap bermitra dengan Kami?</h3>
