@@ -18,10 +18,9 @@
                                             alt="Tes" /></a>
                                 @else
                                     <a class="js-popup-image"
-                                        href="{{ asset('assets/img/dummy/placeholder-product.png') }}"
-                                        alt="Tes"><img class="pdetail__img-el"
-                                            src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
-                                            alt="Tes" /></a>
+                                        href="{{ asset('assets/img/dummy/placeholder-product.png') }}" alt="Tes"><img
+                                            class="pdetail__img-el"
+                                            src="{{ asset('assets/img/dummy/placeholder-product.png') }}" alt="Tes" /></a>
                                 @endif
                             </div>
                             <div class="pdetail__img-detail">
@@ -29,9 +28,9 @@
                                     <div class="pdetail__img-box">
                                         <div class="pdetail__img-img">
                                             <a class="js-popup-image"
-                                                href="{{ asset('storage/product-image/'.$item->image) }}" alt="Tes"><img
+                                                href="{{ asset('storage/product-image/' . $item->image) }}" alt="Tes"><img
                                                     class="pdetail__img-el"
-                                                    src="{{ asset('storage/product-image/'.$item->image) }}"
+                                                    src="{{ asset('storage/product-image/' . $item->image) }}"
                                                     alt="Tes" /></a>
                                         </div>
                                     </div>
@@ -44,34 +43,71 @@
                             <h3 class="pdetail__form__name">{{ $product->name }}</h3>
                             <div class="pdetail__form__summary">{{ $product->review }}</div>
                             <div class="pdetail__form__count-wrapper">
-                                <h3 class="pdetail__form__price">Harga :</h3>
-                                <p class="js-price">{{ money($product->price, 'IDR') }}</p>
-                                <h3 class="pdetail__form__category">Kategori :</h3>
-                                <p>
-                                    @foreach ($product->category as $category)
-                                        {{ $category->name }}
-                                    @endforeach
-                                </p>
-                                <h3 class="pdetail__form__inventory">Stok : </h3>
-                                <p>{{ $product->stock }}</p>
+                                <h3 class="pdetail__form__info">Ukuran :</h3>
+                                <ul class="pdetail__size">
+                                    <li class="pdetail__size__item">
+                                        <input class="pdetail__size__input" type="radio" name="size" value="16GB" />
+                                        <span class="pdetail__size__box">16GB</span>
+                                    </li>
+                                    <li class="pdetail__size__item">
+                                        <input class="pdetail__size__input" type="radio" name="size" value="32GB" />
+                                        <span class="pdetail__size__box">32GB</span>
+                                    </li>
+                                    <li class="pdetail__size__item">
+                                        <input class="pdetail__size__input" type="radio" name="size" value="64GB" />
+                                        <span class="pdetail__size__box">64GB</span>
+                                    </li>
+                                    <li class="pdetail__size__item">
+                                        <input class="pdetail__size__input" type="radio" name="size" value="72GB" />
+                                        <span class="pdetail__size__box">72GB</span>
+                                    </li>
+                                </ul>
+                                <h3 class="pdetail__form__info">Warna :</h3>
+                                <ul class="pdetail__color">
+                                    <li class="pdetail__color__item">
+                                        <input class="pdetail__color__input" type="radio" name="color" value="Blue Black" />
+                                        <span class="pdetail__color__box">Blue Black</span>
+                                    </li>
+                                    <li class="pdetail__color__item">
+                                        <input class="pdetail__color__input" type="radio" name="color" value="Green" />
+                                        <span class="pdetail__color__box">Green</span>
+                                    </li>
+                                    <li class="pdetail__color__item">
+                                        <input class="pdetail__color__input" type="radio" name="color" value="Red" />
+                                        <span class="pdetail__color__box">Red</span>
+                                    </li>
+                                    <li class="pdetail__color__item">
+                                        <input class="pdetail__color__input" type="radio" name="color" value="Gold" />
+                                        <span class="pdetail__color__box">Gold</span>
+                                    </li>
+                                </ul>
+                                <h3 class="pdetail__form__info">Kategori :</h3>
+                                <p>Komputer</p>
+                                <h3 class="pdetail__form__info">Harga :</h3>
+                                <p class="js-price">{{ money($product->price, 'IDR') }}-,</p>
+                                <h3 class="pdetail__form__info">Stok Tersedia : </h3>
+                                <p class="js-inventory">{{ $product->stock }}</p>
+                                <form action="{{ route('cart_store', $product) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                    <h3 class="pdetail__form__count">Jumlah :</h3>
+                                    <div class="pdetail__form__row">
+                                        <button class="pdetail__form__min btnMin" type="button">
+                                            <i class="rzfkomputer-minus"></i></button>
 
-                            </div>
-                            <form action="{{ route('cart.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" value="{{ $product->id }}" name="product_id">
-                                <h3 class="pdetail__form__count">Jumlah :</h3><button class="pdetail__form__min btnMin"
-                                    type="button">
-                                    <i class="rzfkomputer-minus"></i></button><input
-                                    class="pdetail__form__quantity js-input-qty" type="number" value="1" min="1"
-                                    name="quantity" /><button class="pdetail__form__max btnMax" type="button">
-                                    <i class="rzfkomputer-add"></i></button>
-                                <div class="pdetail__form__row">
-                                    {{-- <i class="rzfkomputer-cart"></i> --}}
+                                        <input class="pdetail__form__quantity js-input-qty" type="number" value="1" min="1"
+                                            name="quantity" />
+
+                                        <button class="pdetail__form__max btnMax" type="button">
+                                            <i class="rzfkomputer-add"></i></button>
+
+                                        <p class="inventory-alert">Maks. pembelian barang ini 1 item, kurangi pembelianmu,
+                                            ya!
+                                        </p>
+                                    </div>
                                     <input type="submit" class="btn btn--primary btn--cart" value="Masukkan Keranjang">
-                                </div>
-                            </form>
-
-                            {{-- </form> --}}
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

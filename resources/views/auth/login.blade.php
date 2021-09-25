@@ -42,46 +42,52 @@
         content="Login System | RZF Komputer merupakan sebuah usaha yang berfokus pada produk, inovasi dan layanan jasa di bidang teknologi dan informasi khususnya di bidang perangkat komputer, percetakan, jaringan, kasir dan lain-lain" />
     <meta property="og:url" content="https://www.rzfkomputer.com" />
     <meta property="og:site_name" content="rzfkomputer.com" />
-    <meta property="og:image" content="{{asset('assets/img/default/og-facebook.jpg')}}" />
+    <meta property="og:image" content="{{ asset('assets/img/default/og-facebook.jpg') }}" />
     <meta property="og:image:type" content="image/jpeg" />
 
 
 
     <!-- ============ icon ============-->
     <!-- web favicon-->
-    <link rel="shortcut icon" href="{{asset('assets/img/homescreen/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}" />
 
     <!-- android add to home screen-->
-    <link rel="manifest" href="{{asset('assets/js/data/manifest.json')}}" />
+    <link rel="manifest" href="{{ asset('assets/js/data/manifest.json') }}" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#388e3c" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/homescreen/favicon-16x16.png')}}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/homescreen/favicon-32x32.png')}}" />
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/img/homescreen/favicon-96x96.png')}}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/homescreen/favicon-16x16.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/homescreen/favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/homescreen/favicon-96x96.png') }}" />
     <link rel="icon" type="image/png" sizes="144x144" />
-    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('assets/img/homescreen/android-icon-192x192.png')}}" />
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('assets/img/homescreen/android-icon-192x192.png') }}" />
 
     <!-- windows microsoft-->
     <meta name="msapplication-TileColor" content="#388e3c" />
-    <meta name="msapplication-TileImage" content="{{asset('assets/img/homescreen/ms-icon-144x144.png')}}" />
+    <meta name="msapplication-TileImage" content="{{ asset('assets/img/homescreen/ms-icon-144x144.png') }}" />
 
     <!-- apple add to home screen-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#388e3c" />
-    <link rel="apple-touch-icon" href="{{asset('assets/img/homescreen/apple-icon.png')}}" />
-    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/img/homescreen/apple-icon-57x57.png')}}" />
-    <link rel="apple-touch-icon" sizes="60x60" href="{{asset('assets/img/homescreen/apple-icon-60x60.png')}}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('assets/img/homescreen/apple-icon-72x72.png')}}" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/homescreen/apple-icon-76x76.png')}}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('assets/img/homescreen/apple-icon-114x114.png')}}" />
-    <link rel="apple-touch-icon" sizes="120x120" href="{{asset('assets/img/homescreen/apple-icon-120x120.png')}}" />
-    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/img/homescreen/apple-icon-144x144.png')}}" />
-    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/img/homescreen/apple-icon-152x152.png')}}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/homescreen/apple-icon-180x180.png')}}" />
-    <link rel="apple-touch-startup-image" href="{{asset('assets/img/homescreen/apple-icon.png')}}" />
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/homescreen/apple-icon.png') }}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/homescreen/apple-icon-57x57.png') }}" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/homescreen/apple-icon-60x60.png') }}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/homescreen/apple-icon-72x72.png') }}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/homescreen/apple-icon-76x76.png') }}" />
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="{{ asset('assets/img/homescreen/apple-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="{{ asset('assets/img/homescreen/apple-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="{{ asset('assets/img/homescreen/apple-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="{{ asset('assets/img/homescreen/apple-icon-152x152.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ asset('assets/img/homescreen/apple-icon-180x180.png') }}" />
+    <link rel="apple-touch-startup-image" href="{{ asset('assets/img/homescreen/apple-icon.png') }}" />
 
     <!-- style-->
-    <link rel="stylesheet" href="{{asset('assets/css/app.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}" />
 
 </head>
 
@@ -94,7 +100,7 @@
             <div class="login-wrapper">
                 <div class="login-form">
                     <a class="logo-brand" href="index.html">
-                        <img src="{{asset('assets/img/logo/login-logo.svg')}}" />
+                        <img src="{{ asset('assets/img/logo/login-logo.svg') }}" />
                     </a>
                     <div class="login-head">
                         <h1 class="login-title">Welcome</h1>
@@ -104,13 +110,19 @@
                     <form action="{{ route('login') }}" method="post">
                         {{ csrf_field() }}
 
+                        @if ($errors->any())
+                            <div class="invalid-feedback-error">
+                                <p>Authentication that you've entered is incorrect!</p>
+                            </div>
+                        @endif
+
                         <div class="login-input">
                             <label class="input-label">Email</label>
-                            <input class="form-control input-block" name="email" type="text" placeholder="Enter Here"
+                            <input class="form-control input-block" name="username" type="text" placeholder="Enter Here"
                                 autofocus="on" autocomplete="off" />
-                            @if ($errors->has('email'))
+                            @if ($errors->has('username'))
                                 <div class="invalid-feedback">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <p>Username is required!</p>
                                 </div>
                             @endif
                         </div>
@@ -120,7 +132,7 @@
                                 placeholder="Enter Here" />
                             @if ($errors->has('password'))
                                 <div class="invalid-feedback">
-                                    <strong>{{ $errors->first('password') }}</strong>
+                                    <p>Password is required!</p>
                                 </div>
                             @endif
                         </div>
@@ -135,8 +147,8 @@
     </div>
 
     <!-- script-->
-    <script src="{{asset('assets/js/vendor.min.js')}}"></script>
-    <script src="{{asset('assets/js/app.min.js')}}"></script>
+    <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+    <script src="{{ asset('assets/js/app.min.js') }}"></script>
 
 </body>
 

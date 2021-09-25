@@ -56,7 +56,7 @@
                                       </td>
 
                                       <td class="cart-list__delete">
-                                          <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                          <form action="{{ route('cart_destroy', $item->id) }}" method="POST">
                                               @csrf
                                               @method('DELETE')
                                               <button type="submit">

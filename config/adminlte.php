@@ -308,6 +308,10 @@ return [
                     'text' => 'Promo Time',
                     'url'  => '#',
                 ],
+                [
+                    'text' => 'Alamat Kantor',
+                    'url'  => '#',
+                ],
             ],
         ],
         // [

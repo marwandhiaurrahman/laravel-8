@@ -44,7 +44,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-1.jpg')}}"
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-1.jpg')}}"
                                     alt="Komputer" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
@@ -55,7 +55,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-2.jpg')}}" alt="Laptop" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-2.jpg')}}" alt="Laptop" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Laptop</p>
@@ -65,7 +65,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-3.jpg')}}" alt="Printer" />
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-3.jpg')}}" alt="Printer" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Printer</p>
@@ -75,7 +75,7 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/our-product-4.jpg')}}"
+                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-4.jpg')}}"
                                     alt="Aksesoris" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">

@@ -60,14 +60,40 @@ class RzfkomputerController extends Controller
         $id = $order->invoice;
 
         Alert::success('Success Info', 'Success Message');
-        return redirect()->route('ordersuccess',compact('id'));
+        return redirect()->route('ordersuccess', compact('id'));
     }
 
     public function order_success(Request $request)
     {
-        $order = Order::where('invoice',$request->id)->first();
-        return view('rzfkomputer::user.order-success',compact('order'));
+        $order = Order::where('invoice', $request->id)->first();
+        return view('rzfkomputer::user.order-success', compact('order'));
     }
+
+    public function cart_store(Request $request)
+    {
+        $product = Product::find($request->product_id);
+
+        \Cart::add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $request->quantity,
+            'attributes' => [
+                'image' => (!empty($product->images->first()->image)) ? 'storage/product-image/' . $product->images->first()->image : 'assets/img/dummy/placeholder-product.png',
+            ],
+        ]);
+
+        Alert::success('Success Info', 'Success Message');
+        return back()->withInput();
+    }
+
+    public function cart_destroy($id)
+    {
+        \Cart::remove($id);
+        Alert::success('Success Info', 'Success Message');
+        return back()->withInput();
+    }
+
 
 
     public function product_list()

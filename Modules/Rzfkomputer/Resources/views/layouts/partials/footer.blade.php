@@ -38,7 +38,7 @@
             </ul>
           </div>
           <div class="footer__menu__item">
-            <h3 class="footer__title">Hubungi Kami</h3>
+            <h3 class="footer__title">Sosial Media Kami</h3>
             <ul class="footer__nav">
               <li class="footer__nav__item">
                 <a class="footer__nav__icon__link facebook" href="https://www.facebook.com/yudhi.heriyadi.52">
