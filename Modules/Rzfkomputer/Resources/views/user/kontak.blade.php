@@ -1,5 +1,7 @@
 @extends('rzfkomputer::layouts.master')
 
+@section('title','Kontak Kami')
+
 @section('main')
     <!-- main-->
     <div class="main-site main-site--hide js-main-site">
