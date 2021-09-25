@@ -1,4 +1,5 @@
 @extends('rzfkomputer::layouts.master')
+@section('title','Detail Produk')
 
 @section('main')
     <br>

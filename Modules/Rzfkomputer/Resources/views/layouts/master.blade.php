@@ -9,9 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,minimal-ui" />
 
   <!-- primary information-->
-  <title>Beranda | RZF Komputer | Computer and Peripheral Support</title>
-  <meta name="description" content="Beranda | rzfkomputer" />
-  <meta name="keywords" content="Beranda, rzfkomputer, indonesia" />
+  <title>@yield('title') | RZF Komputer | Computer and Peripheral Support</title>
+  <meta name="description" content=" @yield('title') | RZF Komputer merupakan sebuah usaha yang berfokus pada produk, inovasi dan layanan jasa di bidang teknologi dan informasi khususnya di bidang perangkat komputer, percetakan, jaringan, kasir dan lain-lain" />
+  <meta name="keywords" content=" @yield('title'), | rzf, rzf komputer, jasa service komputer kuningan jawa barat, printer kasir, perangkat kasir kuningan jawa barat, pemasangan cctv jawa barat, pemasangan wi-fi jaringan jawa barat, jasa percetakan kuningan bandung sumedang kuningan majalengka cirebon tasikmalaya jawa barat indonesia" />
+
 
   <!-- ie fix for html5 tags-->
   <!--[if lt IE 9]><script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script><![endif]-->

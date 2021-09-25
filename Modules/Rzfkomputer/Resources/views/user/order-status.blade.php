@@ -1,4 +1,6 @@
 @extends('rzfkomputer::layouts.master')
+@section('title','Cek Status')
+
 
 @section('main')
     <!-- main-->

@@ -29,7 +29,7 @@ Route::post('/keranjang', 'RzfkomputerController@store_order')->name('store_orde
 
 Route::get('/promo', 'RzfkomputerController@promo_list')->name('promo');
 
-Route::get('/kontak', function () {
+Route::get('/kontak-kami', function () {
     return view('rzfkomputer::user.kontak');
 })->name('kontak');
 

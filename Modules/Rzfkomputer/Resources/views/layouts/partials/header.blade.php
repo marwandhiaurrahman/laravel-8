@@ -28,7 +28,7 @@
                           </li>
                           <li
                               class="header__nav__item js-nav-items {{ Request::routeIs('kontak') ? ' header__nav__item--active' : '' }}">
-                              <a class="header__nav__link" href="/kontak">Kontak Kami</a>
+                              <a class="header__nav__link" href="{{route('kontak')}}">Kontak Kami</a>
                           </li>
                       </ul>
                   </div>

@@ -1,4 +1,5 @@
 @extends('rzfkomputer::layouts.master')
+@section('title','Pesanan Berhasil')
 
 @section('main')
     <!-- main-->
