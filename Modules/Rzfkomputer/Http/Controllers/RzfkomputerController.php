@@ -109,6 +109,13 @@ class RzfkomputerController extends Controller
         return view('rzfkomputer::user.produk-detail', compact(['categoris', 'product']));
     }
 
+    public function promo_list()
+    {
+        $categoris = CategoryProduct::get();
+        $products = Product::latest()->get();
+        return view('rzfkomputer::user.promo', compact(['categoris', 'products']));
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable

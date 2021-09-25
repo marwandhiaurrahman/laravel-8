@@ -27,10 +27,7 @@ Route::get('/keranjang', function () {
 
 Route::post('/keranjang', 'RzfkomputerController@store_order')->name('store_order');
 
-
-Route::get('/promo', function () {
-    return view('rzfkomputer::user.promo');
-})->name('promo');
+Route::get('/promo', 'RzfkomputerController@promo_list')->name('promo');
 
 Route::get('/kontak', function () {
     return view('rzfkomputer::user.kontak');

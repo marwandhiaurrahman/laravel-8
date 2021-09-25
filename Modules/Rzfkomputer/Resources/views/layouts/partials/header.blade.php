@@ -43,7 +43,7 @@
                   <div class="cart-list__items js-cart-list__items">
                       @if (Cart::getTotalQuantity() == 0)
                           <div class="cart-list__alert-empty">
-                              <p>Saat ini, Keransjang Anda kosong</p>
+                              <p>Saat ini, Keranjang Anda kosong</p>
                           </div>
                       @endif
                       <div class="cart-list__table__wrapper">
