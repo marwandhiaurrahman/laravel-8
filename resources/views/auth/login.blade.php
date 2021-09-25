@@ -99,7 +99,7 @@
         <div class="login-container">
             <div class="login-wrapper">
                 <div class="login-form">
-                    <a class="logo-brand" href="index.html">
+                    <a class="logo-brand" href="{{ route('admin.home') }}">
                         <img src="{{ asset('assets/img/logo/login-logo.svg') }}" />
                     </a>
                     <div class="login-head">
