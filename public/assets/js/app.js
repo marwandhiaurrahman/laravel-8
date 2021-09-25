@@ -226,7 +226,7 @@ var Cart = function () {
         showCancelButton: true,
         cancelButtonText: 'Batal',
         title: 'Hapus item ini?',
-        text: "Tindakan ini tidak dapats diurungkan!",
+        text: "Tindakan ini tidak dapat diurungkan!",
         icon: 'warning',
         confirmButtonColor: '#388e3c',
         cancelButtonColor: '#ff0000',
@@ -256,6 +256,8 @@ var Cart = function () {
         changePrice(_jsCartPrice);
         changePrice(_jsCartTotal);
       }
+
+      "";
     }); // handle button max
 
     $(_buttonMax).on('click', function (e) {
@@ -669,7 +671,24 @@ var HeaderSearch = function () {
         _jsCart = $('.js-cart'),
         _jsCartList = $('.js-cart-list'),
         _jsNav = $('.burger-menu'),
-        _jsSearchResult = $('.js-search-result'); // handle search keyup
+        _jsSearchResult = $('.js-search-result'); // when cartlist is empty
+
+
+    var _dataEmpty = 0; // console.log(Number($(_jsCartList).attr('dataempty')));
+
+    if (Number($(_jsCartList).attr('dataEmpty')) == _dataEmpty) {
+      $('.cart-list__table__wrapper').removeClass('showed');
+      $('.cart-list__alert-empty').addClass('showed');
+      $('.js-cart-list__items').removeClass('showed');
+      $('.js-cart-wrapper').hide();
+      $('.empty').show();
+    } else {
+      $('.empty').hide();
+      $('.js-cart-wrapper').show();
+      $('.js-cart-list__items').addClass('showed');
+      $('.cart-list__table__wrapper').addClass('showed');
+      $('.cart-list__alert-empty').removeClass('showed');
+    } // handle search keyup
 
 
     $('body').on('keyup', function (e) {
@@ -955,7 +974,8 @@ var ProductDetail = function () {
       _quantity = $('.js-input-qty'),
       _oldPrice = 4500000,
       _newPrice = 4500000,
-      _jsPrice = $('.js-price'); // function change price
+      _jsPrice = $('.js-price'),
+      _jsInventory = Number($('.js-inventory').text()); // function change price
 
 
   function formatRupiah(harga, prefix) {
@@ -985,13 +1005,29 @@ var ProductDetail = function () {
         _oldPrice = _oldPrice - _newPrice;
         $(_quantity).val(_itemCount);
         $(_jsPrice).text(formatRupiah(_oldPrice, ''));
+      } // handle when inventory limit
+
+
+      if (_itemCount > _jsInventory) {
+        $('.inventory-alert').addClass('showed');
+      } else {
+        $('.inventory-alert').removeClass('showed');
       }
     }); // handle button max
 
     $(_buttonMax).on('click', function (e) {
       e.preventDefault();
-      _itemCount += 1;
-      _oldPrice = _oldPrice + _newPrice;
+      _itemCount += 1; // handle when inventory limit
+
+      if (_itemCount > _jsInventory) {
+        _itemCount = _jsInventory;
+        $('.inventory-alert').addClass('showed');
+        $('.inventory-alert').text("Maks. pembelian barang ini ".concat(_jsInventory, " item, kurangi pembelianmu, ya!"));
+      } else {
+        $('.inventory-alert').removeClass('showed');
+        _oldPrice = _oldPrice + _newPrice;
+      }
+
       $(_quantity).val(_itemCount);
       $(_jsPrice).text(formatRupiah(_oldPrice, ''));
     });
@@ -1001,12 +1037,26 @@ var ProductDetail = function () {
   var handleKeyup = function handleKeyup() {
     // handle on keyup
     $(_quantity).on('keyup', function (e) {
-      var _resultCount = _newPrice * $(_quantity).val();
+      var _resultCount = _newPrice * $(_quantity).val(); // handle quantity
+
 
       $(_quantity).val(Math.abs($(_quantity).val()));
-      $(_jsPrice).text(formatRupiah(_resultCount, ''));
       _oldPrice = _resultCount;
       _itemCount = parseInt(e.currentTarget.value);
+      $(_jsPrice).text(formatRupiah(_resultCount, '')); // handle when inventory limit
+
+      if (_itemCount == 0) {
+        $('.inventory-alert').addClass('showed');
+        $('.inventory-alert').text('Minimal pembelian produk ini adalah 1 barang');
+      } else if (_itemCount > _jsInventory) {
+        _itemCount = _jsInventory;
+        $(_quantity).val(_jsInventory);
+        $(_jsPrice).text(formatRupiah(_newPrice * _jsInventory, ''));
+        $('.inventory-alert').addClass('showed');
+        $('.inventory-alert').text("Maks. pembelian barang ini ".concat(_jsInventory, " item, kurangi pembelianmu, ya!"));
+      } else {
+        $('.inventory-alert').removeClass('showed');
+      }
     });
   }; // init
 
@@ -1038,7 +1088,7 @@ exports["default"] = void 0;
 --------------------------------------------------------------------------------- */
 var Sale = function () {
   var handleCountDown = function handleCountDown() {
-    var countDownDate = new Date("Oct 16, 2021 10:10:25").getTime(); // update the count down every 1 second
+    var countDownDate = new Date("Sep 25, 2021 10:10:25").getTime(); // update the count down every 1 second
 
     var x = setInterval(function () {
       // get today's date and time

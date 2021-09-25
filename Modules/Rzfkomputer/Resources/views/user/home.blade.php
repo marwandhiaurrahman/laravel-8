@@ -15,7 +15,8 @@
                                 <p>On Sale </p>
                             </div>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/laptop-asus-1.jpg')}}" alt="Promo" />
+                                <img class="banner__card__img__el" src="{{ asset('assets/img/dummy/laptop-asus-1.jpg') }}"
+                                    alt="Promo" />
                             </div>
                         </div>
                         <!--banner-card-->
@@ -25,7 +26,8 @@
                                 <p>On Sale </p>
                             </div>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/laptop-asus-2.jpg')}}" alt="Promo" />
+                                <img class="banner__card__img__el" src="{{ asset('assets/img/dummy/laptop-asus-2.jpg') }}"
+                                    alt="Promo" />
                             </div>
                         </div>
                         <!--banner-card-->
@@ -35,7 +37,8 @@
                                 <p>On Sale </p>
                             </div>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/laptop-asus-3.jpg')}}" alt="Promo" />
+                                <img class="banner__card__img__el" src="{{ asset('assets/img/dummy/laptop-asus-3.jpg') }}"
+                                    alt="Promo" />
                             </div>
                         </div>
                     </div>
@@ -44,8 +47,8 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-1.jpg')}}"
-                                    alt="Komputer" />
+                                <img class="banner__card__img__el"
+                                    src="{{ asset('assets/img/dummy/banner-category-1.jpg') }}" alt="Komputer" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Komputer</p>
@@ -55,7 +58,8 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-2.jpg')}}" alt="Laptop" />
+                                <img class="banner__card__img__el"
+                                    src="{{ asset('assets/img/dummy/banner-category-2.jpg') }}" alt="Laptop" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Laptop</p>
@@ -65,7 +69,8 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-3.jpg')}}" alt="Printer" />
+                                <img class="banner__card__img__el"
+                                    src="{{ asset('assets/img/dummy/banner-category-3.jpg') }}" alt="Printer" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Printer</p>
@@ -75,8 +80,8 @@
                         <div class="banner__card">
                             <a class="banner__card__link" href="#"></a>
                             <div class="banner__card__img">
-                                <img class="banner__card__img__el" src="{{asset('assets/img/dummy/banner-category-4.jpg')}}"
-                                    alt="Aksesoris" />
+                                <img class="banner__card__img__el"
+                                    src="{{ asset('assets/img/dummy/banner-category-4.jpg') }}" alt="Aksesoris" />
                             </div>
                             <div class="banner__card__txt"><button class="banner__card__txt__button" type="button">
                                     <p class="banner__card__txt__desc">Aksesoris</p>
@@ -96,7 +101,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="{{asset('assets/img/dummy/features-1.svg')}}"
+                                <img class="features__card__img-el" src="{{ asset('assets/img/dummy/features-1.svg') }}"
                                     alt="Free Ongkir" />
                             </div>
                             <div class="features__card__txt">
@@ -109,7 +114,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="{{asset('assets/img/dummy/features-2.svg')}}"
+                                <img class="features__card__img-el" src="{{ asset('assets/img/dummy/features-2.svg') }}"
                                     alt="Garansi Barang" />
                             </div>
                             <div class="features__card__txt">
@@ -122,7 +127,7 @@
                     <div class="features__card">
                         <div class="features__card__box">
                             <div class="features__card__img">
-                                <img class="features__card__img-el" src="{{asset('assets/img/dummy/features-3.svg')}}"
+                                <img class="features__card__img-el" src="{{ asset('assets/img/dummy/features-3.svg') }}"
                                     alt="Support Handal" />
                             </div>
                             <div class="features__card__txt">
@@ -214,7 +219,7 @@
             <!--sale-items-->
             <div class="sale__content">
                 <div class="sale__img">
-                    <img class="sale__img-el" src="{{asset('assets/img/dummy/sale-1.jpg')}}" alt="Promo" />
+                    <img class="sale__img-el" src="{{ asset('assets/img/dummy/sale-1.jpg') }}" alt="Promo" />
                 </div>
             </div>
             <div class="container">
@@ -224,9 +229,9 @@
                         <p class="sale__content__txt__desc">Dapatkan penawaran terbatas dari kami dan jangan sampai
                             ketinggalan</p>
                         <div class="sale__content__countdown">
-                            <ul class="sale__content__countdown__list js-countdown-set">
+                            {{-- <ul class="sale__content__countdown__list js-countdown-set">
                                 <li class="sale__content__countdown__item">
-                                    <h5 class="sale__content__countdown__item__number">29</h5>
+                                    <h5 class="sale__content__countdown__item__number">2</h5>
                                     <span class="sale__content__countdown__item__title__text">Hari</span>
                                 </li>
                                 <li class="sale__content__countdown__item">
@@ -241,7 +246,7 @@
                                     <h5 class="sale__content__countdown__item__number">30</h5>
                                     <span class="sale__content__countdown__item__title__text">Detik</span>
                                 </li>
-                            </ul>
+                            </ul> --}}
                             <a class="btn btn--primary js-button-sale" href="promo.html">Lihat Promo</a>
                         </div>
                     </div>
@@ -295,7 +300,7 @@
             <div class="container">
                 <div class="persuasive__wrapper">
                     <div class="persuasive__img">
-                        <img class="persuasive__img-el" src="{{asset('assets/img/dummy/man.png')}}" />
+                        <img class="persuasive__img-el" src="{{ asset('assets/img/dummy/man.png') }}" />
                     </div>
                     <div class="persuasive__txt">
                         <h3 class="persuasive__txt-title">Siap bermitra dengan Kami?</h3>
@@ -312,4 +317,70 @@
         </div>
         <!-- end-persuasive-->
     </div>
+@endsection
+
+@section('js')
+
+    {{-- <script>
+        var Sale = function() {
+                var handleCountDown = function handleCountDown() {
+                    var countDownDate = new Date("Sep 26, 2021 10:10:25")
+                .getTime(); // update the count down every 1 second
+
+                    var x = setInterval(function() {
+                            // get today's date and time
+                            var _now = new Date()
+                        .getTime(); // find the distance between now and the count down date
+
+
+                            var _distance = countDownDate -
+                            _now; // time calculations for days, hours, minutes and seconds
+
+
+                            var _days = Math.floor(_distance / (1000 * 60 * 60 * 24));
+
+                            var _hours = Math.floor(_distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+
+                            var _minutes = Math.floor(_distance % (1000 * 60 * 60) / (1000 * 60));
+
+                            var _seconds = Math.floor(_distance % (1000 * 60) / 1000); // set result into html
+
+
+                            $('.js-countdown-set').html("\n <li class=\"sale__content__countdown__item\">\n <h5
+                                class = \"sale__content__countdown__item__number\">".concat(_days,
+                                    "</h5> hari</li>\n <li
+                                    class = \
+                                    "sale__content__countdown__item\">\n <h5 class=\"sale__content__countdown__item__number\">"
+                                    ).concat(_hours, " <
+                                    /h5> jam</li > \n < li class = \"sale__content__countdown__item\">\n <h5
+                                    class = \"sale__content__countdown__item__number\">").concat(_minutes,
+                                    "</h5> menit</li>\n <li
+                                    class = \
+                                    "sale__content__countdown__item\">\n <h5 class=\"sale__content__countdown__item__number\">"
+                                    ).concat(_seconds,
+                                    "</h5> detik</li>")); // when countdown is finished
+
+                            if (_distance < 0) {
+                                clearInterval(x);
+                                $('.sale__content__txt').html("\n <p class='sale__content__txt__alert-limited'>
+                                    Maaf, promo sudah habis.Nantikan promo berikutnya.Terimakasih... < /p>");
+                                } // $('.js-button-sale').remove();
+                                // $('.js-countdown-set').html(`
+                            // <p>Maaf, promo sudah habis. Nantikan promo berikutnya</p>`);
+                                // }
+
+                            }, 1000);
+                    }; // - init
+
+
+                    var init = function init() {
+                        handleCountDown();
+                    };
+
+                    return {
+                        init: init
+                    };
+                }();
+    </script> --}}
+
 @endsection

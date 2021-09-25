@@ -43,12 +43,18 @@
                             <p>Jumlah yang harus dibayar: {{ money($order->total_price, 'IDR') }},-</p>
                         </div>
                     </div>
+                    <div class="order-success__invoice-download">
+                        <button class="btn btn--primary btn--invoice" type="submit">
+                            <i class="rzfkomputer-arrow-down"></i>Download Invoice
+                        </button>
+                    </div>
                 </div>
                 <div class="order-success__action">
                     <p>Untuk menyelesaikan proses pemesanan, silakan transfer sesuai jumlah yang tertera di atas</p>
                     <div class="order-success__action-transfer">
                         <div class="order-success__action-img">
-                            <img class="order-success__action-el" src="{{asset('assets/img/dummy/bri.png')}}" alt="BRI Logo" />
+                            <img class="order-success__action-el" src="{{ asset('assets/img/dummy/bri.png') }}"
+                                alt="BRI Logo" />
                         </div>
                         <div class="order-success__action-txt">
                             <p>No. Rek: 427301006692531</p>
