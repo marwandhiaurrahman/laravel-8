@@ -131,6 +131,10 @@
                         {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputDescription', 'placeholder' => 'Deskripsi Produk', 'required']) !!}
                     </div>
                     <div class="form-group">
+                        <label for="inputReview">Review Produk</label>
+                        {!! Form::textarea('review', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputReview', 'placeholder' => 'Review Produk', 'required']) !!}
+                    </div>
+                    <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>
                         {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Pilih Kategori Produk', 'required']) !!}
                     </div>
