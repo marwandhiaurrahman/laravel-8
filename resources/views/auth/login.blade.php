@@ -117,10 +117,10 @@
                         @endif
 
                         <div class="login-input">
-                            <label class="input-label">Email</label>
-                            <input class="form-control input-block" name="username" type="text" placeholder="Enter Here"
+                            <label class="input-label">Username</label>
+                            <input class="form-control input-block" name="username" type="text" placeholder="Enter here"
                                 autofocus="on" autocomplete="off" />
-                            @if ($errors->has('username'))
+                            @if ($errors->any())
                                 <div class="invalid-feedback">
                                     <p>Username is required!</p>
                                 </div>
@@ -129,8 +129,8 @@
                         <div class="login-input">
                             <label class="input-label">Password</label>
                             <input class="form-control input-block" name="password" type="password" autofocus="on"
-                                placeholder="Enter Here" />
-                            @if ($errors->has('password'))
+                                placeholder="Enter here" />
+                            @if ($errors->any())
                                 <div class="invalid-feedback">
                                     <p>Password is required!</p>
                                 </div>
