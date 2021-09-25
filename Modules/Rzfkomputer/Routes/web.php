@@ -11,7 +11,8 @@
 |
 */
 
-use Modules\Rzfkomputer\Http\Controllers\RzfkomputerController;
+// use Modules\Rzfkomputer\Http\Controllers\ContactController;
+// use Modules\Rzfkomputer\Http\Controllers\RzfkomputerController;
 
 
 Route::get('/', 'RzfkomputerController@index')->name('welcome');
@@ -39,3 +40,8 @@ Route::get('/ordersuccess','RzfkomputerController@order_success' )->name('orders
 Route::get('/orderstatus', function () {
     return view('rzfkomputer::user.order-status');
 })->name('orderstatus');
+
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::resource('contact', 'ContactController');
+});

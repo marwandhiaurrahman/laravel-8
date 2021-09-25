@@ -44,14 +44,9 @@ class CustomerController extends Controller
             'email' => 'required|email',
         ]);
 
-        try {
-            Customer::updateOrCreate($request->only(['name', 'address', 'email', 'phone']));
-            Alert::success('Success Info', 'Success Message');
-            return redirect()->route('customer.index');
-        } catch (\Throwable $th) {
-            Alert::error('Error Info', 'Terjadi Masalah Input');
-            return redirect()->route('customer.index');
-        }
+        Customer::updateOrCreate($request->only(['name', 'address', 'email', 'phone']));
+        Alert::success('Success Info', 'Success Message');
+        return redirect()->route('customer.index');
     }
 
     /**

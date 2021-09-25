@@ -94,8 +94,6 @@ class RzfkomputerController extends Controller
         return back()->withInput();
     }
 
-
-
     public function product_list()
     {
         $categoris = CategoryProduct::get();

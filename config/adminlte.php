@@ -301,7 +301,8 @@ return [
                 ],
                 [
                     'text' => 'Contact',
-                    'url'  => '#',
+                    'url'  => 'admin/contact',
+                    'active' => ['admin/contact', 'regex:@^admin/contact/[0-9]+$@', 'regex:@^admin/contact/[0-9]/edit+$@', 'admin/contact/create',]
 
                 ],
                 [
