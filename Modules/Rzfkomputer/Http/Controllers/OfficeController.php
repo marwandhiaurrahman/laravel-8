@@ -92,8 +92,9 @@ class OfficeController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Office $office)
     {
-        //
+        $office->delete();
+        return redirect()->route('office.index')->with('success', 'Data Created');
     }
 }

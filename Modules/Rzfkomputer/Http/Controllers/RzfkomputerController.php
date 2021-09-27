@@ -5,12 +5,12 @@ namespace Modules\Rzfkomputer\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Carbon;
 use Modules\Customer\Entities\Customer;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderDetail;
 use Modules\Product\Entities\CategoryProduct;
 use Modules\Product\Entities\Product;
+use Modules\Rzfkomputer\Entities\Office;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RzfkomputerController extends Controller
@@ -21,9 +21,15 @@ class RzfkomputerController extends Controller
      */
     public function index()
     {
-        $categoris = CategoryProduct::get();
-        $products = Product::latest()->get();
-        return view('rzfkomputer::user.home', compact(['categoris', 'products']))->with(['i' => 0]);
+        $office = Office::first();
+
+        if ($office == null) {
+            return redirect()->route('office.index');
+        } else {
+            $categoris = CategoryProduct::get();
+            $products = Product::latest()->get();
+            return view('rzfkomputer::user.home', compact(['categoris', 'products']))->with(['i' => 0]);
+        }
     }
 
     public function store_order(Request $request)
