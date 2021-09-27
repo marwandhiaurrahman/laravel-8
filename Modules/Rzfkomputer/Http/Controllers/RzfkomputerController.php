@@ -120,7 +120,14 @@ class RzfkomputerController extends Controller
     public function promo_list()
     {
         $categoris = CategoryProduct::get();
-        $products = Product::latest()->get();
+        $products = [];
+
+        foreach (Product::get() as $value) {
+            if ($value->promo >= 1) {
+                $products[] = $value;
+            }
+        }
+
         return view('rzfkomputer::user.promo', compact(['categoris', 'products']));
     }
 

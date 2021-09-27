@@ -49,14 +49,20 @@
                                 <tr class="data-row">
                                     <td class="">{{ ++$i }}</td>
                                     <td class="">{{ $item->name }}</td>
-                                                        <td>
-                                                        @foreach ($item->category as
-                                        $cate)
+                                                                            <td>
+                                                                                 @foreach ($item->category as $cate)
                                         {{ $cate->name }}
                             @endforeach
                             </td>
                             <td class="">{{ $item->stock }}</td>
-                                    <td>{{ money($item->price, 'IDR') }}</td>
+                                    <td>
+                                        @if ($item->promo >= 1)
+                                        <del>{{ money($item->price, 'IDR') }}</del><br>
+                                        {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}
+                                        @else
+                                        {{ money($item->price, 'IDR') }}
+                                        @endif
+                                    </td>
                             <td>{{ $item->promo }} %</td>
                                     <td>
                                         {{-- {{ $item->status }} --}}
@@ -67,7 +73,6 @@
                                 <span class="badge badge-danger">Off</span>
                                 @endif
                             </td>
-
                             <td>
                                 <a href="{{ route('image.index', $item) }}" class="btn btn-xs btn-primary"
                                     data-toggle="tooltip" title="Edit Gambar"><i class="fas fa-images"></i></a>
@@ -143,11 +148,11 @@
                     </div>
                     <div class="form-group">
                         <label for="inputHarga">Harga Produk</label>
-                        {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required','min' => 0]) !!}
+                        {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required', 'min' => 0]) !!}
                     </div>
                     <div class="form-group">
                         <label for="inputPromo">Promo Produk</label>
-                        {!! Form::number('promo', null, ['class' => 'form-control', 'id' => 'inputPromo', 'placeholder' => 'Promo Produk', 'required', 'min' => 0,'max' => 100]) !!}
+                        {!! Form::number('promo', null, ['class' => 'form-control', 'id' => 'inputPromo', 'placeholder' => 'Promo Produk', 'required', 'min' => 0, 'max' => 100]) !!}
                     </div>
                     <div class="form-group">
                         <label for="inputStok">Stok Produk</label>
