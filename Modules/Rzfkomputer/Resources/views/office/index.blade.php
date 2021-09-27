@@ -43,9 +43,20 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ $item->facebook }}</td>
-                                    <td>{{ $item->instagram }}</td>
-                                    <td>{{ $item->youtube }}</td>
+                                    <td><a class="footer__nav__icon__link facebook" href="{{ $item->facebook }}">
+                                            <i class="footer__nav__icon rzfkomputer-facebook"></i>
+                                            <span>Facebook</span>
+                                        </a>
+                                    </td>
+                                    <td><a class="footer__nav__icon__link facebook" href="{{ $item->instagram }}">
+                                            <i class="footer__nav__icon rzfkomputer-facebook"></i>
+                                            <span>Instagram</span>
+                                        </a></td>
+                                    </td>
+                                    <td><a class="footer__nav__icon__link facebook" href="{{ $item->youtube }}">
+                                        <i class="footer__nav__icon rzfkomputer-facebook"></i>
+                                        <span>Youtube</span>
+                                    </a></td></td>
                                     <td>
                                         <form action="{{ route('office.destroy', $item) }}" method="POST">
                                             <a class="btn btn-xs btn-warning" href="{{ route('office.edit', $item) }}"
@@ -101,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Alamat</label>
-                        {!! Form::text('address', null, ['class' => 'form-control', 'id' => 'inputAddress', 'placeholder'  => 'Masukan Alamat Kantor', 'required']) !!}
+                        {!! Form::text('address', null, ['class' => 'form-control', 'id' => 'inputAddress', 'placeholder' => 'Masukan Alamat Kantor', 'required']) !!}
                     </div>
                     <div class="form-group">
                         <label for="inputFacebook">Link Facebook</label>

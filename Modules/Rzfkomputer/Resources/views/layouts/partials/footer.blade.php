@@ -42,21 +42,21 @@
                       <ul class="footer__nav">
                           <li class="footer__nav__item">
                               <a class="footer__nav__icon__link facebook"
-                                  href="https://www.facebook.com/yudhi.heriyadi.52">
+                                  href="{{ Modules\Rzfkomputer\Entities\Office::first()->facebook }}">
                                   <i class="footer__nav__icon rzfkomputer-facebook"></i>
                                   <span>Facebook</span>
                               </a>
                           </li>
                           <li class="footer__nav__item">
                               <a class="footer__nav__icon__link instagram"
-                                  href="https://www.instagram.com/rzfkomputer/">
+                                  href="{{ Modules\Rzfkomputer\Entities\Office::first()->instagram }}">
                                   <i class="footer__nav__icon rzfkomputer-instagram"></i>
                                   <span>Instagram</span>
                               </a>
                           </li>
                           <li class="footer__nav__item">
                               <a class="footer__nav__icon__link youtube"
-                                  href="https://www.youtube.com/channel/UCRv56scUFv02j9Mt3-jZFJA">
+                                  href="{{ Modules\Rzfkomputer\Entities\Office::first()->youtube }}">
                                   <i class="footer__nav__icon rzfkomputer-youtube"></i>
                                   <span>Youtube</span>
                               </a>
