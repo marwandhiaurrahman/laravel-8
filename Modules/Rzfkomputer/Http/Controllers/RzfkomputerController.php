@@ -28,6 +28,8 @@ class RzfkomputerController extends Controller
         } else {
             $categoris = CategoryProduct::get();
             $products = Product::latest()->get();
+            $product = Product::find(1);
+            $category = CategoryProduct::find(2);
             return view('rzfkomputer::user.home', compact(['categoris', 'products']))->with(['i' => 0]);
         }
     }
