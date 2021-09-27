@@ -1,5 +1,5 @@
 @extends('rzfkomputer::layouts.master')
-@section('title','Produk')
+@section('title', 'Produk')
 @section('main')
     <!-- main-->
     <div class="main-site main-site--hide js-main-site">
@@ -18,14 +18,19 @@
         <div class="card-product product">
             <div class="container">
                 <div class="product__wrapper">
-                    <div class="product__sorting js-sorting-dd">
+                    <div class="product__sorting js-sorting-dd js-sticky">
                         <div class="product__sorting-select">
+                                {{-- {!! Form::open(array('route' => 'jurnal-umum.index','method'=>'GET')) !!} --}}
+
                             <h3 class="product__sorting-title">Kategori</h3>
                             <div class="product__sorting-list">
-                                <a class="product__sorting-link" href="komputer">Komputer</a>
-                                <a class="product__sorting-link" href="laptop">Laptop</a>
-                                <a class="product__sorting-link" href="printer">Printer</a>
-                                <a class="product__sorting-link" href="lainnya">Lainnya</a>
+                                <a class="product__sorting-link" href="{{route('produk-list')}}">Semua</a>
+                                @foreach ($categoris as $item)
+                                <a class="product__sorting-link" href="{{route('produk-list','category='.$item->name)}}">{{$item->name}}</a>
+                                @endforeach
+                                {{-- <a class="product__sorting-link" href="{{route('produk-list','category=laptop')}}">Laptop</a> --}}
+                                {{-- <a class="product__sorting-link" href="{{route('produk-list','category=printer')}}">Printer</a> --}}
+                                {{-- <a class="product__sorting-link" href="{{route('produk-list','category=lainnya')}}">Lainnya</a> --}}
                             </div>
                         </div>
                     </div>

@@ -229,27 +229,27 @@
                         <h3 class="sale__content__txt__title">Promo Eksklusif menanti untuk Anda</h3>
                         <p class="sale__content__txt__desc">Dapatkan penawaran terbatas dari kami dan jangan sampai
                             ketinggalan</p>
-                        <div class="sale__content__countdown">
-                            <ul class="sale__content__countdown__list  js-countdown-set">
-                                <li class="sale__content__countdown__item">
-                                    <h5 class="sale__content__countdown__item__number">2</h5>
+                            <div class="sale__content__countdown" setSaleTime="Sep 30, 2021 10:10:25">
+                                <ul class="sale__content__countdown__list js-countdown-set">
+                                  <li class="sale__content__countdown__item">
+                                    <h5 class="sale__content__countdown__item__number">29</h5>
                                     <span class="sale__content__countdown__item__title__text">Hari</span>
-                                </li>
-                                <li class="sale__content__countdown__item">
+                                  </li>
+                                  <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">12</h5>
                                     <span class="sale__content__countdown__item__title__text">Jam</span>
-                                </li>
-                                <li class="sale__content__countdown__item">
+                                  </li>
+                                  <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">10</h5>
                                     <span class="sale__content__countdown__item__title__text">Menit</span>
-                                </li>
-                                <li class="sale__content__countdown__item">
+                                  </li>
+                                  <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">30</h5>
                                     <span class="sale__content__countdown__item__title__text">Detik</span>
-                                </li>
-                            </ul>
-                            <a class="btn btn--primary js-button-sale" href="promo.html">Lihat Promo</a>
-                        </div>
+                                  </li>
+                                </ul>
+                                <a class="btn btn--primary js-button-sale" href="promo.html">Lihat Promo</a>
+                              </div>
                     </div>
                 </div>
             </div>

@@ -104,10 +104,17 @@ class RzfkomputerController extends Controller
         return back()->withInput();
     }
 
-    public function product_list()
+    public function product_list(Request $request)
     {
+
+        if ($request->category != null) {
+            $category = CategoryProduct::where('name', $request->category)->first();
+            $products =  $category->products;
+        } else {
+            $products = Product::latest()->get();
+        }
+
         $categoris = CategoryProduct::get();
-        $products = Product::latest()->get();
         return view('rzfkomputer::user.produk', compact(['categoris', 'products']));
     }
 

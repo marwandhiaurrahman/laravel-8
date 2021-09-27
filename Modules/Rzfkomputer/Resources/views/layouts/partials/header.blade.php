@@ -125,7 +125,7 @@
                   <div class="header__search-section__result js-search-result">
                       <div class="header__search-section__result-notif js-notif-show">
                           <div class="header__search-section__result-img-wrapper">
-                              <img src="assets/img/dummy/not-found.svg">
+                              <img src="{{asset('assets/img/dummy/not-found.svg')}}">
                               <p>Maaf, produk yang Anda cari tidak tersedia</p>
                           </div>
                       </div>
