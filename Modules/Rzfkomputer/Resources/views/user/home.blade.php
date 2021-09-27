@@ -184,7 +184,7 @@
                                                 @if (!empty($product->images->first()->image))
                                                     <img class="card-product__card__img__el"
                                                         src="{{ asset('storage/product-image/' . $product->images->first()->image) }}"
-                                                        alt="{{ $product->name }}" />
+                                                        alt="Barcode Scanner" />
                                                 @else
                                                     <img class="card-product__card__img__el"
                                                         src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
@@ -193,13 +193,21 @@
                                             </div>
                                             <div class="card-product__card__txt">
                                                 <h3 class="card-product__card__title">{{ $product->name }}</h3>
-                                                <div class="card-product__card__sale">
-                                                    {{-- <span class="card-product__card__percentage">20%</span> --}}
-                                                    {{-- <span
-                                                        class="card-product__card__price-carret">{{ money($product->price, 'IDR') }}</span> --}}
-                                                </div>
-                                                <p class="card-product__card__price-product">
-                                                    {{ money($product->price, 'IDR') }}</p>
+                                                @if ($product->promo >= 1)
+                                                    <div class="card-product__card__sale">
+                                                        <span
+                                                            class="card-product__card__percentage">{{ $product->promo }}
+                                                            %</span>
+                                                        <span
+                                                            class="card-product__card__price-carret">{{ money($product->price, 'IDR') }}</span>
+                                                    </div>
+                                                    <p class="card-product__card__price-product">
+                                                        {{ money($product->price - ($product->price * $product->promo) / 100, 'IDR') }}
+                                                    </p>
+                                                @else
+                                                    <p class="card-product__card__price-product">
+                                                        {{ money($product->price, 'IDR') }}</p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -229,27 +237,27 @@
                         <h3 class="sale__content__txt__title">Promo Eksklusif menanti untuk Anda</h3>
                         <p class="sale__content__txt__desc">Dapatkan penawaran terbatas dari kami dan jangan sampai
                             ketinggalan</p>
-                            <div class="sale__content__countdown" setSaleTime="Sep 30, 2021 10:10:25">
-                                <ul class="sale__content__countdown__list js-countdown-set">
-                                  <li class="sale__content__countdown__item">
+                        <div class="sale__content__countdown" setSaleTime="Sep 25, 2021 10:10:25">
+                            <ul class="sale__content__countdown__list js-countdown-set">
+                                <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">29</h5>
                                     <span class="sale__content__countdown__item__title__text">Hari</span>
-                                  </li>
-                                  <li class="sale__content__countdown__item">
+                                </li>
+                                <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">12</h5>
                                     <span class="sale__content__countdown__item__title__text">Jam</span>
-                                  </li>
-                                  <li class="sale__content__countdown__item">
+                                </li>
+                                <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">10</h5>
                                     <span class="sale__content__countdown__item__title__text">Menit</span>
-                                  </li>
-                                  <li class="sale__content__countdown__item">
+                                </li>
+                                <li class="sale__content__countdown__item">
                                     <h5 class="sale__content__countdown__item__number">30</h5>
                                     <span class="sale__content__countdown__item__title__text">Detik</span>
-                                  </li>
-                                </ul>
-                                <a class="btn btn--primary js-button-sale" href="promo.html">Lihat Promo</a>
-                              </div>
+                                </li>
+                            </ul>
+                            <a class="btn btn--primary js-button-sale" href="promo.html">Lihat Promo</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,18 +280,28 @@
                                         @if (!empty($item->images->first()->image))
                                             <img class="card-product__card__img__el"
                                                 src="{{ asset('storage/product-image/' . $item->images->first()->image) }}"
-                                                alt="{{ $item->name }}r" />
+                                                alt="Barcode Scanner" />
                                         @else
                                             <img class="card-product__card__img__el"
                                                 src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
-                                                alt="Printer Thermal Epson 1234" />
+                                                alt="{{ $item->name }}" />
                                         @endif
-
                                     </div>
                                     <div class="card-product__card__txt">
                                         <h3 class="card-product__card__title">{{ $item->name }}</h3>
-                                        <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}
-                                        </p>
+                                        @if ($item->promo >= 1)
+                                            <div class="card-product__card__sale">
+                                                <span class="card-product__card__percentage">{{ $item->promo }} %</span>
+                                                <span
+                                                    class="card-product__card__price-carret">{{ money($item->price, 'IDR') }}</span>
+                                            </div>
+                                            <p class="card-product__card__price-product">
+                                                {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}
+                                            </p>
+                                        @else
+                                            <p class="card-product__card__price-product">
+                                                {{ money($item->price, 'IDR') }}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

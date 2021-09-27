@@ -50,11 +50,19 @@
                                                 src="{{ asset('assets/img/dummy/placeholder-product.png') }}"
                                                 alt="{{ $item->name }}" />
                                         @endif
-
                                     </div>
                                     <div class="card-product__card__txt">
                                         <h3 class="card-product__card__title">{{ $item->name }}</h3>
-                                        <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}</p>
+                                        @if ($item->promo >= 1)
+                                            <div class="card-product__card__sale">
+                                                <span class="card-product__card__percentage">{{$item->promo}} %</span>
+                                                <span class="card-product__card__price-carret">{{ money($item->price, 'IDR') }}</span>
+                                            </div>
+                                            <p class="card-product__card__price-product">
+                                                {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}</p>
+                                        @else
+                                            <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
