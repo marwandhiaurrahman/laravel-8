@@ -16,6 +16,7 @@ class Product extends Model
         'stock',
         'price',
         'status',
+        'promo',
     ];
 
     protected static function newFactory()

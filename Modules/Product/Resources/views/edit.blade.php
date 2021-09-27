@@ -46,6 +46,10 @@
                         {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required']) !!}
                     </div>
                     <div class="form-group">
+                        <label for="inputPromo">Promo Produk</label>
+                        {!! Form::number('promo', null, ['class' => 'form-control', 'id' => 'inputPromo', 'placeholder' => 'Promo Produk', 'required', 'min' => 0,'max' => 100]) !!}
+                    </div>
+                    <div class="form-group">
                         <label for="inputStok">Stok Produk</label>
                         {!! Form::number('stock', null, ['class' => 'form-control', 'id' => 'inputStok', 'placeholder' => 'Stok Produk', 'required']) !!}
                     </div>

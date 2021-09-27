@@ -38,6 +38,7 @@
                                 <th>Kategori</th>
                                 <th>Stok</th>
                                 <th>Harga</th>
+                                <th>Promo</th>
                                 <th>Status</th>
                                 <th>Attribut</th>
                                 <th>Action</th>
@@ -48,14 +49,15 @@
                                 <tr class="data-row">
                                     <td class="">{{ ++$i }}</td>
                                     <td class="">{{ $item->name }}</td>
-                                        <td>
-                                                             @foreach ($item->category as
+                                                        <td>
+                                                        @foreach ($item->category as
                                         $cate)
                                         {{ $cate->name }}
                             @endforeach
                             </td>
                             <td class="">{{ $item->stock }}</td>
                                     <td>{{ money($item->price, 'IDR') }}</td>
+                            <td>{{ $item->promo }} %</td>
                                     <td>
                                         {{-- {{ $item->status }} --}}
                                         @if ($item->status == 'true')
@@ -65,6 +67,7 @@
                                 <span class="badge badge-danger">Off</span>
                                 @endif
                             </td>
+
                             <td>
                                 <a href="{{ route('image.index', $item) }}" class="btn btn-xs btn-primary"
                                     data-toggle="tooltip" title="Edit Gambar"><i class="fas fa-images"></i></a>
@@ -140,9 +143,12 @@
                     </div>
                     <div class="form-group">
                         <label for="inputHarga">Harga Produk</label>
-                        {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required']) !!}
+                        {!! Form::number('price', null, ['class' => 'form-control', 'id' => 'inputHarga', 'placeholder' => 'Harga Produk', 'required','min' => 0]) !!}
                     </div>
-
+                    <div class="form-group">
+                        <label for="inputPromo">Promo Produk</label>
+                        {!! Form::number('promo', null, ['class' => 'form-control', 'id' => 'inputPromo', 'placeholder' => 'Promo Produk', 'required', 'min' => 0,'max' => 100]) !!}
+                    </div>
                     <div class="form-group">
                         <label for="inputStok">Stok Produk</label>
                         {!! Form::number('stock', null, ['class' => 'form-control', 'id' => 'inputStok', 'placeholder' => 'Stok Produk', 'required']) !!}

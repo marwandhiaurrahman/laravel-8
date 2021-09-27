@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Modules\Product\Database\Seeders\CategoryProductDatabaseSeeder;
 use Modules\Product\Database\Seeders\ProductDatabaseSeeder;
+use Modules\Rzfkomputer\Database\Seeders\OfficeTableSeeder;
 use Modules\User\Database\Seeders\UserDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder
             UserDatabaseSeeder::class,
             CategoryProductDatabaseSeeder::class,
             ProductDatabaseSeeder::class,
-
+            OfficeTableSeeder::class,
         ]);
     }
 }

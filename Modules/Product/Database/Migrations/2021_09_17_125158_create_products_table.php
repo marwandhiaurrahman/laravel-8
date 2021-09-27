@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('review');
             $table->text('description');
             $table->bigInteger('price');
+            $table->integer('promo')->nullable();
             $table->bigInteger('stock');
             $table->string('status');
             $table->timestamps();

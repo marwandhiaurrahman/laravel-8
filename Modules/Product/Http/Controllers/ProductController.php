@@ -44,10 +44,12 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'stock' => 'required|min:0',
-            'price' => 'required|min:0',
+            'stock' => 'required|min:0|numeric',
+            'price' => 'required|min:0|numeric',
             'category' => 'required',
             'review' => 'required',
+            'promo' => 'required|min:0|max:100|numeric',
+
 
         ]);
 
@@ -57,8 +59,10 @@ class ProductController extends Controller
             'stock',
             'price',
             'status',
+            'promo',
             'review',
         ]));
+
         $product->category()->attach($request->category);
 
         Alert::success('Success Info', 'Success Message');
