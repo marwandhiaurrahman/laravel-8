@@ -5,6 +5,7 @@ namespace Modules\Rzfkomputer\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Carbon;
 use Modules\Customer\Entities\Customer;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderDetail;
@@ -83,8 +84,9 @@ class RzfkomputerController extends Controller
             ],
         ]);
 
+
         Alert::success('Success Info', 'Success Message');
-        return back()->withInput();
+        return redirect()->route('keranjang');
     }
 
     public function cart_destroy($id)

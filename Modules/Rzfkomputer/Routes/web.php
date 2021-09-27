@@ -41,4 +41,6 @@ Route::get('/orderstatus', function () {
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('contact', 'ContactController');
+    Route::resource('office', 'OfficeController');
+
 });

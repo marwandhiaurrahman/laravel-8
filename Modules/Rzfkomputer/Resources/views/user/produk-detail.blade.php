@@ -1,5 +1,5 @@
 @extends('rzfkomputer::layouts.master')
-@section('title','Detail Produk')
+@section('title', 'Detail Produk')
 
 @section('main')
     <!-- header-->
@@ -25,12 +25,13 @@
                                 @endif
                             </div>
                             <div class="pdetail__img-detail">
-                                @foreach ($product->images as $item)
+                                @foreach ($product->images->except( $product->images->first()->id) as $item)
                                     <div class="pdetail__img-box">
                                         <div class="pdetail__img-img">
+
                                             <a class="js-popup-image"
                                                 href="{{ asset('storage/product-image/' . $item->image) }}" alt="Tes"><img
-                                                    class="pdetail__img-el"
+                                                    class="pdetail__img-el-d"
                                                     src="{{ asset('storage/product-image/' . $item->image) }}"
                                                     alt="Tes" /></a>
                                         </div>
