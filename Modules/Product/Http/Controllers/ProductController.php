@@ -49,8 +49,7 @@ class ProductController extends Controller
             'category' => 'required',
             'review' => 'required',
             'promo' => 'required|min:0|max:100|numeric',
-
-
+            'spesification' => 'required',
         ]);
 
         $product =  Product::updateOrCreate($request->only([
@@ -61,6 +60,7 @@ class ProductController extends Controller
             'status',
             'promo',
             'review',
+            'spesification',
         ]));
 
         $product->category()->attach($request->category);

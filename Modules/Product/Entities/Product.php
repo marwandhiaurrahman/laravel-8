@@ -17,6 +17,7 @@ class Product extends Model
         'price',
         'status',
         'promo',
+        'spesification',
     ];
 
     protected static function newFactory()
@@ -37,5 +38,13 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(ImageProduct::class);
+    }
+    public function sizes()
+    {
+        return $this->hasMany(SizeProduct::class);
+    }
+    public function colors()
+    {
+        return $this->hasMany(ColorProduct::class);
     }
 }

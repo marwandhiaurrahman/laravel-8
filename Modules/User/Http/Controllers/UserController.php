@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -40,7 +41,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'username' => 'required|unique:users,username|alpha_dash',
-            'email' => 'required|email|unique:users,username,'.$user->id,
+            'email' => 'required|email|unique:users,username,' . $user->id,
             'phone' => 'required|numeric',
 
         ]);
@@ -89,10 +90,18 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required|alpha_dash|unique:users,username,'.$user->id,
-            'email' => 'required|email|unique:users,username,'.$user->id,
+            'username' => 'required|alpha_dash|unique:users,username,' . $user->id,
+            'email' => 'required|email|unique:users,username,' . $user->id,
             'phone' => 'required|numeric',
+            'password' => 'same:confirm-password',
+
         ]);
+
+        if (!empty($request['password'])) {
+            $request['password'] = Hash::make($request['password']);
+        } else {
+            $request = Arr::except($request, array('password'));
+        }
 
         $user->update($request->all());
         Alert::success('Success Info', 'Success Message');

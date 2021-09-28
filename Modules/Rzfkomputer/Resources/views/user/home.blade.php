@@ -214,7 +214,8 @@
                                 @endforeach
                             </div>
                             <div class="c-p__btn">
-                                <a class="btn btn--secondary" href="{{ route('produk-list') }}">Lihat Selengkapnya</a>
+                                <a class="btn btn--secondary"
+                                    href="{{ route('produk-list', 'category=' . $item->name) }}">Lihat Selengkapnya</a>
                             </div>
                         </div>
                     @endforeach
@@ -309,7 +310,7 @@
                     </div>
                 </div>
                 <div class="card-product__footer">
-                    <a class="btn btn--secondary" href="produk.html">Lihat Selengkapnya</a>
+                    <a class="btn btn--secondary" href="{{ route('produk-list') }}">Lihat Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -325,7 +326,7 @@
                         <h3 class="persuasive__txt-title">Siap bermitra dengan Kami?</h3>
                         <p class="persuasive__txt-desc">Dapatkan penawaran berkualitas dengan harga pantas</p>
                         <div class="persuasive__txt-btn">
-                            <a class="btn btn--primary" href="produk.html">Langganan Sekarang</a>
+                            <a class="btn btn--primary" href="{{ route('produk-list') }}">Langganan Sekarang</a>
                         </div>
                     </div>
                     <div class="persuasive__vertical-txt">

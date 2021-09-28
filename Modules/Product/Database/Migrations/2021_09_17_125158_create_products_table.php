@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('review');
+            $table->text('spesification')->nullable();
             $table->text('description');
             $table->bigInteger('price');
             $table->integer('promo')->nullable();

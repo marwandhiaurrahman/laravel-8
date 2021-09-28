@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.home');
     })->name('admin.home');
+
+    Route::get('profile', function () {
+        $user = Auth::user();
+        // dd($user);
+        return view('user::edit',compact('user'));
+    });
 });

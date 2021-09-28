@@ -49,8 +49,10 @@
                                 <tr class="data-row">
                                     <td class="">{{ ++$i }}</td>
                                     <td class="">{{ $item->name }}</td>
-                                                                            <td>
-                                                                                 @foreach ($item->category as $cate)
+                                                                                                        <td>
+
+                                                                 @foreach ($item->category as
+                                        $cate)
                                         {{ $cate->name }}
                             @endforeach
                             </td>
@@ -110,7 +112,7 @@
     <!-- Create Modal -->
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-success">
                     <h5 class="modal-title" id="createModalLabel">Tambah Data</h5>
@@ -141,6 +143,15 @@
                     <div class="form-group">
                         <label for="inputReview">Review Produk</label>
                         {!! Form::textarea('review', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inputReview', 'placeholder' => 'Review Produk', 'required']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSpeksifikasi">Spesifikasi Produk</label>
+                        <textarea name="spesification" id="summernote" rows="8">
+                                    <table class="customers"><tbody><tr>
+                                        <td>Spesifikasi<br></td>
+                                        <td>Ketarangan <br></td></tr><tr><td><br></td><td><br></td></tr><tr><td><br></td><td><br></td></tr><tr><td><br></td><td><br></td></tr></tbody></table>
+                                                </textarea>
+                        {{-- {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Pilih Kategori Produk', 'required']) !!} --}}
                     </div>
                     <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>
@@ -256,11 +267,10 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/responsive/css/responsive.bootstrap4.min.css') }}">
-
     {{-- Toggle --}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-
-    {{-- <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css"> --}}
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-lite.min.css') }}">
 @endsection
 
 @section('js')
@@ -271,6 +281,8 @@
     <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-plugins/responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
         $(function() {
@@ -334,6 +346,19 @@
                 $('.edit-item-trigger-clicked').removeClass('edit-item-trigger-clicked')
                 $("#edit-form").trigger("reset");
             })
+        })
+    </script>
+
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
         })
     </script>
 @stop

@@ -1,5 +1,5 @@
 @extends('rzfkomputer::layouts.master')
-@section('title', 'Keranjang')
+@section('title', 'Halaman Tidak Ditemukan')
 
 @section('main')
     <div class="main-site main-site--hide js-main-site">
@@ -15,7 +15,7 @@
                         <p class="page-not-found__content__txt__desc">Halaman yang Anda cari tidak ditemukan!</p>
                     </div>
                     <div class="page-not-found__content__txt__row">
-                        <a class="btn btn--primary btn--page-not-found" href="beranda.html">Kembali ke Beranda</a>
+                        <a class="btn btn--primary btn--page-not-found" href="{{route('welcome')}}">Kembali ke Beranda</a>
                     </div>
                 </div>
             </div>

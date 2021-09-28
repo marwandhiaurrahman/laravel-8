@@ -19,7 +19,7 @@
                               <a class="header__nav__link" href="/">Beranda</a>
                           </li>
                           <li
-                              class="header__nav__item js-nav-items {{ request()->segment(1) == 'produk' ? 'header__nav__item--active' : '' }}">
+                              class="header__nav__item js-nav-items {{ Request::routeIs('produk-list') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="/produk">Produk</a>
                           </li>
                           <li
@@ -28,7 +28,7 @@
                           </li>
                           <li
                               class="header__nav__item js-nav-items {{ Request::routeIs('kontak') ? ' header__nav__item--active' : '' }}">
-                              <a class="header__nav__link" href="{{route('kontak')}}">Kontak Kami</a>
+                              <a class="header__nav__link" href="{{ route('kontak') }}">Kontak Kami</a>
                           </li>
                       </ul>
                   </div>
@@ -42,6 +42,10 @@
               <div class="cart-list js-cart-list" dataEmpty="{{ Cart::getTotalQuantity() }}">
                   <div class="cart-list__items js-cart-list__items">
                       @if (Cart::getTotalQuantity() == 0)
+                          <div class="cart-list__alert-empty-img">
+                              <img class="cart-list__alert-empty-img-el" src="{{asset('assets/img/dummy/empty-cart.svg')}}"
+                                  alt="Saat ini, Keranjang Anda kosong" />
+                          </div>
                           <div class="cart-list__alert-empty">
                               <p>Saat ini, Keranjang Anda kosong</p>
                           </div>
@@ -57,7 +61,8 @@
                                           </td>
                                           <td class="cart-list__product">
                                               <h6 class="cart-list__product-name">{{ $item->name }}</h6>
-                                              <p class="cart-list__product-price">{{ money($item->price, 'IDR') }}</p>
+                                              <p class="cart-list__product-price">{{ money($item->price, 'IDR') }}
+                                              </p>
                                               <p class="cart-list__product-count">Total : {{ $item->quantity }} pcs
                                               </p>
                                           </td>
@@ -125,7 +130,7 @@
                   <div class="header__search-section__result js-search-result">
                       <div class="header__search-section__result-notif js-notif-show">
                           <div class="header__search-section__result-img-wrapper">
-                              <img src="{{asset('assets/img/dummy/not-found.svg')}}">
+                              <img src="{{ asset('assets/img/dummy/not-found.svg') }}">
                               <p>Maaf, produk yang Anda cari tidak tersedia</p>
                           </div>
                       </div>

@@ -47,48 +47,39 @@
                             <h3 class="pdetail__form__name">{{ $product->name }}</h3>
                             <div class="pdetail__form__summary">{{ $product->review }}</div>
                             <div class="pdetail__form__count-wrapper">
-                                <h3 class="pdetail__form__info">Ukuran :</h3>
-                                <ul class="pdetail__size">
-                                    <li class="pdetail__size__item">
-                                        <input class="pdetail__size__input" type="radio" name="size" value="16GB" />
-                                        <span class="pdetail__size__box">16GB</span>
-                                    </li>
-                                    <li class="pdetail__size__item">
-                                        <input class="pdetail__size__input" type="radio" name="size" value="32GB" />
-                                        <span class="pdetail__size__box">32GB</span>
-                                    </li>
-                                    <li class="pdetail__size__item">
-                                        <input class="pdetail__size__input" type="radio" name="size" value="64GB" />
-                                        <span class="pdetail__size__box">64GB</span>
-                                    </li>
-                                    <li class="pdetail__size__item">
-                                        <input class="pdetail__size__input" type="radio" name="size" value="72GB" />
-                                        <span class="pdetail__size__box">72GB</span>
-                                    </li>
-                                </ul>
-                                <h3 class="pdetail__form__info">Warna :</h3>
-                                <ul class="pdetail__color">
-                                    <li class="pdetail__color__item">
-                                        <input class="pdetail__color__input" type="radio" name="color" value="Blue Black" />
-                                        <span class="pdetail__color__box">Blue Black</span>
-                                    </li>
-                                    <li class="pdetail__color__item">
-                                        <input class="pdetail__color__input" type="radio" name="color" value="Green" />
-                                        <span class="pdetail__color__box">Green</span>
-                                    </li>
-                                    <li class="pdetail__color__item">
-                                        <input class="pdetail__color__input" type="radio" name="color" value="Red" />
-                                        <span class="pdetail__color__box">Red</span>
-                                    </li>
-                                    <li class="pdetail__color__item">
-                                        <input class="pdetail__color__input" type="radio" name="color" value="Gold" />
-                                        <span class="pdetail__color__box">Gold</span>
-                                    </li>
-                                </ul>
+                                {{-- {{dd($product->sizes)}} --}}
+                                @if (empty($product->sizes->first()))
+                                @else
+                                    <h3 class="pdetail__form__info">Ukuran :</h3>
+                                    <ul class="pdetail__size">
+                                        @foreach ($product->sizes as $item)
+                                            <li class="pdetail__size__item">
+                                                <input class="pdetail__size__input" type="radio" name="size"
+                                                    value="{{ $item->label }}" />
+                                                <span class="pdetail__size__box">{{ $item->label }}</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                {{-- {{ dd($product->colors) }} --}}
+                                @if (empty($product->colors->first()))
+                                @else
+                                    <h3 class="pdetail__form__info">Warna :</h3>
+                                    <ul class="pdetail__color">
+                                        @foreach ($product->colors as $item)
+                                            <li class="pdetail__size__item">
+                                                <input class="pdetail__size__input" type="radio" name="size"
+                                                    value="{{ $item->name }}" />
+                                                <span class="pdetail__size__box">{{ $item->name }}</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                                 <h3 class="pdetail__form__info">Kategori :</h3>
                                 <p>Komputer</p>
                                 <h3 class="pdetail__form__info">Harga :</h3>
-                                <p class="js-price">{{ money($product->price, 'IDR') }}-,</p>
+                                <span class="price-discount">{{ money($product->price - ($product->price * $product->promo) / 100, 'IDR') }}</span>
+                                <p class="price-ori">{{ money($product->price, 'IDR') }}</p>
                                 <h3 class="pdetail__form__info">Stok Tersedia : </h3>
                                 <p class="js-inventory">{{ $product->stock }}</p>
                                 <form action="{{ route('cart_store', $product) }}" method="POST">
@@ -130,7 +121,7 @@
                         <p class="tab-pane__desc">{{ $product->description }}</p>
                     </div>
                     <div class="tab-pane" data-pane="tabs-2">
-                        <table class="customers">
+                        {{-- <table class="customers">
                             <thead></thead>
                             <tbody>
                                 <tr>
@@ -162,7 +153,10 @@
                                     <td>Powelogic Futura NEO + PSU 450 W</td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
+                        @php
+                            echo $product->spesification;
+                        @endphp
                     </div>
                 </div>
             </div>
@@ -214,7 +208,7 @@
                     </div>
                 </div>
                 <div class="card-product__footer">
-                    <a class="btn btn--secondary" href="produk.html">Lihat Penawaran Lainnya</a>
+                    <a class="btn btn--secondary" href="{{route('produk-list')}}">Lihat Penawaran Lainnya</a>
                 </div>
             </div>
         </div>
