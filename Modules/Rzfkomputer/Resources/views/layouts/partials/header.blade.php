@@ -121,7 +121,7 @@
           </div>
           <div class="header__search-section">
               <div class="header__search-section__form-wrapper">
-                  <form class="header-search-section__form js-search-form" action="#" method="POST" autocomplete="off">
+                  <form class="header-search-section__form js-search-form" action="{{route('produk-list')}}" method="get" autocomplete="off">
                       <button class="header-search-section__submit" type="submit">
                           <i class="rzfkomputer-search"></i>
                       </button>
@@ -131,7 +131,7 @@
                           <i class="rzfkomputer-clear"></i>
                       </button>
                   </form>
-                  <div class="header__search-section__result js-search-result">
+                  {{-- <div class="header__search-section__result js-search-result">
                       <div class="header__search-section__result-notif js-notif-show">
                           <div class="header__search-section__result-img-wrapper">
                               <img src="{{ asset('assets/img/dummy/not-found.svg') }}">
@@ -150,9 +150,11 @@
                               <a class="header__search-section__link" href="#">TP-Link</a>
                           </li>
                       </ul>
-                  </div>
+                  </div> --}}
               </div>
           </div>
           <div class="overlay"></div>
       </div>
   </div>
+
+

@@ -79,6 +79,8 @@
 
   <!-- style-->
   <link rel="stylesheet" href="{{asset('assets/css/app.min.css')}}" />
+  {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> --}}
 
 </head>
 
@@ -96,6 +98,30 @@
   <script src="{{asset("assets/js/vendor.min.js")}}"></script>
 
   <script src="{{asset("assets/js/app.min.js")}}"></script>
+
+  {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <script type="text/javascript">
+    $('.itemName').select2({
+      placeholder: 'Select an item',
+      ajax: {
+        url: '/select2-autocomplete-ajax',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+          return {
+            results:  $.map(data, function (item) {
+                  return {
+                      text: item.name,
+                      id: item.id
+                  }
+              })
+          };
+        },
+        cache: true
+      }
+    });
+</script> --}}
 
 </body>
 

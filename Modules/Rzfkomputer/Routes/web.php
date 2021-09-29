@@ -46,3 +46,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('office', 'OfficeController');
 
 });
+
+Route::get('select2-autocomplete', 'Select2AutocompleteController@layout');
+Route::get('select2-autocomplete-ajax', 'Select2AutocompleteController@dataAjax');

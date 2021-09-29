@@ -107,10 +107,12 @@ class RzfkomputerController extends Controller
     public function product_list(Request $request)
     {
 
-        if ($request->category != null) {
+        if ($request->has('search')) {
+            $products = Product::where('name', 'like', "%{$request->search}%")->get();
+        } else if ($request->has('category')) {
             $category = CategoryProduct::where('name', $request->category)->first();
             $products =  $category->products;
-        } else {
+        } else if (count($request->all()) > 0) {
             $products = Product::latest()->get();
         }
 
@@ -126,8 +128,9 @@ class RzfkomputerController extends Controller
         return view('rzfkomputer::user.produk-detail', compact(['categoris', 'product']));
     }
 
-    public function promo_list()
+    public function promo_list(Request $request)
     {
+
         $categoris = CategoryProduct::get();
         $products = [];
 
