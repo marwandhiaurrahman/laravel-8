@@ -38,6 +38,14 @@
                         {!! Form::textarea('review', null, ['class' => 'form-control', 'rows' => 3, 'id' => 'inpurReview', 'placeholder' => 'Review Produk', 'required']) !!}
                     </div>
                     <div class="form-group">
+                        <label for="inputSpeksifikasi">Spesifikasi Produk</label>
+                        <textarea name="spesification" id="summernote" rows="8">
+                                @php
+                                    echo $product->spesification;
+                                @endphp
+                            </textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>
                         {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Nama Produk', 'required']) !!}
                     </div>
@@ -47,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPromo">Promo Produk</label>
-                        {!! Form::number('promo', null, ['class' => 'form-control', 'id' => 'inputPromo', 'placeholder' => 'Promo Produk', 'required', 'min' => 0,'max' => 100]) !!}
+                        {!! Form::number('promo', null, ['class' => 'form-control', 'id' => 'inputPromo', 'placeholder' => 'Promo Produk', 'min' => 0, 'max' => 100]) !!}
                     </div>
                     <div class="form-group">
                         <label for="inputStok">Stok Produk</label>
@@ -75,10 +83,29 @@
 @endsection
 
 @section('css')
+
+    {{-- Toggle --}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-lite.min.css') }}">
 @endsection
 
 @section('js')
     {{-- Toggle Button --}}
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
+    </script>
 @endsection

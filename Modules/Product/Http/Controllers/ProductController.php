@@ -106,7 +106,10 @@ class ProductController extends Controller
             'price' => 'required|min:0',
             'category' => 'required',
             'review' => 'required',
+            'spesification' => 'required',
         ]);
+
+        // dd($request->all());
 
         $product->update($request->all());
         $product->category()->sync($request->category);

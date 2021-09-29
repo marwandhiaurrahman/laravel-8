@@ -151,7 +151,6 @@
                                         <td>Spesifikasi<br></td>
                                         <td>Ketarangan <br></td></tr><tr><td><br></td><td><br></td></tr><tr><td><br></td><td><br></td></tr><tr><td><br></td><td><br></td></tr></tbody></table>
                                                 </textarea>
-                        {{-- {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Pilih Kategori Produk', 'required']) !!} --}}
                     </div>
                     <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>

@@ -9,6 +9,7 @@
             <div class="container">
                 <div class="title-page__txt">
                     <h2 class="title-page__title">Promo</h2>
+                    <p class="title-page__desc">Promo eksklusif hanya untuk Anda!</p>
                 </div>
             </div>
         </div>
@@ -37,8 +38,9 @@
                                     <h3 class="card-product__card__title">{{ $item->name }}</h3>
                                     @if ($item->promo >= 1)
                                         <div class="card-product__card__sale">
-                                            <span class="card-product__card__percentage">{{$item->promo}} %</span>
-                                            <span class="card-product__card__price-carret">{{ money($item->price, 'IDR') }}</span>
+                                            <span class="card-product__card__percentage">{{ $item->promo }} %</span>
+                                            <span
+                                                class="card-product__card__price-carret">{{ money($item->price, 'IDR') }}</span>
                                         </div>
                                         <p class="card-product__card__price-product">
                                             {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}</p>
