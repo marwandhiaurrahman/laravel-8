@@ -78,7 +78,9 @@
                                 <h3 class="pdetail__form__info">Kategori :</h3>
                                 <p>Komputer</p>
                                 <h3 class="pdetail__form__info">Harga :</h3>
-                                <span class="price-discount">{{ money($product->price - ($product->price * $product->promo) / 100, 'IDR') }}</span>
+                                <p>Discount {{$product->promo}}%</p>
+                                <span
+                                    class="price-discount">{{ money($product->price - ($product->price * $product->promo) / 100, 'IDR') }}</span>
                                 <p class="price-ori">{{ money($product->price, 'IDR') }}</p>
                                 <h3 class="pdetail__form__info">Stok Tersedia : </h3>
                                 <p class="js-inventory">{{ $product->stock }}</p>
@@ -197,21 +199,24 @@
                                             <p class="card-product__card__price-product">
                                                 {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}
                                             </p>
-                                        @else
-                                            <p class="card-product__card__price-product">
-                                                {{ money($item->price, 'IDR') }}</p>
-                                        @endif
+
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @else
+                                <p class="card-product__card__price-product">
+                                    {{ money($item->price, 'IDR') }}</p>
+                        @endif
                     </div>
                 </div>
-                <div class="card-product__footer">
-                    <a class="btn btn--secondary" href="{{route('produk-list')}}">Lihat Penawaran Lainnya</a>
-                </div>
             </div>
+            @endforeach
         </div>
-        <!-- end-card-product-->
+    </div>
+    <div class="card-product__footer">
+        <a class="btn btn--secondary" href="{{ route('produk-list') }}">Lihat Penawaran Lainnya</a>
+    </div>
+    </div>
+    </div>
+    <!-- end-card-product-->
     </div>
 @endsection

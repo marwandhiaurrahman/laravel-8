@@ -95,8 +95,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Submit</button>
-                    <a href="{{ url()->previous() }}" class="btn btn-danger" required>Kembali</a>
                 </div>
                 {!! Form::close() !!}
             </div>

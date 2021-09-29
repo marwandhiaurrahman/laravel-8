@@ -120,7 +120,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {!! Form::open(['route' => 'product.store', 'method' => 'POST', 'files' => false]) !!}
+                {!! Form::open(['route' => 'product.store', 'method' => 'POST', 'files' => true]) !!}
                 <div class="modal-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -153,6 +153,14 @@
                                                 </textarea>
                     </div>
                     <div class="form-group">
+                        <label for="inputPhoto">Gambar Produk</label>
+                        <div class="input-group col-sm-10 col-md-6 col-lg-4">
+                            <div class="custom-file">
+                                {!! Form::file('image', ['class' >= 'custom-file-input', 'id' => 'exampleInputFile']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="inputKategori">Kategori Produk</label>
                         {!! Form::select('category', $categoris->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'inputKategori', 'placeholder' => 'Pilih Kategori Produk', 'required']) !!}
                     </div>
@@ -177,7 +185,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Submit</button>
-                    <a href="{{ url()->previous() }}" class="btn btn-danger" required>Kembali</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
                 {!! Form::close() !!}
             </div>
@@ -254,6 +262,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Update</button>
                 </div>
                 {!! Form::close() !!}

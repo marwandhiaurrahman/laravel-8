@@ -112,7 +112,7 @@ class RzfkomputerController extends Controller
         } else if ($request->has('category')) {
             $category = CategoryProduct::where('name', $request->category)->first();
             $products =  $category->products;
-        } else if (count($request->all()) > 0) {
+        } else if (count($request->all()) <= 0) {
             $products = Product::latest()->get();
         }
 
