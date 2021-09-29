@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\CategoryProduct;
+use Modules\Product\Entities\ImageProduct;
 use Modules\Product\Entities\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -50,7 +51,9 @@ class ProductController extends Controller
             'review' => 'required',
             'promo' => 'required|min:0|max:100|numeric',
             'spesification' => 'required',
+            'image' => 'required',
         ]);
+
 
         $product =  Product::updateOrCreate($request->only([
             'name',
@@ -64,6 +67,18 @@ class ProductController extends Controller
         ]));
 
         $product->category()->attach($request->category);
+
+        if (!empty($request->image)) {
+            $imageName = $request->image->getClientOriginalName();
+            $request->image->move(public_path('storage/product-image'), $imageName);
+        }
+        $request->image = $imageName;
+
+        ImageProduct::updateOrCreate([
+            'image' => $request->image,
+            'name' => $request->name,
+            'product_id' => $product->id,
+        ]);
 
         Alert::success('Success Info', 'Success Message');
         return redirect()->route('product.index');

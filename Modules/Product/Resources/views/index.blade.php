@@ -156,7 +156,7 @@
                         <label for="inputPhoto">Gambar Produk</label>
                         <div class="input-group col-sm-10 col-md-6 col-lg-4">
                             <div class="custom-file">
-                                {!! Form::file('image', ['class' >= 'custom-file-input', 'id' => 'exampleInputFile']) !!}
+                                {!! Form::file('image', ['class' >= 'custom-file-input', 'id' => 'exampleInputFile','required']) !!}
                             </div>
                         </div>
                     </div>

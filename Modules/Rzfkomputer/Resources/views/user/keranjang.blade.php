@@ -17,7 +17,7 @@
                 <div class="cart__empty__content">
                     <div class="container">
                         <p>Ups, Keranjang Anda masih kosong!</p>
-                        <div class="cart__empty__row"><a class="btn btn--primary btn--backshop" href="produk.html">Kembali
+                        <div class="cart__empty__row"><a class="btn btn--primary btn--backshop" href="{{route('produk-list')}}">Kembali
                                 Belanja</a>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                                             <div class="cart__media">
                                                 <div class="cart__media__content">
 
-                                                    <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                                    <form action="{{ route('cart_destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="cart__media__delete-btn" type="submit" title="Delete">

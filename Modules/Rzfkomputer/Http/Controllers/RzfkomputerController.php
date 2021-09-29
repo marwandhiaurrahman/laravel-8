@@ -81,13 +81,15 @@ class RzfkomputerController extends Controller
     public function cart_store(Request $request)
     {
         $product = Product::find($request->product_id);
-
+// dd($request->all());
         \Cart::add([
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
             'quantity' => $request->quantity,
             'attributes' => [
+                'color'=> $request->color,
+                'size'=> $request->size,
                 'image' => (!empty($product->images->first()->image)) ? 'storage/product-image/' . $product->images->first()->image : 'assets/img/dummy/placeholder-product.png',
             ],
         ]);
