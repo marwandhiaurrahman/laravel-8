@@ -27,6 +27,10 @@
                               <a class="header__nav__link" href="/promo">Promo</a>
                           </li>
                           <li
+                          class="header__nav__item js-nav-items {{ Request::routeIs('cek-status') ? ' header__nav__item--active' : '' }}">
+                          <a class="header__nav__link" href="{{ route('cek-status') }}">Cek Status</a>
+                      </li>
+                          <li
                               class="header__nav__item js-nav-items {{ Request::routeIs('kontak') ? ' header__nav__item--active' : '' }}">
                               <a class="header__nav__link" href="{{ route('kontak') }}">Kontak Kami</a>
                           </li>
@@ -46,7 +50,7 @@
                               <img class="cart-list__alert-empty-img-el" src="{{asset('assets/img/dummy/empty-cart.svg')}}"
                                   alt="Saat ini, Keranjang Anda kosong" />
                           </div>
-                          <div class="cart-list__alert-empty">
+                          <div class="cart-list__alert-empty-txt">
                               <p>Saat ini, Keranjang Anda kosong</p>
                           </div>
                       @endif

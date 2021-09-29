@@ -44,9 +44,9 @@ class RzfkomputerController extends Controller
         ]);
 
         $customer = Customer::updateOrCreate($request->only(['name', 'address', 'email', 'phone']));
-
+        $randomNumber = random_int(100000, 999999);
         $order = Order::create([
-            'invoice' => uniqid(),
+            'invoice' => $randomNumber,
             'total_price' => \Cart::getTotal(),
             'status' => '1',
             'customer_id' => $customer->id,
@@ -138,6 +138,12 @@ class RzfkomputerController extends Controller
         }
 
         return view('rzfkomputer::user.promo', compact(['categoris', 'products']));
+    }
+
+    public function cek_status(Request $request)
+    {
+        $order = Order::where('invoice', $request->id)->first();
+        return view('rzfkomputer::user.order-status', compact('order'));
     }
 
     /**

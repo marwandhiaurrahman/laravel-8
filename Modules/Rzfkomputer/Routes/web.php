@@ -34,9 +34,11 @@ Route::get('/kontak-kami', function () {
 })->name('kontak');
 
 Route::get('/ordersuccess','RzfkomputerController@order_success' )->name('ordersuccess');
-Route::get('/orderstatus', function () {
-    return view('rzfkomputer::user.order-status');
-})->name('orderstatus');
+
+
+Route::get('/cek-status', 'RzfkomputerController@cek_status')->name('cek-status');
+Route::post('/cek-status', 'RzfkomputerController@cek_status')->name('cekstatuspost');
+
 
 
 Route::prefix('admin')->middleware('auth')->group(function () {
