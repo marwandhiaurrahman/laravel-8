@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="no-result-page__content">
                     <div class="no-result-page__img"><img class="no-result-page__img__el"
-                            src="assets/img/dummy/no-result.svg" alt="Tidak DItemukan" /></div>
+                            src="{{asset('assets/img/dummy/no-result.svg')}}" alt="Tidak DItemukan" /></div>
                     <div class="no-result-page__txt">
                         <p class="no-result-page__txt__caption">Pencarian Anda dengan kata kunci <strong>{{Request::get('search')}}</strong>
                             tidak ditemukan!</p>
