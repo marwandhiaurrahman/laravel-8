@@ -1,6 +1,32 @@
 @extends('rzfkomputer::layouts.master')
 @section('title', 'Produk')
 @section('main')
+    <div class="main-site main-site--hide js-main-site">
+        <!--title-page-->
+        <div class="title-page title-page--pattern">
+            <div class="title-page__particle" id="particles-js"></div>
+            <div class="container">
+                <div class="title-page__txt">
+                    <h2 class="title-page__title">Hasil Pencarian :</h2>
+                </div>
+            </div>
+        </div>
+        <!--no-result-page-->
+        <div class="no-result-page">
+            <div class="container">
+                <div class="no-result-page__content">
+                    <div class="no-result-page__img"><img class="no-result-page__img__el"
+                            src="assets/img/dummy/no-result.svg" alt="Tidak DItemukan" /></div>
+                    <div class="no-result-page__txt">
+                        <p class="no-result-page__txt__caption">Pencarian Anda dengan kata kunci <strong>qweqwe</strong>
+                            tidak ditemukan!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-no-result-page-->
+    </div>
+
     <!-- main-->
     <div class="main-site main-site--hide js-main-site">
         <!--title-page-->
@@ -20,13 +46,14 @@
                 <div class="product__wrapper">
                     <div class="product__sorting js-sorting-dd js-sticky">
                         <div class="product__sorting-select">
-                                {{-- {!! Form::open(array('route' => 'jurnal-umum.index','method'=>'GET')) !!} --}}
+                            {{-- {!! Form::open(array('route' => 'jurnal-umum.index','method'=>'GET')) !!} --}}
 
                             <h3 class="product__sorting-title">Kategori</h3>
                             <div class="product__sorting-list">
-                                <a class="product__sorting-link" href="{{route('produk-list')}}">Semua</a>
+                                <a class="product__sorting-link" href="{{ route('produk-list') }}">Semua</a>
                                 @foreach ($categoris as $item)
-                                <a class="product__sorting-link" href="{{route('produk-list','category='.$item->name)}}">{{$item->name}}</a>
+                                    <a class="product__sorting-link"
+                                        href="{{ route('produk-list', 'category=' . $item->name) }}">{{ $item->name }}</a>
                                 @endforeach
                                 {{-- <a class="product__sorting-link" href="{{route('produk-list','category=laptop')}}">Laptop</a> --}}
                                 {{-- <a class="product__sorting-link" href="{{route('produk-list','category=printer')}}">Printer</a> --}}
@@ -55,13 +82,16 @@
                                         <h3 class="card-product__card__title">{{ $item->name }}</h3>
                                         @if ($item->promo >= 1)
                                             <div class="card-product__card__sale">
-                                                <span class="card-product__card__percentage">{{$item->promo}} %</span>
-                                                <span class="card-product__card__price-carret">{{ money($item->price, 'IDR') }}</span>
+                                                <span class="card-product__card__percentage">{{ $item->promo }} %</span>
+                                                <span
+                                                    class="card-product__card__price-carret">{{ money($item->price, 'IDR') }}</span>
                                             </div>
                                             <p class="card-product__card__price-product">
-                                                {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}</p>
+                                                {{ money($item->price - ($item->price * $item->promo) / 100, 'IDR') }}
+                                            </p>
                                         @else
-                                            <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}</p>
+                                            <p class="card-product__card__price-product">{{ money($item->price, 'IDR') }}
+                                            </p>
                                         @endif
                                     </div>
                                 </div>
