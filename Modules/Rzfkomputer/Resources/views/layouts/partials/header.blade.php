@@ -46,13 +46,15 @@
               <div class="cart-list js-cart-list" dataEmpty="{{ Cart::getTotalQuantity() }}">
                   <div class="cart-list__items js-cart-list__items">
                       @if (Cart::getTotalQuantity() == 0)
-                          <div class="cart-list__alert-empty-img">
-                              <img class="cart-list__alert-empty-img-el"
-                                  src="{{ asset('assets/img/dummy/empty-cart.svg') }}"
-                                  alt="Saat ini, Keranjang Anda kosong" />
-                          </div>
-                          <div class="cart-list__alert-empty-txt">
-                              <p>Saat ini, Keranjang Anda kosong</p>
+                          <div class="cart-list__alert-empty">
+                              <div class="cart-list__alert-empty-img">
+                                  <img class="cart-list__alert-empty-img-el"
+                                      src="{{ asset('assets/img/dummy/empty-cart.svg') }}"
+                                      alt="Saat ini, Keranjang Anda kosong" />
+                              </div>
+                              <div class="cart-list__alert-empty-txt">
+                                  <p>Saat ini, Keranjang Anda kosong</p>
+                              </div>
                           </div>
                       @endif
                       <div class="cart-list__table__wrapper">
@@ -82,7 +84,7 @@
                                                   @csrf
                                                   @method('DELETE')
                                                   <button class="cart-list__delete-btn" type="submit">
-                                                    <i class="rzfkomputer-trashcan"></i>
+                                                      <i class="rzfkomputer-trashcan"></i>
                                                   </button>
                                               </form>
                                           </td>
