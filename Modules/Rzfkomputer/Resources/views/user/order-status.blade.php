@@ -22,10 +22,12 @@
                         name="id" type="number" placeholder="Masukkan Order ID Anda" />
                     <p class="form__desc">Order ID dapat dilihat di e-receipt yang dikirimkan ke email Anda. Apabila
                         sudah membayar namun tidak menerima e-receipt, Anda dapat menghubungi kami di rzfkomputer@gmail.com
-                        @if ($order == null)
-                        <div class="order__row">
-                            <p>Order ID yang Anda masukkan tidak valid. Silakan cek kembali!</p>
-                        </div>
+                        @if (Request::root() . Request::getRequestUri() != route('cek-status'))
+                            @if ($order == null)
+                                <div class="order__row">
+                                    <p>Order ID yang Anda masukkan tidak valid. Silakan cek kembali!</p>
+                                </div>
+                            @endif
                         @endif
                     </p>
                     <div class="fi-row"><button class="btn btn--primary btn--payment" type="submit">Lacak Pesanan
