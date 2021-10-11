@@ -4,5 +4,6 @@
     "CategoryProduct": true,
     "Order": true,
     "Customer": true,
-    "Rzfkomputer": true
+    "Rzfkomputer": true,
+    "Banner": true
 }

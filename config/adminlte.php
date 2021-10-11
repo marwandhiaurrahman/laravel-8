@@ -297,7 +297,8 @@ return [
             'submenu' => [
                 [
                     'text' => 'Banner',
-                    'url'  => '#',
+                    'url'  => 'admin/banner',
+                    'active' => ['admin/banner', 'regex:@^admin/banner/[0-9]+$@', 'regex:@^admin/banner/[0-9]/edit+$@', 'admin/banner/create',]
                 ],
                 [
                     'text' => 'Contact',
